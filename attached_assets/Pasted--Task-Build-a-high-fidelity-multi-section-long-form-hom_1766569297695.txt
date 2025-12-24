@@ -1,0 +1,35 @@
+**Task**: Build a high-fidelity, multi-section, long-form homepage for "Intelous.ai" (Universe A: SCALE). 
+**Style**: Blend the "Glass Box" technical transparency of PostHog with the bold, colorful, illustrative energy of PhamilyPharma. 
+**Brand Colors**: Obsidian (#050505), Strategy Pink (#FF007F), Logic Blue (#007BFF), System Green (#39FF14).
+
+**Section 1: The Command Header**
+- Nav Links: [Managed Lead Gen, Intelous OS, IntelousABM, Findlead, Use Cases, Blogs, Services].
+- Primary Button: "Join Q1 2026 Cohort" (Strategy Pink).
+
+**Section 2: Hero & Toggle**
+- Headline: "SPECIALIZED DIGITAL WORKERS. VERIFIED OUTCOMES." in bold, oversized Inter typography.
+- Sub-headline: Focus on pairing 200M+ data points with expert human oversight.
+- The Toggle: Place a LARGE, tactile 3D toggle switch centered below the sub-headline. Labels: "UNIVERSE A: SCALE" (Active/Green) and "UNIVERSE B: BUILD".
+
+**Section 3: The Sovereign Triad (Grid)**
+- Create a high-contrast 3-column grid for "The Strategy (Humans)", "The Engine (Platform)", and "The Fuel (Data)". Use bold icons and hand-drawn style annotations.
+
+**Section 4: The GTM Canvas (Visual Hook)**
+- Create a window component styled like a code editor. Inside, use a React Flow-style canvas showing a Lead Flow: [Findlead Discovery] -> [Human Verification Gate] -> [Omnichannel Action]. Use neon logic paths.
+
+**Section 5: The Clean Room Terminal**
+- A dark code terminal box with auto-scrolling IBM Plex Mono text: "HUMAN_AUDIT: Lead #9021 verified... [98% Match]. Triggering LinkedIn sequence." Show a human-stylized signature next to the terminal.
+
+**Section 6: Managed GTM Pods (Cards)**
+- 3 Large, vibrant cards for LAUNCH ($4,000), GROWTH ($8,500), and SCALE ($15,000+). 
+- Use high-contrast highlights for pricing. List outcomes clearly (e.g., "100 Verified Meetings/Mo").
+
+**Section 7: Strategic Waitlist (Footer CTA)**
+- A large, colorful section with the headline: "THE GTM OS IS BEING HAND-BUILT FOR A SELECT FEW."
+- Button: "Apply for Q1 2026 Cohort". 
+- Add a counter: "Only 5 Pods available per month."
+
+**Interaction Specs**:
+- Use Framer Motion for scroll-reveal animations.
+- Hover states on cards should trigger a luminous border glow.
+- Theme: Stay in Dark Mode (#050505) but use high-saturation color pops for details.
