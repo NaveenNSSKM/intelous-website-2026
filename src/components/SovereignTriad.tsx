@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { motion } from 'framer-motion'
 
 const triadItems = [
@@ -55,7 +56,7 @@ export default function SovereignTriad() {
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              style={{ '--accent-color': item.color } as React.CSSProperties}
+              style={{ '--accent-color': item.color } as CSSProperties}
             >
               <div className="card-annotation" style={{ color: item.color }}>
                 <svg className="annotation-arrow" width="40" height="40" viewBox="0 0 40 40">

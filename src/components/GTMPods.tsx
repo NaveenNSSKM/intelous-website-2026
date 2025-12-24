@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { motion } from 'framer-motion'
 
 const pods = [
@@ -83,7 +84,7 @@ export default function GTMPods() {
                 boxShadow: `0 0 60px ${pod.color}30`,
                 borderColor: pod.color
               }}
-              style={{ '--pod-color': pod.color } as React.CSSProperties}
+              style={{ '--pod-color': pod.color } as CSSProperties}
             >
               {pod.popular && (
                 <div className="popular-badge">MOST POPULAR</div>
