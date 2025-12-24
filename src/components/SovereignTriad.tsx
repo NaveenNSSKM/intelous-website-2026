@@ -1,93 +1,155 @@
 import type { CSSProperties } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
-const triadItems = [
-  {
-    title: 'The Strategy',
-    subtitle: 'Humans',
-    icon: '🧠',
-    description: 'Expert strategists who understand your ICP, craft messaging, and ensure every outreach feels personal.',
-    highlights: ['Account Selection', 'Message Crafting', 'Quality Assurance'],
-    color: '#FF007F',
-    annotation: 'Real humans, not bots!'
+interface SovereignTriadProps {
+  universe: 'scale' | 'build'
+}
+
+const triadContent = {
+  scale: {
+    tag: 'THE SOVEREIGN TRIAD',
+    title: 'Three Pillars of Pipeline Domination',
+    items: [
+      {
+        title: 'The Strategy',
+        subtitle: 'Humans',
+        icon: '🧠',
+        description: 'Expert strategists who understand your ICP, craft messaging, and ensure every outreach feels personal.',
+        highlights: ['Account Selection', 'Message Crafting', 'Quality Assurance'],
+        color: '#FF007F',
+        annotation: 'Real humans, not bots!'
+      },
+      {
+        title: 'The Engine',
+        subtitle: 'Platform',
+        icon: '⚡',
+        description: 'Our proprietary Intelous OS orchestrates multi-channel campaigns with precision timing and sequencing.',
+        highlights: ['Omnichannel Orchestration', 'Smart Sequencing', 'Real-time Optimization'],
+        color: '#007BFF',
+        annotation: 'Built for scale'
+      },
+      {
+        title: 'The Fuel',
+        subtitle: 'Data',
+        icon: '🔥',
+        description: '200M+ verified contacts enriched with intent signals, technographics, and buying committee mapping.',
+        highlights: ['Intent Signals', 'Verified Contacts', 'Buying Committee Intel'],
+        color: '#39FF14',
+        annotation: '200M+ data points'
+      }
+    ]
   },
-  {
-    title: 'The Engine',
-    subtitle: 'Platform',
-    icon: '⚡',
-    description: 'Our proprietary Intelous OS orchestrates multi-channel campaigns with precision timing and sequencing.',
-    highlights: ['Omnichannel Orchestration', 'Smart Sequencing', 'Real-time Optimization'],
-    color: '#007BFF',
-    annotation: 'Built for scale'
-  },
-  {
-    title: 'The Fuel',
-    subtitle: 'Data',
-    icon: '🔥',
-    description: '200M+ verified contacts enriched with intent signals, technographics, and buying committee mapping.',
-    highlights: ['Intent Signals', 'Verified Contacts', 'Buying Committee Intel'],
-    color: '#39FF14',
-    annotation: '200M+ data points'
+  build: {
+    tag: 'THE BUILDER TOOLKIT',
+    title: 'Everything You Need to Build Your GTM',
+    items: [
+      {
+        title: 'The Blueprint',
+        subtitle: 'Frameworks',
+        icon: '📐',
+        description: 'Proven GTM frameworks and playbooks used by 500+ B2B companies to build predictable pipeline.',
+        highlights: ['ICP Templates', 'Sequence Frameworks', 'Scoring Models'],
+        color: '#007BFF',
+        annotation: 'Battle-tested!'
+      },
+      {
+        title: 'The Toolkit',
+        subtitle: 'Platform Access',
+        icon: '🛠️',
+        description: 'Full access to Intelous OS with unlimited seats. Build, test, and iterate at your own pace.',
+        highlights: ['Unlimited Users', 'API Access', 'Custom Workflows'],
+        color: '#FF007F',
+        annotation: 'Your own instance'
+      },
+      {
+        title: 'The Data Lake',
+        subtitle: 'Database',
+        icon: '🗄️',
+        description: 'Direct access to our 200M+ contact database with advanced search and export capabilities.',
+        highlights: ['Bulk Exports', 'Real-time Enrichment', 'Custom Filters'],
+        color: '#39FF14',
+        annotation: 'Self-serve data'
+      }
+    ]
   }
-]
+}
 
-export default function SovereignTriad() {
+export default function SovereignTriad({ universe }: SovereignTriadProps) {
+  const content = triadContent[universe]
+
   return (
     <section className="sovereign-triad">
       <div className="triad-container">
-        <motion.div
-          className="section-header"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="section-tag">THE SOVEREIGN TRIAD</span>
-          <h2 className="section-title">Three Pillars of Pipeline Domination</h2>
-        </motion.div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={universe + '-header'}
+            className="section-header"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.4 }}
+          >
+            <span className="section-tag" style={{ 
+              color: universe === 'scale' ? 'var(--strategy-pink)' : 'var(--logic-blue)',
+              background: universe === 'scale' ? 'rgba(255, 0, 127, 0.1)' : 'rgba(0, 123, 255, 0.1)',
+              borderColor: universe === 'scale' ? 'rgba(255, 0, 127, 0.2)' : 'rgba(0, 123, 255, 0.2)'
+            }}>
+              {content.tag}
+            </span>
+            <h2 className="section-title">{content.title}</h2>
+          </motion.div>
+        </AnimatePresence>
 
-        <div className="triad-grid">
-          {triadItems.map((item, index) => (
-            <motion.div
-              key={item.title}
-              className="triad-card"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              style={{ '--accent-color': item.color } as CSSProperties}
-            >
-              <div className="card-annotation" style={{ color: item.color }}>
-                <svg className="annotation-arrow" width="40" height="40" viewBox="0 0 40 40">
-                  <path d="M5 35 Q 20 20, 35 10" stroke={item.color} strokeWidth="2" fill="none" strokeDasharray="4 4"/>
-                  <path d="M30 5 L35 10 L28 12" stroke={item.color} strokeWidth="2" fill="none"/>
-                </svg>
-                <span>{item.annotation}</span>
-              </div>
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={universe + '-grid'}
+            className="triad-grid"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {content.items.map((item, index) => (
+              <motion.div
+                key={item.title}
+                className="triad-card"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                style={{ '--accent-color': item.color } as CSSProperties}
+              >
+                <div className="card-annotation" style={{ color: item.color }}>
+                  <svg className="annotation-arrow" width="40" height="40" viewBox="0 0 40 40">
+                    <path d="M5 35 Q 20 20, 35 10" stroke={item.color} strokeWidth="2" fill="none" strokeDasharray="4 4"/>
+                    <path d="M30 5 L35 10 L28 12" stroke={item.color} strokeWidth="2" fill="none"/>
+                  </svg>
+                  <span>{item.annotation}</span>
+                </div>
 
-              <div className="card-icon">{item.icon}</div>
-              
-              <div className="card-header">
-                <h3 className="card-title">{item.title}</h3>
-                <span className="card-subtitle" style={{ color: item.color }}>{item.subtitle}</span>
-              </div>
+                <div className="card-icon">{item.icon}</div>
+                
+                <div className="card-header">
+                  <h3 className="card-title">{item.title}</h3>
+                  <span className="card-subtitle" style={{ color: item.color }}>{item.subtitle}</span>
+                </div>
 
-              <p className="card-description">{item.description}</p>
+                <p className="card-description">{item.description}</p>
 
-              <ul className="card-highlights">
-                {item.highlights.map((highlight) => (
-                  <li key={highlight} className="highlight-item">
-                    <span className="highlight-dot" style={{ backgroundColor: item.color }} />
-                    {highlight}
-                  </li>
-                ))}
-              </ul>
+                <ul className="card-highlights">
+                  {item.highlights.map((highlight) => (
+                    <li key={highlight} className="highlight-item">
+                      <span className="highlight-dot" style={{ backgroundColor: item.color }} />
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
 
-              <div className="card-glow" style={{ background: `radial-gradient(circle at center, ${item.color}20 0%, transparent 70%)` }} />
-            </motion.div>
-          ))}
-        </div>
+                <div className="card-glow" style={{ background: `radial-gradient(circle at center, ${item.color}20 0%, transparent 70%)` }} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       <style>{`
@@ -113,12 +175,11 @@ export default function SovereignTriad() {
           font-size: 12px;
           font-weight: 700;
           letter-spacing: 3px;
-          color: var(--strategy-pink);
-          background: rgba(255, 0, 127, 0.1);
           padding: 8px 20px;
           border-radius: 100px;
           margin-bottom: 24px;
-          border: 1px solid rgba(255, 0, 127, 0.2);
+          border: 1px solid;
+          transition: all 0.3s ease;
         }
 
         .section-title {

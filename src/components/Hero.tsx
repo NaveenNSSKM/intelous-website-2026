@@ -1,11 +1,34 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 interface HeroProps {
   universe: 'scale' | 'build'
   setUniverse: (universe: 'scale' | 'build') => void
 }
 
+const heroContent = {
+  scale: {
+    headline: ['SPECIALIZED DIGITAL', 'WORKERS.', 'VERIFIED', 'OUTCOMES.'],
+    subheadline: (
+      <>
+        Pairing <span className="data-highlight">200M+ verified data points</span> with 
+        expert human oversight to deliver pipeline that actually converts.
+      </>
+    )
+  },
+  build: {
+    headline: ['BUILD YOUR OWN', 'GTM MACHINE.', 'OWN YOUR', 'INFRASTRUCTURE.'],
+    subheadline: (
+      <>
+        Access our <span className="data-highlight-blue">complete GTM toolkit</span> and 
+        build a custom pipeline engine tailored to your exact specifications.
+      </>
+    )
+  }
+}
+
 export default function Hero({ universe, setUniverse }: HeroProps) {
+  const content = heroContent[universe]
+
   return (
     <section className="hero">
       <div className="hero-container">
@@ -15,22 +38,38 @@ export default function Hero({ universe, setUniverse }: HeroProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <h1 className="hero-headline">
-            <span className="headline-line">SPECIALIZED DIGITAL</span>
-            <span className="headline-line highlight">WORKERS.</span>
-            <span className="headline-line">VERIFIED</span>
-            <span className="headline-line highlight-blue">OUTCOMES.</span>
-          </h1>
+          <AnimatePresence mode="wait">
+            <motion.h1 
+              key={universe}
+              className="hero-headline"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+            >
+              <span className="headline-line">{content.headline[0]}</span>
+              <span className={`headline-line ${universe === 'scale' ? 'highlight' : 'highlight-blue'}`}>
+                {content.headline[1]}
+              </span>
+              <span className="headline-line">{content.headline[2]}</span>
+              <span className={`headline-line ${universe === 'scale' ? 'highlight-blue' : 'highlight'}`}>
+                {content.headline[3]}
+              </span>
+            </motion.h1>
+          </AnimatePresence>
 
-          <motion.p
-            className="hero-subheadline"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            Pairing <span className="data-highlight">200M+ verified data points</span> with 
-            expert human oversight to deliver pipeline that actually converts.
-          </motion.p>
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={universe}
+              className="hero-subheadline"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+            >
+              {content.subheadline}
+            </motion.p>
+          </AnimatePresence>
 
           <motion.div
             className="toggle-container"
@@ -148,6 +187,11 @@ export default function Hero({ universe, setUniverse }: HeroProps) {
 
         .data-highlight {
           color: var(--system-green);
+          font-weight: 600;
+        }
+
+        .data-highlight-blue {
+          color: var(--logic-blue);
           font-weight: 600;
         }
 

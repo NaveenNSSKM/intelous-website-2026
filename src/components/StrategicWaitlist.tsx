@@ -1,16 +1,41 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 
-export default function StrategicWaitlist() {
+interface StrategicWaitlistProps {
+  universe: 'scale' | 'build'
+}
+
+const waitlistContent = {
+  scale: {
+    badge: 'LIMITED ACCESS',
+    headline: ['THE GTM OS IS BEING', 'HAND-BUILT FOR A SELECT FEW.'],
+    description: "We're not looking for everyone. We're looking for ambitious teams ready to dominate their markets with precision-engineered pipeline.",
+    button: 'Apply for Q1 2026 Cohort',
+    counter: { value: 5, label: 'Pods Available', subLabel: 'per month' }
+  },
+  build: {
+    badge: 'EARLY ACCESS',
+    headline: ['BUILD YOUR GTM MACHINE', 'WITH FULL PLATFORM ACCESS.'],
+    description: "Join our builder community and get early access to the complete Intelous toolkit. Shape the future of outbound with us.",
+    button: 'Request Builder Access',
+    counter: { value: 25, label: 'Builder Seats', subLabel: 'remaining' }
+  }
+}
+
+export default function StrategicWaitlist({ universe }: StrategicWaitlistProps) {
   const [email, setEmail] = useState('')
-  const podsRemaining = 5
+  const content = waitlistContent[universe]
 
   return (
     <section className="strategic-waitlist">
       <div className="waitlist-container">
         <div className="background-elements">
-          <div className="bg-gradient bg-1" />
-          <div className="bg-gradient bg-2" />
+          <div className="bg-gradient bg-1" style={{
+            background: universe === 'scale' ? 'var(--strategy-pink)' : 'var(--logic-blue)'
+          }} />
+          <div className="bg-gradient bg-2" style={{
+            background: universe === 'scale' ? 'var(--logic-blue)' : 'var(--system-green)'
+          }} />
           <div className="bg-grid" />
         </div>
 
@@ -21,45 +46,62 @@ export default function StrategicWaitlist() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <motion.div 
-            className="exclusivity-badge"
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: 'spring', delay: 0.3 }}
-          >
-            <span className="badge-pulse" />
-            <span className="badge-text">LIMITED ACCESS</span>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={universe}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+            >
+              <motion.div 
+                className="exclusivity-badge"
+                style={{
+                  background: universe === 'scale' ? 'rgba(255, 0, 127, 0.1)' : 'rgba(0, 123, 255, 0.1)',
+                  borderColor: universe === 'scale' ? 'rgba(255, 0, 127, 0.3)' : 'rgba(0, 123, 255, 0.3)'
+                }}
+              >
+                <span className="badge-pulse" style={{
+                  background: universe === 'scale' ? 'var(--strategy-pink)' : 'var(--logic-blue)'
+                }} />
+                <span className="badge-text" style={{
+                  color: universe === 'scale' ? 'var(--strategy-pink)' : 'var(--logic-blue)'
+                }}>
+                  {content.badge}
+                </span>
+              </motion.div>
 
-          <h2 className="waitlist-headline">
-            THE GTM OS IS BEING
-            <br />
-            <span className="headline-highlight">HAND-BUILT FOR A SELECT FEW.</span>
-          </h2>
+              <h2 className="waitlist-headline">
+                {content.headline[0]}
+                <br />
+                <span className="headline-highlight" style={{
+                  background: universe === 'scale' 
+                    ? 'linear-gradient(135deg, var(--strategy-pink), var(--logic-blue))'
+                    : 'linear-gradient(135deg, var(--logic-blue), var(--system-green))'
+                }}>
+                  {content.headline[1]}
+                </span>
+              </h2>
 
-          <p className="waitlist-description">
-            We're not looking for everyone. We're looking for ambitious teams ready to 
-            dominate their markets with precision-engineered pipeline.
-          </p>
+              <p className="waitlist-description">{content.description}</p>
 
-          <motion.div 
-            className="counter-display"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-          >
-            <div className="counter-box">
-              <span className="counter-number">{podsRemaining}</span>
-              <span className="counter-label">Pods Available</span>
-            </div>
-            <div className="counter-divider" />
-            <div className="counter-box">
-              <span className="counter-text">per month</span>
-              <span className="counter-label">Capacity</span>
-            </div>
-          </motion.div>
+              <div className="counter-display">
+                <div className="counter-box">
+                  <span className="counter-number" style={{
+                    color: universe === 'scale' ? 'var(--system-green)' : 'var(--logic-blue)'
+                  }}>
+                    {content.counter.value}
+                  </span>
+                  <span className="counter-label">{content.counter.label}</span>
+                </div>
+                <div className="counter-divider" />
+                <div className="counter-box">
+                  <span className="counter-text">{content.counter.subLabel}</span>
+                  <span className="counter-label">Capacity</span>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
 
           <motion.form 
             className="waitlist-form"
@@ -80,10 +122,16 @@ export default function StrategicWaitlist() {
               <motion.button
                 type="submit"
                 className="submit-button"
-                whileHover={{ scale: 1.02, boxShadow: '0 0 40px rgba(255, 0, 127, 0.5)' }}
+                style={{
+                  background: universe === 'scale' ? 'var(--strategy-pink)' : 'var(--logic-blue)'
+                }}
+                whileHover={{ scale: 1.02, boxShadow: universe === 'scale' 
+                  ? '0 0 40px rgba(255, 0, 127, 0.5)' 
+                  : '0 0 40px rgba(0, 123, 255, 0.5)' 
+                }}
                 whileTap={{ scale: 0.98 }}
               >
-                Apply for Q1 2026 Cohort
+                {content.button}
               </motion.button>
             </div>
           </motion.form>
@@ -95,11 +143,11 @@ export default function StrategicWaitlist() {
             </span>
             <span className="trust-item">
               <span className="check">✓</span>
-              15-min strategy call
+              {universe === 'scale' ? '15-min strategy call' : 'Developer onboarding'}
             </span>
             <span className="trust-item">
               <span className="check">✓</span>
-              Custom proposal
+              {universe === 'scale' ? 'Custom proposal' : 'API documentation'}
             </span>
           </div>
         </motion.div>
@@ -148,16 +196,15 @@ export default function StrategicWaitlist() {
           border-radius: 50%;
           filter: blur(120px);
           opacity: 0.15;
+          transition: all 0.5s ease;
         }
 
         .bg-1 {
-          background: var(--strategy-pink);
           top: -200px;
           left: -200px;
         }
 
         .bg-2 {
-          background: var(--logic-blue);
           bottom: -200px;
           right: -200px;
         }
@@ -184,17 +231,16 @@ export default function StrategicWaitlist() {
           display: inline-flex;
           align-items: center;
           gap: 10px;
-          background: rgba(255, 0, 127, 0.1);
-          border: 1px solid rgba(255, 0, 127, 0.3);
+          border: 1px solid;
           padding: 10px 24px;
           border-radius: 100px;
           margin-bottom: 32px;
+          transition: all 0.3s ease;
         }
 
         .badge-pulse {
           width: 10px;
           height: 10px;
-          background: var(--strategy-pink);
           border-radius: 50%;
           animation: pulse-glow 2s ease-in-out infinite;
         }
@@ -208,7 +254,6 @@ export default function StrategicWaitlist() {
           font-size: 12px;
           font-weight: 700;
           letter-spacing: 2px;
-          color: var(--strategy-pink);
         }
 
         .waitlist-headline {
@@ -220,7 +265,6 @@ export default function StrategicWaitlist() {
         }
 
         .headline-highlight {
-          background: linear-gradient(135deg, var(--strategy-pink), var(--logic-blue));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -256,9 +300,9 @@ export default function StrategicWaitlist() {
         .counter-number {
           font-size: 56px;
           font-weight: 900;
-          color: var(--system-green);
           line-height: 1;
-          text-shadow: 0 0 30px rgba(57, 255, 20, 0.5);
+          text-shadow: 0 0 30px currentColor;
+          transition: color 0.3s ease;
         }
 
         .counter-text {
@@ -314,7 +358,6 @@ export default function StrategicWaitlist() {
         }
 
         .submit-button {
-          background: var(--strategy-pink);
           color: white;
           padding: 18px 32px;
           border-radius: 12px;

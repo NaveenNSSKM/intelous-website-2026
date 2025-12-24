@@ -16,11 +16,11 @@ function App() {
       <Header />
       <main>
         <Hero universe={universe} setUniverse={setUniverse} />
-        <SovereignTriad />
-        <GTMCanvas />
-        <CleanRoomTerminal />
-        <GTMPods />
-        <StrategicWaitlist />
+        <SovereignTriad universe={universe} />
+        <GTMCanvas universe={universe} />
+        <CleanRoomTerminal universe={universe} />
+        <GTMPods universe={universe} />
+        <StrategicWaitlist universe={universe} />
       </main>
     </div>
   )

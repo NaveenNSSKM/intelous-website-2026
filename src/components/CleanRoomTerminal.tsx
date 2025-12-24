@@ -1,39 +1,88 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
-const terminalLines = [
-  { text: '[SYSTEM] Initializing Clean Room Protocol...', type: 'system' },
-  { text: '[DATA] Fetching lead batch #9021...', type: 'data' },
-  { text: 'HUMAN_AUDIT: Lead #9021 verified... [98% Match]', type: 'success' },
-  { text: '[ACTION] Triggering LinkedIn sequence for John D. (VP Sales @ TechCorp)', type: 'action' },
-  { text: '[DATA] Enrichment complete: 12 intent signals detected', type: 'data' },
-  { text: 'HUMAN_AUDIT: Lead #9022 verified... [95% Match]', type: 'success' },
-  { text: '[ACTION] Initiating email sequence...', type: 'action' },
-  { text: '[SYSTEM] Quality gate passed: 47/50 leads verified', type: 'system' },
-  { text: 'HUMAN_AUDIT: Lead #9023 verified... [99% Match]', type: 'success' },
-  { text: '[ACTION] Multi-channel orchestration active', type: 'action' },
-]
+interface CleanRoomTerminalProps {
+  universe: 'scale' | 'build'
+}
 
-export default function CleanRoomTerminal() {
-  const [displayedLines, setDisplayedLines] = useState<typeof terminalLines>([])
+const terminalContent = {
+  scale: {
+    tag: 'THE CLEAN ROOM',
+    title: 'Human-Verified, Machine-Scaled',
+    subtitle: 'Every lead passes through our human verification gate before any outreach.',
+    lines: [
+      { text: '[SYSTEM] Initializing Clean Room Protocol...', type: 'system' },
+      { text: '[DATA] Fetching lead batch #9021...', type: 'data' },
+      { text: 'HUMAN_AUDIT: Lead #9021 verified... [98% Match]', type: 'success' },
+      { text: '[ACTION] Triggering LinkedIn sequence for John D. (VP Sales @ TechCorp)', type: 'action' },
+      { text: '[DATA] Enrichment complete: 12 intent signals detected', type: 'data' },
+      { text: 'HUMAN_AUDIT: Lead #9022 verified... [95% Match]', type: 'success' },
+      { text: '[ACTION] Initiating email sequence...', type: 'action' },
+      { text: '[SYSTEM] Quality gate passed: 47/50 leads verified', type: 'system' },
+      { text: 'HUMAN_AUDIT: Lead #9023 verified... [99% Match]', type: 'success' },
+      { text: '[ACTION] Multi-channel orchestration active', type: 'action' },
+    ],
+    signature: {
+      title: 'Human Verification',
+      badge: 'CERTIFIED'
+    },
+    stats: [
+      { value: '98%', label: 'Accuracy' },
+      { value: '2.4s', label: 'Avg. Review' },
+      { value: '24/7', label: 'Coverage' }
+    ]
+  },
+  build: {
+    tag: 'THE DEV CONSOLE',
+    title: 'Full Control, Your Way',
+    subtitle: 'Build custom workflows with our powerful API and developer tools.',
+    lines: [
+      { text: '[BUILD] Initializing developer environment...', type: 'system' },
+      { text: '[API] Connecting to Intelous API v2.4...', type: 'data' },
+      { text: 'CONFIG_LOADED: Custom scoring model active', type: 'success' },
+      { text: '[WEBHOOK] Registered: /api/leads/incoming', type: 'action' },
+      { text: '[API] Enrichment endpoint ready: /api/enrich', type: 'data' },
+      { text: 'INTEGRATION: Salesforce sync enabled', type: 'success' },
+      { text: '[BUILD] Custom sequence builder initialized', type: 'action' },
+      { text: '[API] Rate limit: 10,000 requests/hour', type: 'system' },
+      { text: 'DEPLOY: Production workflow v1.2 active', type: 'success' },
+      { text: '[BUILD] Your GTM engine is ready', type: 'action' },
+    ],
+    signature: {
+      title: 'Developer Access',
+      badge: 'API READY'
+    },
+    stats: [
+      { value: '10K', label: 'API Calls/Hr' },
+      { value: '50+', label: 'Integrations' },
+      { value: '99.9%', label: 'Uptime' }
+    ]
+  }
+}
+
+export default function CleanRoomTerminal({ universe }: CleanRoomTerminalProps) {
+  const content = terminalContent[universe]
+  const [displayedLines, setDisplayedLines] = useState<typeof content.lines>([])
   const [_currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
+    setDisplayedLines([content.lines[0]])
+    setCurrentIndex(0)
+    
     const interval = setInterval(() => {
       setCurrentIndex(prev => {
-        const next = (prev + 1) % terminalLines.length
+        const next = (prev + 1) % content.lines.length
         if (next === 0) {
-          setDisplayedLines([terminalLines[0]])
+          setDisplayedLines([content.lines[0]])
         } else {
-          setDisplayedLines(current => [...current.slice(-7), terminalLines[next]])
+          setDisplayedLines(current => [...current.slice(-7), content.lines[next]])
         }
         return next
       })
     }, 2000)
 
-    setDisplayedLines([terminalLines[0]])
     return () => clearInterval(interval)
-  }, [])
+  }, [universe, content.lines])
 
   const getLineColor = (type: string) => {
     switch (type) {
@@ -47,19 +96,26 @@ export default function CleanRoomTerminal() {
   return (
     <section className="clean-room-terminal">
       <div className="terminal-container">
-        <motion.div
-          className="section-header"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="section-tag">THE CLEAN ROOM</span>
-          <h2 className="section-title">Human-Verified, Machine-Scaled</h2>
-          <p className="section-subtitle">
-            Every lead passes through our human verification gate before any outreach.
-          </p>
-        </motion.div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={universe + '-header'}
+            className="section-header"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.4 }}
+          >
+            <span className="section-tag" style={{
+              color: universe === 'scale' ? 'var(--system-green)' : 'var(--logic-blue)',
+              background: universe === 'scale' ? 'rgba(57, 255, 20, 0.1)' : 'rgba(0, 123, 255, 0.1)',
+              borderColor: universe === 'scale' ? 'rgba(57, 255, 20, 0.2)' : 'rgba(0, 123, 255, 0.2)'
+            }}>
+              {content.tag}
+            </span>
+            <h2 className="section-title">{content.title}</h2>
+            <p className="section-subtitle">{content.subtitle}</p>
+          </motion.div>
+        </AnimatePresence>
 
         <div className="terminal-wrapper">
           <motion.div
@@ -73,7 +129,9 @@ export default function CleanRoomTerminal() {
               <span className="terminal-dot red" />
               <span className="terminal-dot yellow" />
               <span className="terminal-dot green" />
-              <span className="terminal-title">intelous-clean-room ~ human_audit.log</span>
+              <span className="terminal-title">
+                {universe === 'scale' ? 'intelous-clean-room ~ human_audit.log' : 'intelous-dev ~ builder.log'}
+              </span>
             </div>
             <div className="terminal-body">
               {displayedLines.map((line, index) => (
@@ -109,48 +167,63 @@ export default function CleanRoomTerminal() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="signature-card">
-              <div className="signature-header">
-                <div className="avatar">
-                  <span>👤</span>
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={universe + '-card'}
+                className="signature-card"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="signature-header">
+                  <div className="avatar" style={{
+                    background: universe === 'scale' 
+                      ? 'linear-gradient(135deg, var(--strategy-pink), var(--logic-blue))'
+                      : 'linear-gradient(135deg, var(--logic-blue), var(--system-green))'
+                  }}>
+                    <span>{universe === 'scale' ? '👤' : '⚙️'}</span>
+                  </div>
+                  <div className="signature-info">
+                    <h4>{content.signature.title}</h4>
+                    <span className="signature-badge" style={{
+                      color: universe === 'scale' ? 'var(--system-green)' : 'var(--logic-blue)',
+                      background: universe === 'scale' ? 'rgba(57, 255, 20, 0.15)' : 'rgba(0, 123, 255, 0.15)'
+                    }}>
+                      {content.signature.badge}
+                    </span>
+                  </div>
                 </div>
-                <div className="signature-info">
-                  <h4>Human Verification</h4>
-                  <span className="signature-badge">CERTIFIED</span>
+                
+                <div className="signature-visual">
+                  <svg viewBox="0 0 200 80" className="signature-svg">
+                    <motion.path
+                      d="M 10 50 Q 30 20, 50 45 T 90 40 T 130 50 T 170 35 T 190 45"
+                      stroke={universe === 'scale' ? '#FF007F' : '#007BFF'}
+                      strokeWidth="2"
+                      fill="none"
+                      strokeLinecap="round"
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ duration: 1.5, ease: 'easeOut' }}
+                    />
+                  </svg>
                 </div>
-              </div>
-              
-              <div className="signature-visual">
-                <svg viewBox="0 0 200 80" className="signature-svg">
-                  <motion.path
-                    d="M 10 50 Q 30 20, 50 45 T 90 40 T 130 50 T 170 35 T 190 45"
-                    stroke="#FF007F"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0 }}
-                    whileInView={{ pathLength: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1.5, ease: 'easeOut' }}
-                  />
-                </svg>
-              </div>
 
-              <div className="signature-stats">
-                <div className="stat">
-                  <span className="stat-value">98%</span>
-                  <span className="stat-label">Accuracy</span>
+                <div className="signature-stats">
+                  {content.stats.map(stat => (
+                    <div key={stat.label} className="stat">
+                      <span className="stat-value" style={{
+                        color: universe === 'scale' ? 'var(--strategy-pink)' : 'var(--logic-blue)'
+                      }}>
+                        {stat.value}
+                      </span>
+                      <span className="stat-label">{stat.label}</span>
+                    </div>
+                  ))}
                 </div>
-                <div className="stat">
-                  <span className="stat-value">2.4s</span>
-                  <span className="stat-label">Avg. Review</span>
-                </div>
-                <div className="stat">
-                  <span className="stat-value">24/7</span>
-                  <span className="stat-label">Coverage</span>
-                </div>
-              </div>
-            </div>
+              </motion.div>
+            </AnimatePresence>
 
             <div className="trust-badges">
               <div className="badge">
@@ -192,12 +265,11 @@ export default function CleanRoomTerminal() {
           font-size: 12px;
           font-weight: 700;
           letter-spacing: 3px;
-          color: var(--system-green);
-          background: rgba(57, 255, 20, 0.1);
           padding: 8px 20px;
           border-radius: 100px;
           margin-bottom: 24px;
-          border: 1px solid rgba(57, 255, 20, 0.2);
+          border: 1px solid;
+          transition: all 0.3s ease;
         }
 
         .section-title {
@@ -307,7 +379,6 @@ export default function CleanRoomTerminal() {
         .avatar {
           width: 56px;
           height: 56px;
-          background: linear-gradient(135deg, var(--strategy-pink), var(--logic-blue));
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -325,8 +396,6 @@ export default function CleanRoomTerminal() {
           font-size: 11px;
           font-weight: 700;
           letter-spacing: 1px;
-          color: var(--system-green);
-          background: rgba(57, 255, 20, 0.15);
           padding: 4px 10px;
           border-radius: 4px;
         }
@@ -357,7 +426,6 @@ export default function CleanRoomTerminal() {
           display: block;
           font-size: 24px;
           font-weight: 800;
-          color: var(--strategy-pink);
           margin-bottom: 4px;
         }
 
