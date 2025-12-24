@@ -1,14 +1,13 @@
 .app {
   min-height: 100vh;
-  background-color: var(--obsidian);
+  background-color: var(--architectural-white);
+  position: relative;
 }
 
 main {
   width: 100%;
-}
-
-section {
-  padding: 100px 0;
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 768px) {

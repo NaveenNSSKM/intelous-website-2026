@@ -1,26 +1,24 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
-import SovereignTriad from './components/SovereignTriad'
-import GTMCanvas from './components/GTMCanvas'
-import CleanRoomTerminal from './components/CleanRoomTerminal'
-import GTMPods from './components/GTMPods'
-import StrategicWaitlist from './components/StrategicWaitlist'
+import Roadmap from './components/Roadmap'
+import BOTModule from './components/BOTModule'
+import RDLabs from './components/RDLabs'
+import VentureCTA from './components/VentureCTA'
 import './App.css'
 
 function App() {
-  const [universe, setUniverse] = useState<'scale' | 'build'>('scale')
+  const [universe, setUniverse] = useState<'scale' | 'build'>('build')
 
   return (
     <div className="app">
       <Header />
       <main>
         <Hero universe={universe} setUniverse={setUniverse} />
-        <SovereignTriad universe={universe} />
-        <GTMCanvas universe={universe} />
-        <CleanRoomTerminal universe={universe} />
-        <GTMPods universe={universe} />
-        <StrategicWaitlist universe={universe} />
+        <Roadmap />
+        <BOTModule />
+        <RDLabs />
+        <VentureCTA />
       </main>
     </div>
   )

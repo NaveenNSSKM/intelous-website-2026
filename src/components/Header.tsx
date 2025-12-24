@@ -1,38 +1,30 @@
 import { motion } from 'framer-motion'
 
-const navLinks = [
-  'Managed Lead Gen',
-  'Intelous OS',
-  'IntelousABM',
-  'Findlead',
-  'Use Cases',
-  'Blogs',
-  'Services'
-]
-
 export default function Header() {
+  const navLinks = ['Venture Services', 'Success Stories', 'Paign.ai', 'Articles']
+
   return (
-    <motion.header
-      className="header"
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-    >
+    <header className="header">
       <div className="header-container">
-        <div className="logo">
+        <motion.div 
+          className="logo"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <span className="logo-text">Intelous</span>
-          <span className="logo-ai">.ai</span>
-        </div>
-        
+          <span className="logo-labs">Labs</span>
+        </motion.div>
+
         <nav className="nav">
           {navLinks.map((link, index) => (
             <motion.a
               key={link}
-              href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}
+              href="#"
               className="nav-link"
-              initial={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * index, duration: 0.4 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
               whileHover={{ color: '#FF007F' }}
             >
               {link}
@@ -42,10 +34,13 @@ export default function Header() {
 
         <motion.button
           className="cta-button"
-          whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(255, 0, 127, 0.5)' }}
-          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          whileHover={{ scale: 1.02, boxShadow: '0 0 30px rgba(57, 255, 20, 0.4)' }}
+          whileTap={{ scale: 0.98 }}
         >
-          Join Q1 2026 Cohort
+          Book Architecture Session
         </motion.button>
       </div>
 
@@ -56,74 +51,69 @@ export default function Header() {
           left: 0;
           right: 0;
           z-index: 1000;
-          background: rgba(5, 5, 5, 0.85);
+          background: rgba(250, 250, 250, 0.95);
           backdrop-filter: blur(20px);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-          padding: 16px 0;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         .header-container {
           max-width: 1400px;
           margin: 0 auto;
-          padding: 0 24px;
+          padding: 16px 24px;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 24px;
         }
 
         .logo {
-          font-size: 24px;
+          font-size: 22px;
           font-weight: 800;
           letter-spacing: -0.5px;
         }
 
         .logo-text {
-          color: var(--white);
+          color: var(--obsidian);
         }
 
-        .logo-ai {
+        .logo-labs {
           color: var(--strategy-pink);
         }
 
         .nav {
           display: flex;
-          gap: 28px;
-          align-items: center;
+          gap: 36px;
         }
 
         .nav-link {
           font-size: 14px;
           font-weight: 500;
-          color: var(--gray-light);
-          transition: color 0.3s ease;
-          white-space: nowrap;
+          color: var(--gray-medium);
+          transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+          color: var(--strategy-pink);
         }
 
         .cta-button {
-          background: var(--strategy-pink);
-          color: white;
+          background: var(--system-green);
+          color: var(--obsidian);
           padding: 12px 24px;
           border-radius: 8px;
-          font-weight: 600;
           font-size: 14px;
+          font-weight: 700;
           transition: all 0.3s ease;
-          white-space: nowrap;
         }
 
-        @media (max-width: 1200px) {
+        @media (max-width: 900px) {
           .nav {
             display: none;
           }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
           .header-container {
-            padding: 0 16px;
-          }
-          
-          .logo {
-            font-size: 20px;
+            padding: 12px 16px;
           }
 
           .cta-button {
@@ -132,6 +122,6 @@ export default function Header() {
           }
         }
       `}</style>
-    </motion.header>
+    </header>
   )
 }
