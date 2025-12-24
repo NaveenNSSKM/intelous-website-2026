@@ -16,7 +16,7 @@ const terminalLines = [
 
 export default function CleanRoomTerminal() {
   const [displayedLines, setDisplayedLines] = useState<typeof terminalLines>([])
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [_currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
