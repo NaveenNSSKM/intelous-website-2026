@@ -12,17 +12,11 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/managed-lead-gen/page": [
+    "/discovery-hub/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/managed-lead-gen/page.css",
-      "static/chunks/app/managed-lead-gen/page.js"
-    ],
-    "/venture-services/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/venture-services/page.css",
-      "static/chunks/app/venture-services/page.js"
+      "static/css/app/discovery-hub/page.css",
+      "static/chunks/app/discovery-hub/page.js"
     ]
   }
 }

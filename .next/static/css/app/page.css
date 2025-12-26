@@ -380,6 +380,190 @@
   }
 }
 
+/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./components/sections/EventEngine.module.css ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************/
+.EventEngine_eventEngine__yAVKL {
+  padding: 120px 24px;
+  background: var(--white);
+  position: relative;
+}
+
+.EventEngine_container__MzC0X {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.EventEngine_sectionHeader__r67tU {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.EventEngine_sectionTag__rtgrT {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--gray-medium);
+  margin-bottom: 16px;
+}
+
+.EventEngine_sectionTitle__dBNtH {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 900;
+  color: var(--obsidian);
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+
+.EventEngine_sectionSubtitle__9hXYJ {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--strategy-pink);
+  margin-bottom: 16px;
+}
+
+.EventEngine_description__VzzD5 {
+  font-size: 18px;
+  color: var(--gray-medium);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.EventEngine_engineGrid__mR14O {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 24px;
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .EventEngine_engineGrid__mR14O {
+    grid-template-columns: 1fr;
+  }
+}
+
+.EventEngine_engineCard__sLiV3 {
+  background: var(--architectural-white);
+  border: 1px solid var(--gray-lighter);
+  border-radius: 16px;
+  padding: 32px;
+  transition: all 0.3s ease;
+}
+
+.EventEngine_engineCard__sLiV3:hover {
+  border-color: var(--system-green);
+  box-shadow: 0 8px 32px rgba(57, 255, 20, 0.1);
+}
+
+.EventEngine_engineCard__sLiV3.EventEngine_highlight__ioF35 {
+  background: linear-gradient(135deg, rgba(255, 0, 127, 0.03) 0%, rgba(57, 255, 20, 0.03) 100%);
+  border-color: var(--strategy-pink);
+}
+
+.EventEngine_engineCard__sLiV3.EventEngine_highlight__ioF35:hover {
+  border-color: var(--strategy-pink);
+  box-shadow: 0 8px 32px rgba(255, 0, 127, 0.1);
+}
+
+.EventEngine_cardIcon__ss_WK {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: var(--white);
+  border: 1px solid var(--gray-lighter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--system-green);
+}
+
+.EventEngine_engineCard__sLiV3.EventEngine_highlight__ioF35 .EventEngine_cardIcon__ss_WK {
+  color: var(--strategy-pink);
+  border-color: var(--strategy-pink);
+}
+
+.EventEngine_engineCard__sLiV3 h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--obsidian);
+  margin-bottom: 4px;
+}
+
+.EventEngine_cardLabel__Gce9m {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--system-green);
+  margin-bottom: 16px !important;
+}
+
+.EventEngine_engineCard__sLiV3.EventEngine_highlight__ioF35 .EventEngine_cardLabel__Gce9m {
+  color: var(--strategy-pink);
+}
+
+.EventEngine_cardDescription__S5890 {
+  font-size: 14px;
+  color: var(--gray-medium);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.EventEngine_cardStats__WAdTy {
+  display: flex;
+  gap: 24px;
+}
+
+.EventEngine_stat__g5rEb {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.EventEngine_statValue__PZLkA {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--system-green);
+}
+
+.EventEngine_statLabel__iQZSZ {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.EventEngine_cardVisual__l_b0K {
+  margin-top: 16px;
+}
+
+.EventEngine_renderLog__4dxv3 {
+  background: var(--obsidian);
+  border-radius: 8px;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.EventEngine_renderLog__4dxv3 code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--gray-light);
+  line-height: 1.8;
+}
+
+.EventEngine_logOk__Y_WnY {
+  color: var(--strategy-pink);
+}
+
+.EventEngine_logSuccess__qBn15 {
+  color: var(--system-green);
+}
+
 /*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./components/sections/GTMPods.module.css ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************/

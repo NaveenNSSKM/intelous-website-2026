@@ -1,5 +1,4 @@
 {
   "/page": "app/page.js",
-  "/managed-lead-gen/page": "app/managed-lead-gen/page.js",
-  "/venture-services/page": "app/venture-services/page.js"
+  "/discovery-hub/page": "app/discovery-hub/page.js"
 }
