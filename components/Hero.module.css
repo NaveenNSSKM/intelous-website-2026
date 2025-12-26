@@ -1,0 +1,258 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-top: 100px;
+  overflow: hidden;
+  background: var(--architectural-white);
+}
+
+.heroContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.heroContent {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.universeTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--gray-medium);
+  padding: 10px 20px;
+  background: var(--white);
+  border: 1px solid var(--gray-lighter);
+  border-radius: 100px;
+  margin-bottom: 32px;
+}
+
+.tagDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.heroHeadline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.headlineLine {
+  font-size: clamp(40px, 8vw, 80px);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--obsidian);
+  letter-spacing: -2px;
+}
+
+.headlineLine.highlight {
+  color: var(--strategy-pink);
+}
+
+.heroSubheadline {
+  font-size: 18px;
+  color: var(--gray-medium);
+  max-width: 700px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.toggleContainer {
+  margin-bottom: 40px;
+}
+
+.toggleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.toggleLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--gray-light);
+  transition: color 0.3s ease;
+}
+
+.toggleLabel.active {
+  color: var(--system-green);
+}
+
+.toggleLabel.activePink {
+  color: var(--strategy-pink);
+}
+
+.toggleSwitch3d {
+  cursor: pointer;
+  perspective: 500px;
+}
+
+.toggleTrack3d {
+  width: 120px;
+  height: 40px;
+  background: linear-gradient(180deg, #e0e0e0 0%, #f5f5f5 100%);
+  border-radius: 20px;
+  position: relative;
+  box-shadow: 
+    inset 0 2px 4px rgba(0,0,0,0.1),
+    0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid var(--gray-lighter);
+}
+
+.toggleThumb3d {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  box-shadow: 
+    0 2px 8px rgba(0,0,0,0.2),
+    0 4px 16px rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.8);
+}
+
+.toggleTrackInner {
+  position: absolute;
+  inset: 4px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, 
+    rgba(57, 255, 20, 0.2) 0%, 
+    rgba(255, 0, 127, 0.2) 100%
+  );
+}
+
+.heroCtas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.ctaPrimary {
+  padding: 16px 32px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ctaSecondary {
+  padding: 16px 32px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-medium);
+  background: transparent;
+  border: 1px solid var(--gray-lighter);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ctaSecondary:hover {
+  border-color: var(--obsidian);
+  color: var(--obsidian);
+}
+
+.scrollIndicator {
+  color: var(--gray-light);
+}
+
+.heroDecorations {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.decorationLine {
+  position: absolute;
+  background: var(--strategy-pink);
+  opacity: 0.1;
+}
+
+.line1 {
+  width: 1px;
+  height: 200px;
+  left: 10%;
+  top: 20%;
+}
+
+.line2 {
+  width: 1px;
+  height: 150px;
+  right: 15%;
+  bottom: 25%;
+}
+
+.decorationCorner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 1px solid var(--strategy-pink);
+  opacity: 0.2;
+}
+
+.cornerTl {
+  top: 15%;
+  left: 5%;
+  border-right: none;
+  border-bottom: none;
+}
+
+.cornerBr {
+  bottom: 20%;
+  right: 8%;
+  border-left: none;
+  border-top: none;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 80px;
+  }
+
+  .toggleWrapper {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .heroCtas {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    width: 100%;
+  }
+}
