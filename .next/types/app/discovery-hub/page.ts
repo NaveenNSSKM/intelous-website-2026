@@ -1,4 +1,4 @@
-// File: /home/runner/workspace/app/discovery-hub/page.tsx
+// File: C:\Users\Admin\Desktop\Intelous Website 2026\Phamily-Pharma\app\discovery-hub\page.tsx
 import * as entry from '../../../../app/discovery-hub/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

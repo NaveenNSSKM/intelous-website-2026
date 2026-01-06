@@ -1,6 +1,22 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import { IBM_Plex_Mono, Lexend_Deca } from 'next/font/google'
 import Providers from '@/components/Providers'
+
+
+
+const ibmPlexMono = IBM_Plex_Mono({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-ibm-mono',
+  display: 'swap',
+})
+
+const lexendDeca = Lexend_Deca({
+  subsets: ['latin'],
+  variable: '--font-lexend',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Intelous - Sovereign GTM Operating System',
@@ -13,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${ibmPlexMono.variable} ${lexendDeca.variable}`}>
       <body suppressHydrationWarning>
         <Providers>
           {children}
