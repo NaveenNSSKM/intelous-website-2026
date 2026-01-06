@@ -11,6 +11,7 @@ const scaleNavLinks = [
   { href: '/intelous-os', label: 'Intelous OS' },
   { href: '/discovery-hub', label: 'IntelousABM' },
   { href: '/byx-studio', label: 'BYX Studio' },
+  { href: '/resources', label: 'Resources' },
   { href: '/services', label: 'Services' },
 ]
 

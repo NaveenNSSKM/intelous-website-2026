@@ -365,6 +365,16 @@
 .relative {
   position: relative;
 }
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.mb-16 {
+  margin-bottom: 4rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
 .block {
   display: block;
 }
@@ -380,20 +390,66 @@
 .hidden {
   display: none;
 }
+.min-h-screen {
+  min-height: 100vh;
+}
 .grow {
   flex-grow: 1;
 }
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+.rounded-xl {
+  border-radius: 0.75rem;
+}
 .border {
   border-width: 1px;
+}
+.border-\[var\(--gray-lighter\)\] {
+  border-color: var(--gray-lighter);
+}
+.bg-\[var\(--architectural-white\)\] {
+  background-color: var(--architectural-white);
+}
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.py-20 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.pb-16 {
+  padding-bottom: 4rem;
+}
+.pt-32 {
+  padding-top: 8rem;
+}
+.text-center {
+  text-align: center;
+}
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.font-bold {
+  font-weight: 700;
 }
 .uppercase {
   text-transform: uppercase;
 }
 .italic {
   font-style: italic;
+}
+.text-\[var\(--gray-medium\)\] {
+  color: var(--gray-medium);
+}
+.text-\[var\(--obsidian\)\] {
+  color: var(--obsidian);
 }
 .outline {
   outline-style: solid;
