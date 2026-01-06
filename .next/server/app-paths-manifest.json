@@ -1,7 +1,5 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js",
-  "/discovery-hub/page": "app/discovery-hub/page.js",
-  "/icon.png/route": "app/icon.png/route.js",
-  "/managed-lead-gen/page": "app/managed-lead-gen/page.js"
+  "/icon.png/route": "app/icon.png/route.js"
 }
