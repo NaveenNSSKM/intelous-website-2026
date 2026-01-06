@@ -1,7 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/services/page": "app/services/page.js",
-  "/discovery-hub/page": "app/discovery-hub/page.js",
-  "/icon.png/route": "app/icon.png/route.js",
-  "/resources/page": "app/resources/page.js"
-}
