@@ -16,7 +16,7 @@ export default function BYXStudioPage() {
   return (
     <main style={{ minHeight: '100vh', background: '#FAFAFA' }}>
       <Header />
-      
+
       <section style={{
         minHeight: '70vh',
         display: 'flex',
@@ -45,7 +45,7 @@ export default function BYXStudioPage() {
               borderRadius: '100px',
               marginBottom: '32px',
             }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#39FF14' }} />
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF007F' }} />
               THE AESTHETIC AUTHORITY
             </div>
 
@@ -59,7 +59,12 @@ export default function BYXStudioPage() {
             }}>
               IN A NOISY WORLD,
               <br />
-              <span style={{ color: '#FF007F' }}>YOU NEED TO SCREAM.</span>
+              <span style={{
+                color: 'transparent',
+                backgroundImage: 'linear-gradient(135deg, #3985f1, #d335c3, #ed3389, #740cc6)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text'
+              }}>YOU NEED TO SCREAM.</span>
             </h1>
 
             <p style={{
@@ -69,8 +74,8 @@ export default function BYXStudioPage() {
               margin: '0 auto 40px',
               lineHeight: 1.7,
             }}>
-              Most companies treat their visuals as an afterthought, using flat screenshots and 
-              stock templates that scream "amateur." BYX Studio is the sister creative arm of Intelous, 
+              Most companies treat their visuals as an afterthought, using flat screenshots and
+              stock templates that scream "amateur." BYX Studio is the sister creative arm of Intelous,
               specialized in architecting the Sovereign Authority your brand deserves.
             </p>
           </motion.div>
@@ -105,7 +110,7 @@ export default function BYXStudioPage() {
               margin: '0 auto',
               lineHeight: 1.7,
             }}>
-              People cannot trust what they cannot see. If your product is a complex technical 
+              People cannot trust what they cannot see. If your product is a complex technical
               "Glass Box," you need a visual medium that exposes its brilliance.
             </p>
           </motion.div>
@@ -187,7 +192,7 @@ export default function BYXStudioPage() {
                 lineHeight: 1.7,
                 marginBottom: '24px',
               }}>
-                In an era of deepfakes and robotic automation, Human Trust is the only currency 
+                In an era of deepfakes and robotic automation, Human Trust is the only currency
                 that matters. People buy from founders they recognize and leaders they respect.
               </p>
               <p style={{
@@ -196,8 +201,8 @@ export default function BYXStudioPage() {
                 lineHeight: 1.7,
                 marginBottom: '24px',
               }}>
-                Our Founder Brand OS is designed to turn CEOs into Key Opinion Leaders (KOLs) 
-                without the 40-hour-a-week content grind. We produce cinematic vertical reels 
+                Our Founder Brand OS is designed to turn CEOs into Key Opinion Leaders (KOLs)
+                without the 40-hour-a-week content grind. We produce cinematic vertical reels
                 and AI-driven "Newshour" content that anchors your human face to your automated outreach.
               </p>
               <motion.button
@@ -211,7 +216,7 @@ export default function BYXStudioPage() {
                   border: 'none',
                   cursor: 'pointer',
                   backgroundColor: '#FF007F',
-                  color: '#fff',
+                  color: '#ffffff',
                 }}
               >
                 Build Your Brand OS
@@ -224,7 +229,7 @@ export default function BYXStudioPage() {
               viewport={{ once: true }}
             >
               <div style={{
-                background: 'linear-gradient(135deg, rgba(255, 0, 127, 0.05) 0%, rgba(57, 255, 20, 0.05) 100%)',
+                background: 'linear-gradient(135deg, rgba(255, 0, 127, 0.05) 0%, rgba(255, 0, 127, 0.05) 100%)',
                 border: '1px solid #E0E0E0',
                 borderRadius: '16px',
                 padding: '32px',
@@ -256,9 +261,9 @@ export default function BYXStudioPage() {
                     <span style={{
                       fontFamily: "'IBM Plex Mono', monospace",
                       fontSize: '10px',
-                      color: '#39FF14',
+                      color: '#FF007F',
                       padding: '4px 8px',
-                      background: 'rgba(57, 255, 20, 0.1)',
+                      background: 'rgba(255, 0, 127, 0.1)',
                       borderRadius: '4px',
                     }}>
                       {item.status}
@@ -299,7 +304,7 @@ export default function BYXStudioPage() {
               margin: '0 auto',
               lineHeight: 1.7,
             }}>
-              Events are the ultimate high-stakes GTM channel. BYX Studio transforms event GTM 
+              Events are the ultimate high-stakes GTM channel. BYX Studio transforms event GTM
               by architecting a Cinematic Attendance Engine.
             </p>
           </motion.div>
@@ -318,7 +323,7 @@ export default function BYXStudioPage() {
               {
                 title: 'The Logic',
                 description: 'Assets injected into Intelous Managed Pod sequences for hyper-personalized VIP outreach.',
-                color: '#39FF14',
+                color: '#FF007F',
               },
               {
                 title: 'The Experience',
@@ -379,7 +384,7 @@ export default function BYXStudioPage() {
               margin: '0 auto',
               lineHeight: 1.7,
             }}>
-              We don't hide our craft; we invite you into the lab. Just as Intelous OS exposes 
+              We don't hide our craft; we invite you into the lab. Just as Intelous OS exposes
               its data logs, BYX Studio exposes its Creative Precision.
             </p>
           </motion.div>
@@ -406,13 +411,13 @@ export default function BYXStudioPage() {
               <span style={{ marginLeft: 'auto', fontSize: '11px', color: '#666' }}>byx_render.log</span>
             </div>
             <code style={{ fontSize: '13px', color: '#999', lineHeight: 2.2, display: 'block' }}>
-              <span style={{ color: '#FF007F' }}>[LOAD]</span> 4K Cinematic Texture Map... <span style={{ color: '#39FF14' }}>OK</span><br/>
-              <span style={{ color: '#FF007F' }}>[SYNC]</span> Human Vision Script #9021 → 3D Environment<br/>
-              <span style={{ color: '#FF007F' }}>[RENDER]</span> Ray-tracing Sovereign Product Blueprint... <span style={{ color: '#39FF14' }}>DONE</span><br/>
-              <span style={{ color: '#4A90E2' }}>[QUALITY]</span> 4K resolution verified<br/>
-              <span style={{ color: '#4A90E2' }}>[EXPORT]</span> Preparing deployment package...<br/>
-              <span style={{ color: '#39FF14' }}>[DEPLOY]</span> Asset auto-injected into Intelous GTM Pod.<br/>
-              <span style={{ color: '#fff' }}>[STATUS]</span> <span style={{ color: '#39FF14' }}>CREATIVE SOVEREIGNTY ACHIEVED</span>
+              <span style={{ color: '#FF007F' }}>[LOAD]</span> 4K Cinematic Texture Map... <span style={{ color: '#FF007F' }}>OK</span><br />
+              <span style={{ color: '#FF007F' }}>[SYNC]</span> Human Vision Script #9021 → 3D Environment<br />
+              <span style={{ color: '#FF007F' }}>[RENDER]</span> Ray-tracing Sovereign Product Blueprint... <span style={{ color: '#FF007F' }}>DONE</span><br />
+              <span style={{ color: '#4A90E2' }}>[QUALITY]</span> 4K resolution verified<br />
+              <span style={{ color: '#4A90E2' }}>[EXPORT]</span> Preparing deployment package...<br />
+              <span style={{ color: '#FF007F' }}>[DEPLOY]</span> Asset auto-injected into Intelous GTM Pod.<br />
+              <span style={{ color: '#fff' }}>[STATUS]</span> <span style={{ color: '#FF007F' }}>CREATIVE SOVEREIGNTY ACHIEVED</span>
             </code>
           </motion.div>
         </div>
@@ -420,7 +425,7 @@ export default function BYXStudioPage() {
 
       <section style={{
         padding: '80px 24px',
-        background: 'linear-gradient(135deg, rgba(255, 0, 127, 0.05) 0%, rgba(57, 255, 20, 0.05) 100%)',
+        background: 'linear-gradient(135deg, rgba(255, 0, 127, 0.05) 0%, rgba(255, 0, 127, 0.05) 100%)',
       }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
           <motion.div
@@ -447,8 +452,8 @@ export default function BYXStudioPage() {
               lineHeight: 1.7,
               marginBottom: '32px',
             }}>
-              BYX Studio is not a separate vendor; we are your Venture Partner. BYX assets are 
-              a standard component of our Universe A Scale Pods and our Universe B 10-Week Sprints. 
+              BYX Studio is not a separate vendor; we are your Venture Partner. BYX assets are
+              a standard component of our Universe A Scale Pods and our Universe B 10-Week Sprints.
               We ensure your brand looks as professional as your system operates.
             </p>
             <motion.button
@@ -462,7 +467,7 @@ export default function BYXStudioPage() {
                 border: 'none',
                 cursor: 'pointer',
                 backgroundColor: '#FF007F',
-                color: '#fff',
+                color: '#ffffff',
               }}
             >
               Start a Creative Project

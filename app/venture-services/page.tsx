@@ -14,9 +14,19 @@ export default function VentureServicesPage() {
   }, [setUniverse])
 
   return (
-    <main style={{ minHeight: '100vh', background: '#FAFAFA' }}>
+    <main className="min-h-screen relative text-white selection:bg-[#FF007F] selection:text-white">
+      {/* Dark Mode Background with Gradient */}
+      <div className="fixed inset-0 -z-10 bg-[#020617]">
+        <div
+          className="absolute inset-0 opacity-20 mix-blend-screen"
+          style={{
+            background: 'linear-gradient(135deg, #3985f1, #d335c3, #ed3389, #740cc6)'
+          }}
+        />
+        <div className="absolute inset-0 bg-[#020617]/40 backdrop-blur-3xl" />
+      </div>
       <Header />
-      
+
       <section style={{
         minHeight: '80vh',
         display: 'flex',
@@ -38,12 +48,13 @@ export default function VentureServicesPage() {
               fontSize: '12px',
               fontWeight: 600,
               letterSpacing: '2px',
-              color: '#666',
+              color: '#94a3b8',
               padding: '10px 20px',
-              background: '#fff',
-              border: '1px solid #E0E0E0',
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
               borderRadius: '100px',
               marginBottom: '32px',
+              backdropFilter: 'blur(10px)',
             }}>
               <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF007F' }} />
               THE ARCHITECT'S MANIFESTO
@@ -52,33 +63,38 @@ export default function VentureServicesPage() {
             <h1 style={{
               fontSize: 'clamp(40px, 6vw, 72px)',
               fontWeight: 900,
-              color: '#050505',
+              color: '#ffffff',
               marginBottom: '24px',
               lineHeight: 1.1,
               letterSpacing: '-2px',
             }}>
               VENTURE SOLUTIONS
               <br />
-              <span style={{ color: '#FF007F' }}>INDEX.</span>
+              <span style={{
+                backgroundImage: 'linear-gradient(135deg, #3985f1, #d335c3, #ed3389, #740cc6)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent'
+              }}>INDEX.</span>
             </h1>
 
             <p style={{
               fontSize: '18px',
-              color: '#666',
+              color: '#cbd5e1',
               maxWidth: '800px',
               margin: '0 auto 40px',
               lineHeight: 1.7,
             }}>
-              Most venture building fails because it is treated like a creative experiment rather than 
-              an industrial operation. Intelous Labs exists to break this cycle. We act as your 
-              on-demand co-founding team to architect, build, and launch your product with the 
+              Most venture building fails because it is treated like a creative experiment rather than
+              an industrial operation. Intelous Labs exists to break this cycle. We act as your
+              on-demand co-founding team to architect, build, and launch your product with the
               precision of a sovereign system.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section style={{ padding: '80px 24px', background: '#fff' }}>
+      <section style={{ padding: '80px 24px', background: 'transparent' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -91,17 +107,17 @@ export default function VentureServicesPage() {
               fontSize: '12px',
               fontWeight: 600,
               letterSpacing: '2px',
-              color: '#666',
+              color: '#94a3b8',
             }}>THE INDUSTRIAL MENU</span>
             <h2 style={{
               fontSize: 'clamp(32px, 5vw, 48px)',
               fontWeight: 900,
-              color: '#050505',
+              color: '#ffffff',
               margin: '16px 0',
             }}>Core Venture Services</h2>
             <p style={{
               fontSize: '18px',
-              color: '#666',
+              color: '#cbd5e1',
               maxWidth: '700px',
               margin: '0 auto',
               lineHeight: 1.7,
@@ -151,17 +167,18 @@ export default function VentureServicesPage() {
                 whileHover={{ y: -5, borderColor: '#FF007F' }}
                 style={{
                   padding: '32px',
-                  background: '#FAFAFA',
-                  border: '1px solid #E0E0E0',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '16px',
                   transition: 'all 0.3s ease',
+                  backdropFilter: 'blur(10px)',
                 }}
               >
                 <div style={{ fontSize: '40px', marginBottom: '16px' }}>{service.icon}</div>
-                <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#050505', marginBottom: '12px' }}>
+                <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#ffffff', marginBottom: '12px' }}>
                   {service.title}
                 </h3>
-                <p style={{ fontSize: '14px', color: '#666', lineHeight: 1.7 }}>
+                <p style={{ fontSize: '14px', color: '#cbd5e1', lineHeight: 1.7 }}>
                   {service.description}
                 </p>
               </motion.div>
@@ -170,7 +187,7 @@ export default function VentureServicesPage() {
         </div>
       </section>
 
-      <section style={{ padding: '80px 24px', background: '#FAFAFA' }}>
+      <section style={{ padding: '80px 24px', background: 'transparent' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -183,22 +200,22 @@ export default function VentureServicesPage() {
               fontSize: '12px',
               fontWeight: 600,
               letterSpacing: '2px',
-              color: '#666',
+              color: '#94a3b8',
             }}>70-DAY ENGINEERING SPRINT</span>
             <h2 style={{
               fontSize: 'clamp(32px, 5vw, 48px)',
               fontWeight: 900,
-              color: '#050505',
+              color: '#ffffff',
               margin: '16px 0',
             }}>The 10-Week MVP Sprint</h2>
             <p style={{
               fontSize: '18px',
-              color: '#666',
+              color: '#cbd5e1',
               maxWidth: '700px',
               margin: '0 auto',
               lineHeight: 1.7,
             }}>
-              We move at the speed of your vision, utilizing a rigorous 70-day engineering sprint 
+              We move at the speed of your vision, utilizing a rigorous 70-day engineering sprint
               to move from raw data or a simple prompt to your first 20 qualified leads.
             </p>
           </motion.div>
@@ -210,7 +227,7 @@ export default function VentureServicesPage() {
               top: '0',
               bottom: '0',
               width: '2px',
-              background: 'linear-gradient(180deg, #FF007F 0%, #39FF14 50%, #4A90E2 100%)',
+              background: 'linear-gradient(180deg, #FF007F 0%, #FF007F 50%, #4A90E2 100%)',
               transform: 'translateX(-50%)',
             }} />
 
@@ -234,7 +251,7 @@ export default function VentureServicesPage() {
                   'Building the "Brain" using microservices and Kafka pipelines',
                   'PostgreSQL storage and agentic workflow implementation',
                 ],
-                color: '#39FF14',
+                color: '#FF007F',
                 align: 'left',
               },
               {
@@ -264,12 +281,13 @@ export default function VentureServicesPage() {
                 }}
               >
                 <div style={{
-                  background: '#fff',
+                  background: 'rgba(255, 255, 255, 0.03)',
                   border: `2px solid ${phase.color}`,
                   borderRadius: '16px',
                   padding: '32px',
                   maxWidth: '500px',
                   position: 'relative',
+                  backdropFilter: 'blur(10px)',
                 }}>
                   <div style={{
                     position: 'absolute',
@@ -279,7 +297,7 @@ export default function VentureServicesPage() {
                     height: '24px',
                     borderRadius: '50%',
                     background: phase.color,
-                    border: '4px solid #fff',
+                    border: '4px solid #020617',
                     boxShadow: '0 0 0 2px ' + phase.color,
                   }} />
                   <span style={{
@@ -291,7 +309,7 @@ export default function VentureServicesPage() {
                   }}>
                     {phase.phase}
                   </span>
-                  <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#050505', margin: '8px 0 16px' }}>
+                  <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff', margin: '8px 0 16px' }}>
                     {phase.title}
                   </h3>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
@@ -301,12 +319,12 @@ export default function VentureServicesPage() {
                         alignItems: 'flex-start',
                         gap: '12px',
                         fontSize: '14px',
-                        color: '#666',
+                        color: '#cbd5e1',
                         marginBottom: '12px',
                         lineHeight: 1.6,
                       }}>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, marginTop: '4px' }}>
-                          <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke={phase.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke={phase.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         {item}
                       </li>
@@ -319,7 +337,7 @@ export default function VentureServicesPage() {
         </div>
       </section>
 
-      <section style={{ padding: '80px 24px', background: '#fff' }}>
+      <section style={{ padding: '80px 24px', background: 'transparent' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{
             display: 'grid',
@@ -337,7 +355,7 @@ export default function VentureServicesPage() {
                 fontSize: '12px',
                 fontWeight: 600,
                 letterSpacing: '2px',
-                color: '#666',
+                color: '#94a3b8',
               }}>BUILD-OPERATE-TRANSFER</span>
               <h2 style={{
                 fontSize: 'clamp(32px, 5vw, 48px)',
@@ -345,7 +363,7 @@ export default function VentureServicesPage() {
                 color: '#050505',
                 margin: '16px 0',
               }}>
-                Dependency is Death.<br/>
+                Dependency is Death.<br />
                 <span style={{ color: '#FF007F' }}>Sovereignty is Life.</span>
               </h2>
               <p style={{
@@ -354,14 +372,14 @@ export default function VentureServicesPage() {
                 lineHeight: 1.7,
                 marginBottom: '24px',
               }}>
-                Dependency is a business model for agencies, but it is a death sentence for startups. 
+                Dependency is a business model for agencies, but it is a death sentence for startups.
                 Our Build-Operate-Transfer model is architected for your eventual independence.
               </p>
 
               <div style={{ marginBottom: '24px' }}>
                 {[
                   { phase: 'BUILD', desc: 'We architect the sovereign system using high-fidelity primitives—GCP, microservices, and event-driven logic.', color: '#FF007F' },
-                  { phase: 'OPERATE', desc: 'We run the engine to prove traction, utilizing our real-time Scoring & Intent System to validate your ICP.', color: '#39FF14' },
+                  { phase: 'OPERATE', desc: 'We run the engine to prove traction, utilizing our real-time Scoring & Intent System to validate your ICP.', color: '#FF007F' },
                   { phase: 'TRANSFER', desc: 'Once traction is proven, we migrate the entire technical infrastructure and operational knowledge to your team.', color: '#4A90E2' },
                 ].map((item) => (
                   <div key={item.phase} style={{
@@ -378,7 +396,7 @@ export default function VentureServicesPage() {
                     }}>
                       {item.phase}
                     </div>
-                    <p style={{ fontSize: '14px', color: '#666', lineHeight: 1.6, margin: 0 }}>
+                    <p style={{ fontSize: '14px', color: '#cbd5e1', lineHeight: 1.6, margin: 0 }}>
                       {item.desc}
                     </p>
                   </div>
@@ -393,14 +411,15 @@ export default function VentureServicesPage() {
               transition={{ delay: 0.2 }}
             >
               <div style={{
-                background: '#050505',
+                background: '#0a0a0a',
                 borderRadius: '16px',
                 padding: '32px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
               }}>
                 <div style={{
                   fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: '11px',
-                  color: '#666',
+                  color: '#94a3b8',
                   marginBottom: '16px',
                 }}>
                   infrastructure_audit.log
@@ -408,18 +427,18 @@ export default function VentureServicesPage() {
                 <code style={{
                   fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: '12px',
-                  color: '#999',
+                  color: '#cbd5e1',
                   lineHeight: 2.2,
                   display: 'block',
                 }}>
-                  <span style={{ color: '#FF007F' }}>[ARCHITECTURE]</span> Decoupled microservices on Kafka<br/>
-                  <span style={{ color: '#FF007F' }}>[STORAGE]</span> PostgreSQL + Redis caching layer<br/>
-                  <span style={{ color: '#FF007F' }}>[AGENTS]</span> CrewAI-style orchestration model<br/>
-                  <span style={{ color: '#39FF14' }}>[INTELLIGENCE]</span> Real-time sentiment analysis<br/>
-                  <span style={{ color: '#39FF14' }}>[SCALING]</span> Independent service scaling enabled<br/>
-                  <span style={{ color: '#4A90E2' }}>[HANDOFF]</span> Documentation complete<br/>
-                  <span style={{ color: '#4A90E2' }}>[HANDOFF]</span> Team training scheduled<br/>
-                  <span style={{ color: '#fff' }}>[STATUS]</span> <span style={{ color: '#39FF14' }}>SOVEREIGNTY READY</span>
+                  <span style={{ color: '#FF007F' }}>[ARCHITECTURE]</span> Decoupled microservices on Kafka<br />
+                  <span style={{ color: '#FF007F' }}>[STORAGE]</span> PostgreSQL + Redis caching layer<br />
+                  <span style={{ color: '#FF007F' }}>[AGENTS]</span> CrewAI-style orchestration model<br />
+                  <span style={{ color: '#FF007F' }}>[INTELLIGENCE]</span> Real-time sentiment analysis<br />
+                  <span style={{ color: '#FF007F' }}>[SCALING]</span> Independent service scaling enabled<br />
+                  <span style={{ color: '#4A90E2' }}>[HANDOFF]</span> Documentation complete<br />
+                  <span style={{ color: '#4A90E2' }}>[HANDOFF]</span> Team training scheduled<br />
+                  <span style={{ color: '#fff' }}>[STATUS]</span> <span style={{ color: '#FF007F' }}>SOVEREIGNTY READY</span>
                 </code>
               </div>
             </motion.div>
@@ -427,7 +446,7 @@ export default function VentureServicesPage() {
         </div>
       </section>
 
-      <section style={{ padding: '80px 24px', background: '#FAFAFA' }}>
+      <section style={{ padding: '80px 24px', background: 'transparent' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -440,22 +459,22 @@ export default function VentureServicesPage() {
               fontSize: '12px',
               fontWeight: 600,
               letterSpacing: '2px',
-              color: '#666',
+              color: '#94a3b8',
             }}>INTERNAL HIRING</span>
             <h2 style={{
               fontSize: 'clamp(32px, 5vw, 48px)',
               fontWeight: 900,
-              color: '#050505',
+              color: '#ffffff',
               margin: '16px 0',
             }}>Venture Talent Handoff</h2>
             <p style={{
               fontSize: '18px',
-              color: '#666',
+              color: '#cbd5e1',
               maxWidth: '700px',
               margin: '0 auto',
               lineHeight: 1.7,
             }}>
-              A system is only as good as the humans who captain it. We don't just send you resumes; 
+              A system is only as good as the humans who captain it. We don't just send you resumes;
               we technically vet your founding engineers within our own lab environment.
             </p>
           </motion.div>
@@ -478,9 +497,10 @@ export default function VentureServicesPage() {
                 transition={{ delay: i * 0.1 }}
                 style={{
                   padding: '32px',
-                  background: '#fff',
-                  border: '1px solid #E0E0E0',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '16px',
+                  backdropFilter: 'blur(10px)',
                 }}
               >
                 <div style={{
@@ -498,10 +518,10 @@ export default function VentureServicesPage() {
                 }}>
                   {i + 1}
                 </div>
-                <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#050505', marginBottom: '12px' }}>
+                <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#ffffff', marginBottom: '12px' }}>
                   {item.title}
                 </h3>
-                <p style={{ fontSize: '14px', color: '#666', lineHeight: 1.7 }}>
+                <p style={{ fontSize: '14px', color: '#cbd5e1', lineHeight: 1.7 }}>
                   {item.desc}
                 </p>
               </motion.div>
@@ -512,7 +532,8 @@ export default function VentureServicesPage() {
 
       <section style={{
         padding: '80px 24px',
-        background: 'linear-gradient(135deg, rgba(255, 0, 127, 0.05) 0%, rgba(57, 255, 20, 0.05) 100%)',
+        background: 'rgba(255, 255, 255, 0.02)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.05)',
       }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
           <motion.div
@@ -525,22 +546,22 @@ export default function VentureServicesPage() {
               fontSize: '12px',
               fontWeight: 600,
               letterSpacing: '2px',
-              color: '#666',
+              color: '#94a3b8',
             }}>Q1 2026 COHORT</span>
             <h2 style={{
               fontSize: 'clamp(32px, 5vw, 48px)',
               fontWeight: 900,
-              color: '#050505',
+              color: '#ffffff',
               margin: '16px 0',
             }}>The Venture Architecture Diagnostic</h2>
             <p style={{
               fontSize: '18px',
-              color: '#666',
+              color: '#cbd5e1',
               lineHeight: 1.7,
               marginBottom: '32px',
             }}>
-              We are not a high-volume factory; we are a high-fidelity laboratory for high-ticket 
-              innovators. We only take on five partners for our Q1 2026 cohort. Submit your mission 
+              We are not a high-volume factory; we are a high-fidelity laboratory for high-ticket
+              innovators. We only take on five partners for our Q1 2026 cohort. Submit your mission
               details to undergo our Venture Architecture Diagnostic.
             </p>
             <motion.button
@@ -564,6 +585,6 @@ export default function VentureServicesPage() {
       </section>
 
       <Footer />
-    </main>
+    </main >
   )
 }

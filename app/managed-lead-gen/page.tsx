@@ -16,7 +16,7 @@ export default function ManagedLeadGenPage() {
   return (
     <main style={{ minHeight: '100vh', background: '#FAFAFA' }}>
       <Header />
-      
+
       <section style={{
         minHeight: '70vh',
         display: 'flex',
@@ -45,7 +45,7 @@ export default function ManagedLeadGenPage() {
               borderRadius: '100px',
               marginBottom: '32px',
             }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#39FF14' }} />
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF007F' }} />
               THE GTM PODS
             </div>
 
@@ -59,7 +59,12 @@ export default function ManagedLeadGenPage() {
             }}>
               DON'T HIRE A HEAD.
               <br />
-              <span style={{ color: '#39FF14' }}>DEPLOY A POD.</span>
+              <span style={{
+                color: 'transparent',
+                backgroundImage: 'linear-gradient(135deg, #3985f1, #d335c3, #ed3389, #740cc6)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text'
+              }}>DEPLOY A POD.</span>
             </h1>
 
             <p style={{
@@ -69,8 +74,8 @@ export default function ManagedLeadGenPage() {
               margin: '0 auto 40px',
               lineHeight: 1.7,
             }}>
-              Traditional B2B hiring is a 20th-century solution to a 21st-century problem. It takes 
-              an average of four months to find a competent SDR and another six months to realize 
+              Traditional B2B hiring is a 20th-century solution to a 21st-century problem. It takes
+              an average of four months to find a competent SDR and another six months to realize
               they weren't the right fit. Intelous Managed GTM Pods are the "Third Option."
             </p>
           </motion.div>
@@ -104,9 +109,9 @@ export default function ManagedLeadGenPage() {
                 lineHeight: 1.7,
                 marginBottom: '24px',
               }}>
-                A Pod is a high-fidelity unit of execution composed of one Human Strategist and a 
-                suite of Specialized Digital Workers. Unlike a standard agency where your account 
-                is passed to a junior intern, our Pods are led by a strategist who has built GTM 
+                A Pod is a high-fidelity unit of execution composed of one Human Strategist and a
+                suite of Specialized Digital Workers. Unlike a standard agency where your account
+                is passed to a junior intern, our Pods are led by a strategist who has built GTM
                 motions for the world's most aggressive brands.
               </p>
 
@@ -151,7 +156,7 @@ export default function ManagedLeadGenPage() {
               style={{
                 padding: '32px',
                 background: '#FAFAFA',
-                border: '2px solid #39FF14',
+                border: '2px solid #FF007F',
                 borderRadius: '16px',
                 textAlign: 'center',
               }}
@@ -159,7 +164,7 @@ export default function ManagedLeadGenPage() {
               <div style={{ fontSize: '14px', fontWeight: 600, color: '#666', marginBottom: '8px' }}>
                 Setup Time
               </div>
-              <div style={{ fontSize: '64px', fontWeight: 900, color: '#39FF14', marginBottom: '8px' }}>
+              <div style={{ fontSize: '64px', fontWeight: 900, color: '#FF007F', marginBottom: '8px' }}>
                 &lt; 1 hour
               </div>
               <div style={{ fontSize: '12px', color: '#666', marginBottom: '24px' }}>
@@ -205,7 +210,7 @@ export default function ManagedLeadGenPage() {
               margin: '0 auto',
               lineHeight: 1.7,
             }}>
-              We don't sell "hours" or "effort"; we sell the Sovereign Capacity to reach your 
+              We don't sell "hours" or "effort"; we sell the Sovereign Capacity to reach your
               market and book the meetings that matter.
             </p>
           </motion.div>
@@ -229,7 +234,7 @@ export default function ManagedLeadGenPage() {
                   'Weekly audits & optimizations',
                 ],
                 outcome: 'High-fidelity data on what resonates with your ICP',
-                color: '#39FF14',
+                color: '#FF007F',
               },
               {
                 name: 'Growth Pod',
@@ -324,7 +329,7 @@ export default function ManagedLeadGenPage() {
                       marginBottom: '8px',
                     }}>
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, marginTop: '2px' }}>
-                        <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke={pod.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke={pod.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                       {feature}
                     </li>
@@ -387,7 +392,7 @@ export default function ManagedLeadGenPage() {
               }}>
                 The "Kalungi-Killer"
                 <br />
-                <span style={{ color: '#39FF14' }}>Advantage</span>
+                <span style={{ color: '#FF007F' }}>Advantage</span>
               </h2>
               <p style={{
                 fontSize: '16px',
@@ -395,8 +400,8 @@ export default function ManagedLeadGenPage() {
                 lineHeight: 1.7,
                 marginBottom: '24px',
               }}>
-                Why pay a legacy agency $45,000 a month for billable hours and manual labor when 
-                you can deploy a Sovereign System for a fraction of the cost? Legacy agencies thrive 
+                Why pay a legacy agency $45,000 a month for billable hours and manual labor when
+                you can deploy a Sovereign System for a fraction of the cost? Legacy agencies thrive
                 on dependency; they want you to stay slow so they can bill more hours.
               </p>
               <p style={{
@@ -404,9 +409,9 @@ export default function ManagedLeadGenPage() {
                 color: '#666',
                 lineHeight: 1.7,
               }}>
-                Intelous thrives on Autonomy. We don't want you to depend on us; we want you to 
-                own a system that produces results with industrial precision. Our Pods are 75% more 
-                efficient because we have removed the human error from data management while 
+                Intelous thrives on Autonomy. We don't want you to depend on us; we want you to
+                own a system that produces results with industrial precision. Our Pods are 75% more
+                efficient because we have removed the human error from data management while
                 keeping the human empathy in the strategy.
               </p>
             </motion.div>
@@ -440,18 +445,18 @@ export default function ManagedLeadGenPage() {
                 </div>
                 <div style={{
                   padding: '24px',
-                  background: 'rgba(57, 255, 20, 0.05)',
-                  border: '2px solid #39FF14',
+                  background: 'rgba(255, 0, 127, 0.05)',
+                  border: '2px solid #FF007F',
                   borderRadius: '12px',
                 }}>
-                  <div style={{ fontSize: '11px', fontWeight: 600, color: '#39FF14', marginBottom: '8px' }}>
+                  <div style={{ fontSize: '11px', fontWeight: 600, color: '#FF007F', marginBottom: '8px' }}>
                     INTELOUS POD
                   </div>
                   <div style={{ fontSize: '28px', fontWeight: 900, color: '#050505', marginBottom: '4px' }}>
                     $8.5K
                   </div>
                   <div style={{ fontSize: '12px', color: '#666' }}>per month</div>
-                  <div style={{ fontSize: '12px', color: '#39FF14', marginTop: '12px' }}>
+                  <div style={{ fontSize: '12px', color: '#FF007F', marginTop: '12px' }}>
                     Sovereign system, autonomy
                   </div>
                 </div>
@@ -466,7 +471,7 @@ export default function ManagedLeadGenPage() {
                 <span style={{
                   fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: '14px',
-                  color: '#39FF14',
+                  color: '#FF007F',
                 }}>
                   This is the end of the "Black Box" agency era.
                 </span>
@@ -478,7 +483,7 @@ export default function ManagedLeadGenPage() {
 
       <section style={{
         padding: '80px 24px',
-        background: 'linear-gradient(135deg, rgba(57, 255, 20, 0.05) 0%, rgba(255, 0, 127, 0.05) 100%)',
+        background: 'linear-gradient(135deg, rgba(255, 0, 127, 0.05) 0%, rgba(255, 0, 127, 0.05) 100%)',
       }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
           <motion.div
@@ -498,7 +503,7 @@ export default function ManagedLeadGenPage() {
               lineHeight: 1.7,
               marginBottom: '32px',
             }}>
-              Stop hiring heads and hoping for miracles. Deploy Productized Capacity in 48 hours 
+              Stop hiring heads and hoping for miracles. Deploy Productized Capacity in 48 hours
               and start booking the meetings that matter.
             </p>
             <motion.button
@@ -511,8 +516,8 @@ export default function ManagedLeadGenPage() {
                 borderRadius: '8px',
                 border: 'none',
                 cursor: 'pointer',
-                backgroundColor: '#39FF14',
-                color: '#050505',
+                backgroundColor: '#FF007F',
+                color: '#ffffff',
               }}
             >
               Deploy Your Sovereign GTM Pod

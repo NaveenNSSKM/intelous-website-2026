@@ -5,7 +5,7 @@
 :root {
   --architectural-white: #FAFAFA;
   --strategy-pink: #FF007F;
-  --system-green: #39FF14;
+  --system-green: #FF007F;
   --logic-blue: #007BFF;
   --obsidian: #050505;
   --gray-dark: #1a1a1a;
@@ -39,20 +39,7 @@ body {
   position: relative;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  pointer-events: none;
-  z-index: 0;
-}
+
 
 a {
   color: inherit;

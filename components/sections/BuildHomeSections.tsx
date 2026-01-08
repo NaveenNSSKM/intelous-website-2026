@@ -7,7 +7,7 @@ export default function BuildHomeSections() {
     <>
       <section style={{
         padding: '120px 24px',
-        background: '#fff',
+        background: 'transparent',
       }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <motion.div
@@ -21,24 +21,24 @@ export default function BuildHomeSections() {
               fontSize: '12px',
               fontWeight: 600,
               letterSpacing: '2px',
-              color: '#666',
+              color: '#94a3b8',
             }}>THE EXECUTION GAP</span>
             <h2 style={{
               fontSize: 'clamp(32px, 5vw, 48px)',
               fontWeight: 900,
-              color: '#050505',
+              color: '#ffffff',
               margin: '16px 0',
               letterSpacing: '-1px',
             }}>Why Ventures Fail</h2>
             <p style={{
               fontSize: '18px',
-              color: '#666',
+              color: '#cbd5e1',
               maxWidth: '700px',
               margin: '0 auto',
               lineHeight: 1.7,
             }}>
-              You cannot afford to lose six months to a bloated development agency, and you cannot 
-              risk your future on disconnected freelancers who don't understand your GTM logic. 
+              You cannot afford to lose six months to a bloated development agency, and you cannot
+              risk your future on disconnected freelancers who don't understand your GTM logic.
               Intelous Labs is the anti-failure venture partner.
             </p>
           </motion.div>
@@ -74,16 +74,16 @@ export default function BuildHomeSections() {
                 whileHover={{ y: -5 }}
                 style={{
                   padding: '32px',
-                  background: '#FAFAFA',
-                  border: '1px solid #E0E0E0',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '16px',
                 }}
               >
                 <div style={{ fontSize: '40px', marginBottom: '16px' }}>{feature.icon}</div>
-                <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#050505', marginBottom: '12px' }}>
+                <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#ffffff', marginBottom: '12px' }}>
                   {feature.title}
                 </h3>
-                <p style={{ fontSize: '14px', color: '#666', lineHeight: 1.7 }}>
+                <p style={{ fontSize: '14px', color: '#cbd5e1', lineHeight: 1.7 }}>
                   {feature.description}
                 </p>
               </motion.div>
@@ -94,7 +94,7 @@ export default function BuildHomeSections() {
 
       <section style={{
         padding: '120px 24px',
-        background: '#FAFAFA',
+        background: 'transparent',
       }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <motion.div
@@ -108,23 +108,23 @@ export default function BuildHomeSections() {
               fontSize: '12px',
               fontWeight: 600,
               letterSpacing: '2px',
-              color: '#666',
+              color: '#94a3b8',
             }}>THE 10-WEEK SPRINT</span>
             <h2 style={{
               fontSize: 'clamp(32px, 5vw, 48px)',
               fontWeight: 900,
-              color: '#050505',
+              color: '#ffffff',
               margin: '16px 0',
               letterSpacing: '-1px',
             }}>From Vision to Market in 70 Days</h2>
             <p style={{
               fontSize: '18px',
-              color: '#666',
+              color: '#cbd5e1',
               maxWidth: '700px',
               margin: '0 auto',
               lineHeight: 1.7,
             }}>
-              We move at the speed of your ambition, using a modular platform evolution strategy 
+              We move at the speed of your ambition, using a modular platform evolution strategy
               to go from a PRD to your first 20 qualified leads in exactly 70 days.
             </p>
           </motion.div>
@@ -147,7 +147,7 @@ export default function BuildHomeSections() {
                 title: 'The Build',
                 description: 'Our engineering lab executes core development of your modular, event-driven platform.',
                 features: ['AI-Native Core Development', 'Microservices Architecture', 'Agentic Workflow Design'],
-                color: '#39FF14',
+                color: '#FF007F',
                 popular: true,
               },
               {
@@ -167,8 +167,8 @@ export default function BuildHomeSections() {
                 whileHover={{ y: -10 }}
                 style={{
                   padding: '32px',
-                  background: '#fff',
-                  border: phase.popular ? `2px solid ${phase.color}` : '1px solid #E0E0E0',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: phase.popular ? `2px solid ${phase.color}` : '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '16px',
                   position: 'relative',
                 }}
@@ -198,10 +198,10 @@ export default function BuildHomeSections() {
                 }}>
                   {phase.phase}
                 </div>
-                <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#050505', marginBottom: '12px' }}>
+                <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff', marginBottom: '12px' }}>
                   {phase.title}
                 </h3>
-                <p style={{ fontSize: '14px', color: '#666', lineHeight: 1.7, marginBottom: '20px' }}>
+                <p style={{ fontSize: '14px', color: '#cbd5e1', lineHeight: 1.7, marginBottom: '20px' }}>
                   {phase.description}
                 </p>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
@@ -211,11 +211,11 @@ export default function BuildHomeSections() {
                       alignItems: 'center',
                       gap: '8px',
                       fontSize: '14px',
-                      color: '#666',
+                      color: '#cbd5e1',
                       marginBottom: '8px',
                     }}>
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke={phase.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke={phase.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                       {feature}
                     </li>
@@ -229,7 +229,7 @@ export default function BuildHomeSections() {
 
       <section style={{
         padding: '120px 24px',
-        background: '#fff',
+        background: 'transparent',
       }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{
@@ -248,26 +248,26 @@ export default function BuildHomeSections() {
                 fontSize: '12px',
                 fontWeight: 600,
                 letterSpacing: '2px',
-                color: '#666',
+                color: '#94a3b8',
               }}>BUILD-OPERATE-TRANSFER</span>
               <h2 style={{
                 fontSize: 'clamp(32px, 5vw, 48px)',
                 fontWeight: 900,
-                color: '#050505',
+                color: '#ffffff',
                 margin: '16px 0',
                 letterSpacing: '-1px',
               }}>
-                We Build the Ship.<br/>
+                We Build the Ship.<br />
                 <span style={{ color: '#FF007F' }}>You Captain It.</span>
               </h2>
               <p style={{
                 fontSize: '18px',
-                color: '#666',
+                color: '#cbd5e1',
                 lineHeight: 1.7,
                 marginBottom: '24px',
               }}>
-                Unlike agencies that thrive on creating a "Black Box" of dependency, we embrace the 
-                exit because our goal is your total Sovereignty. We architect the system, run it to 
+                Unlike agencies that thrive on creating a "Black Box" of dependency, we embrace the
+                exit because our goal is your total Sovereignty. We architect the system, run it to
                 prove traction, and then methodically transfer the knowledge to your internal crew.
               </p>
               <div style={{ display: 'flex', gap: '16px' }}>
@@ -297,7 +297,7 @@ export default function BuildHomeSections() {
               transition={{ delay: 0.2 }}
             >
               <div style={{
-                background: '#050505',
+                background: '#0a0a0a',
                 borderRadius: '12px',
                 padding: '24px',
                 fontFamily: "'IBM Plex Mono', monospace",
@@ -312,15 +312,15 @@ export default function BuildHomeSections() {
                   <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#28C840' }} />
                 </div>
                 <code style={{ fontSize: '12px', color: '#999', lineHeight: 2 }}>
-                  <span style={{ color: '#FF007F' }}>[BUILD]</span> Architecting sovereign system...<br/>
-                  <span style={{ color: '#FF007F' }}>[BUILD]</span> GCP microservices deployed<br/>
-                  <span style={{ color: '#FF007F' }}>[BUILD]</span> Kafka event pipelines configured<br/>
-                  <span style={{ color: '#39FF14' }}>[OPERATE]</span> Running first GTM campaign...<br/>
-                  <span style={{ color: '#39FF14' }}>[OPERATE]</span> 20 qualified leads delivered<br/>
-                  <span style={{ color: '#39FF14' }}>[OPERATE]</span> Traction validated<br/>
-                  <span style={{ color: '#4A90E2' }}>[TRANSFER]</span> Knowledge handoff initiated<br/>
-                  <span style={{ color: '#4A90E2' }}>[TRANSFER]</span> Team training complete<br/>
-                  <span style={{ color: '#4A90E2' }}>[TRANSFER]</span> <span style={{ color: '#39FF14' }}>SOVEREIGNTY ACHIEVED</span>
+                  <span style={{ color: '#FF007F' }}>[BUILD]</span> Architecting sovereign system...<br />
+                  <span style={{ color: '#FF007F' }}>[BUILD]</span> GCP microservices deployed<br />
+                  <span style={{ color: '#FF007F' }}>[BUILD]</span> Kafka event pipelines configured<br />
+                  <span style={{ color: '#FF007F' }}>[OPERATE]</span> Running first GTM campaign...<br />
+                  <span style={{ color: '#FF007F' }}>[OPERATE]</span> 20 qualified leads delivered<br />
+                  <span style={{ color: '#FF007F' }}>[OPERATE]</span> Traction validated<br />
+                  <span style={{ color: '#4A90E2' }}>[TRANSFER]</span> Knowledge handoff initiated<br />
+                  <span style={{ color: '#4A90E2' }}>[TRANSFER]</span> Team training complete<br />
+                  <span style={{ color: '#4A90E2' }}>[TRANSFER]</span> <span style={{ color: '#FF007F' }}>SOVEREIGNTY ACHIEVED</span>
                 </code>
               </div>
             </motion.div>
@@ -330,7 +330,7 @@ export default function BuildHomeSections() {
 
       <section style={{
         padding: '120px 24px',
-        background: 'linear-gradient(135deg, rgba(255, 0, 127, 0.03) 0%, rgba(57, 255, 20, 0.03) 100%)',
+        background: 'transparent',
       }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
           <motion.div
@@ -343,23 +343,23 @@ export default function BuildHomeSections() {
               fontSize: '12px',
               fontWeight: 600,
               letterSpacing: '2px',
-              color: '#666',
+              color: '#94a3b8',
             }}>Q1 2026 COHORT</span>
             <h2 style={{
               fontSize: 'clamp(32px, 5vw, 48px)',
               fontWeight: 900,
-              color: '#050505',
+              color: '#ffffff',
               margin: '16px 0',
               letterSpacing: '-1px',
             }}>The Venture Architecture Diagnostic</h2>
             <p style={{
               fontSize: '18px',
-              color: '#666',
+              color: '#cbd5e1',
               lineHeight: 1.7,
               marginBottom: '32px',
             }}>
-              We are not a high-volume factory; we are a high-fidelity laboratory for high-ticket 
-              innovators. We only take on five partners for our Q1 2026 cohort to ensure our 
+              We are not a high-volume factory; we are a high-fidelity laboratory for high-ticket
+              innovators. We only take on five partners for our Q1 2026 cohort to ensure our
               technical leads can maintain 10/10 oversight on every build.
             </p>
             <div style={{
@@ -386,7 +386,7 @@ export default function BuildHomeSections() {
             </div>
             <p style={{
               fontSize: '14px',
-              color: '#666',
+              color: '#cbd5e1',
               marginBottom: '24px',
             }}>
               2 spots remaining for Q1 2026

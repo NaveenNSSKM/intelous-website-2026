@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useUniverse } from '@/context/UniverseContext'
 
@@ -22,9 +23,12 @@ const buildContent = {
 }
 
 export default function Hero() {
-  const { universe, toggleUniverse } = useUniverse()
+  const { universe, setUniverse } = useUniverse()
+  const [hoveredUniverse, setHoveredUniverse] = useState<string | null>(null)
+  const activeTab = hoveredUniverse || universe
   const content = universe === 'scale' ? scaleContent : buildContent
-  const accentColor = universe === 'scale' ? '#39FF14' : '#FF007F'
+  const accentColor = universe === 'scale' ? '#FF007F' : '#FF007F'
+  const isDark = universe === 'build'
 
   return (
     <section style={{
@@ -35,16 +39,15 @@ export default function Hero() {
       position: 'relative',
       paddingTop: '100px',
       overflow: 'hidden',
-      background: '#FAFAFA',
     }}>
-      <div style={{ 
-        textAlign: 'center', 
-        maxWidth: '1200px', 
+      <div style={{
+        textAlign: 'center',
+        maxWidth: '1200px',
         padding: '0 24px',
         position: 'relative',
         zIndex: 2,
       }}>
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -58,20 +61,21 @@ export default function Hero() {
             letterSpacing: '2px',
             color: '#666',
             padding: '10px 20px',
-            background: '#fff',
-            border: '1px solid #E0E0E0',
+            background: isDark ? 'rgba(255, 255, 255, 0.05)' : '#fff',
+            border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid #E0E0E0',
             borderRadius: '100px',
             marginBottom: '32px',
+            backdropFilter: isDark ? 'blur(10px)' : 'none',
           }}
         >
-          <motion.span 
+          <motion.span
             animate={{ backgroundColor: accentColor }}
-            style={{ 
-              width: '8px', 
-              height: '8px', 
-              borderRadius: '50%', 
+            style={{
+              width: '8px',
+              height: '8px',
+              borderRadius: '50%',
               backgroundColor: accentColor,
-            }} 
+            }}
           />
           <AnimatePresence mode="wait">
             <motion.span
@@ -80,6 +84,7 @@ export default function Hero() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 10 }}
               transition={{ duration: 0.3 }}
+              style={{ color: isDark ? '#cbd5e1' : '#666' }}
             >
               {content.tag}
             </motion.span>
@@ -98,7 +103,7 @@ export default function Hero() {
               <h1 key={i} style={{
                 fontSize: 'clamp(40px, 8vw, 80px)',
                 fontWeight: 900,
-                color: '#050505',
+                color: isDark ? '#FFFFFF' : '#050505',
                 marginBottom: i === content.headline.length - 1 ? '0' : '0',
                 lineHeight: 1.1,
                 letterSpacing: '-2px',
@@ -106,12 +111,15 @@ export default function Hero() {
                 {line}
               </h1>
             ))}
-            
-            <motion.h1 
+
+            <motion.h1
               style={{
                 fontSize: 'clamp(40px, 8vw, 80px)',
                 fontWeight: 900,
-                color: accentColor,
+                color: 'transparent',
+                backgroundImage: 'linear-gradient(135deg, #3985f1, #d335c3, #ed3389, #740cc6)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
                 marginBottom: '24px',
                 lineHeight: 1.1,
                 letterSpacing: '-2px',
@@ -132,7 +140,7 @@ export default function Hero() {
           </motion.div>
         </AnimatePresence>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -140,81 +148,108 @@ export default function Hero() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '20px',
             marginBottom: '40px',
           }}
         >
-          <span style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: '11px',
-            fontWeight: 600,
-            letterSpacing: '1px',
-            color: universe === 'scale' ? '#39FF14' : '#999',
-            transition: 'color 0.3s ease',
-          }}>
-            UNIVERSE A: SCALE
-          </span>
-          
-          <motion.div 
-            onClick={toggleUniverse}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <div
+            onMouseLeave={() => setHoveredUniverse(null)}
             style={{
-              width: '120px',
-              height: '40px',
-              background: 'linear-gradient(180deg, #e0e0e0 0%, #f5f5f5 100%)',
-              borderRadius: '20px',
+              background: isDark ? 'rgba(255, 255, 255, 0.05)' : '#fff',
+              border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid #E0E0E0',
+              borderRadius: '100px',
+              padding: '8px',
+              display: 'inline-flex',
               position: 'relative',
-              cursor: 'pointer',
-              boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.1)',
-              border: '1px solid #E0E0E0',
+              gap: '8px',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.05)'
             }}
           >
-            <motion.div 
+            <button
+              onClick={() => setUniverse('scale')}
+              onMouseEnter={() => setHoveredUniverse('scale')}
               style={{
-                width: '36px',
-                height: '36px',
-                background: 'linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%)',
-                borderRadius: '50%',
-                position: 'absolute',
-                top: '2px',
-                left: '2px',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.2), 0 4px 16px rgba(0,0,0,0.1)',
-                border: '1px solid rgba(255,255,255,0.8)',
+                width: '160px',
+                padding: '16px 0',
+                borderRadius: '100px',
+                border: 'none',
+                background: 'transparent',
+                color: activeTab === 'scale' ? '#fff' : (isDark ? '#cbd5e1' : '#666'),
+                fontWeight: 700,
+                fontSize: '15px',
+                fontFamily: "'IBM Plex Mono', monospace",
+                cursor: 'pointer',
+                position: 'relative',
+                zIndex: 2,
+                transition: 'color 0.2s ease',
+                outline: 'none',
               }}
-              animate={{ x: universe === 'scale' ? 0 : 80 }}
-              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-            />
-            <div style={{
-              position: 'absolute',
-              inset: '4px',
-              borderRadius: '16px',
-              background: 'linear-gradient(90deg, rgba(57, 255, 20, 0.2) 0%, rgba(255, 0, 127, 0.2) 100%)',
-            }} />
-          </motion.div>
+            >
+              {activeTab === 'scale' && (
+                <motion.div
+                  layoutId="activePill"
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundColor: '#FF007F',
+                    borderRadius: '100px',
+                    zIndex: -1,
+                    boxShadow: '0 4px 12px rgba(255, 0, 127, 0.3)'
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
+              intelous.ai
+            </button>
 
-          <span style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: '11px',
-            fontWeight: 600,
-            letterSpacing: '1px',
-            color: universe === 'build' ? '#FF007F' : '#999',
-            transition: 'color 0.3s ease',
-          }}>
-            UNIVERSE B: BUILD
-          </span>
+            <button
+              onClick={() => setUniverse('build')}
+              onMouseEnter={() => setHoveredUniverse('build')}
+              style={{
+                width: '160px',
+                padding: '16px 0',
+                borderRadius: '100px',
+                border: 'none',
+                background: 'transparent',
+                color: activeTab === 'build' ? '#fff' : (isDark ? '#cbd5e1' : '#666'),
+                fontWeight: 700,
+                fontSize: '15px',
+                fontFamily: "'IBM Plex Mono', monospace",
+                cursor: 'pointer',
+                position: 'relative',
+                zIndex: 2,
+                transition: 'color 0.2s ease',
+                outline: 'none',
+              }}
+            >
+              {activeTab === 'build' && (
+                <motion.div
+                  layoutId="activePill"
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundColor: '#FF007F',
+                    borderRadius: '100px',
+                    zIndex: -1,
+                    boxShadow: '0 4px 12px rgba(255, 0, 127, 0.3)'
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
+              intelouslabs
+            </button>
+          </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}
         >
-          <motion.button 
+          <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            style={{ 
+            style={{
               padding: '16px 32px',
               fontSize: '14px',
               fontWeight: 700,
@@ -222,7 +257,7 @@ export default function Hero() {
               border: 'none',
               cursor: 'pointer',
               backgroundColor: accentColor,
-              color: universe === 'scale' ? '#050505' : '#fff',
+              color: '#ffffff',
               transition: 'background-color 0.3s ease',
             }}
           >
@@ -249,14 +284,14 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, y: [0, 10, 0] }}
-          transition={{ 
+          transition={{
             opacity: { duration: 0.5, delay: 0.5 },
             y: { duration: 2, repeat: Infinity, ease: 'easeInOut' }
           }}
           style={{ marginTop: '60px', color: '#999' }}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </motion.div>
       </div>
@@ -267,7 +302,7 @@ export default function Hero() {
         pointerEvents: 'none',
         zIndex: 1,
       }}>
-        <motion.div 
+        <motion.div
           initial={{ scaleY: 0 }}
           animate={{ scaleY: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
@@ -282,7 +317,7 @@ export default function Hero() {
             transformOrigin: 'top',
           }}
         />
-        <motion.div 
+        <motion.div
           initial={{ scaleY: 0 }}
           animate={{ scaleY: 1 }}
           transition={{ duration: 1, delay: 0.7 }}
@@ -297,7 +332,7 @@ export default function Hero() {
             transformOrigin: 'bottom',
           }}
         />
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.2 }}
           transition={{ duration: 1, delay: 0.3 }}
@@ -311,7 +346,7 @@ export default function Hero() {
             borderLeft: `1px solid ${accentColor}`,
           }}
         />
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.2 }}
           transition={{ duration: 1, delay: 0.4 }}

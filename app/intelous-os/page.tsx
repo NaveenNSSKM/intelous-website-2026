@@ -16,7 +16,7 @@ export default function IntelousOSPage() {
   return (
     <main style={{ minHeight: '100vh', background: '#FAFAFA' }}>
       <Header />
-      
+
       <section style={{
         minHeight: '70vh',
         display: 'flex',
@@ -45,7 +45,7 @@ export default function IntelousOSPage() {
               borderRadius: '100px',
               marginBottom: '32px',
             }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#39FF14' }} />
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF007F' }} />
               THE COMMAND CENTER
             </div>
 
@@ -59,7 +59,12 @@ export default function IntelousOSPage() {
             }}>
               ONE STACK.
               <br />
-              <span style={{ color: '#39FF14' }}>TOTAL ORCHESTRATION.</span>
+              <span style={{
+                color: 'transparent',
+                backgroundImage: 'linear-gradient(135deg, #3985f1, #d335c3, #ed3389, #740cc6)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text'
+              }}>TOTAL ORCHESTRATION.</span>
             </h1>
 
             <p style={{
@@ -69,8 +74,8 @@ export default function IntelousOSPage() {
               margin: '0 auto 40px',
               lineHeight: 1.7,
             }}>
-              Stop fighting the "Tool Sprawl" that is killing your team's velocity. Intelous OS is 
-              the "Glass Box" system that unifies your entire GTM function into a single, 
+              Stop fighting the "Tool Sprawl" that is killing your team's velocity. Intelous OS is
+              the "Glass Box" system that unifies your entire GTM function into a single,
               high-fidelity command center.
             </p>
           </motion.div>
@@ -105,7 +110,7 @@ export default function IntelousOSPage() {
               margin: '0 auto',
               lineHeight: 1.7,
             }}>
-              Your buyers don't live in one inbox; they live across the entire digital landscape. 
+              Your buyers don't live in one inbox; they live across the entire digital landscape.
               Intelous OS provides total orchestration across Email, LinkedIn, and SMS.
             </p>
           </motion.div>
@@ -126,7 +131,7 @@ export default function IntelousOSPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                whileHover={{ y: -5, borderColor: '#39FF14' }}
+                whileHover={{ y: -5, borderColor: '#FF007F' }}
                 style={{
                   padding: '32px',
                   background: '#FAFAFA',
@@ -143,7 +148,7 @@ export default function IntelousOSPage() {
                 <div style={{
                   fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: '11px',
-                  color: '#39FF14',
+                  color: '#FF007F',
                   marginBottom: '12px',
                 }}>
                   via {item.integration}
@@ -172,7 +177,7 @@ export default function IntelousOSPage() {
               fontSize: '13px',
               color: '#999',
             }}>
-              <span style={{ color: '#39FF14' }}>LinkedIn connection</span> triggers <span style={{ color: '#666' }}>→</span> only if <span style={{ color: '#FF007F' }}>email opened</span> <span style={{ color: '#666' }}>→</span> <span style={{ color: '#39FF14' }}>SMS follow-up</span> triggers <span style={{ color: '#666' }}>→</span> only if <span style={{ color: '#FF007F' }}>no reply in 48h</span>
+              <span style={{ color: '#FF007F' }}>LinkedIn connection</span> triggers <span style={{ color: '#666' }}>→</span> only if <span style={{ color: '#FF007F' }}>email opened</span> <span style={{ color: '#666' }}>→</span> <span style={{ color: '#FF007F' }}>SMS follow-up</span> triggers <span style={{ color: '#666' }}>→</span> only if <span style={{ color: '#FF007F' }}>no reply in 48h</span>
             </code>
           </motion.div>
         </div>
@@ -205,14 +210,14 @@ export default function IntelousOSPage() {
                 lineHeight: 1.7,
                 marginBottom: '24px',
               }}>
-                We have moved past the era of tracking "vanity metrics" like open rates. Intelous OS 
-                is built on a Sentiment Analysis Pipeline that classifies every incoming interaction 
+                We have moved past the era of tracking "vanity metrics" like open rates. Intelous OS
+                is built on a Sentiment Analysis Pipeline that classifies every incoming interaction
                 as Positive, Neutral, or Negative.
               </p>
 
               <div style={{ marginBottom: '24px' }}>
                 {[
-                  { sentiment: 'Positive', action: 'Immediate sales alert + CRM update', color: '#39FF14' },
+                  { sentiment: 'Positive', action: 'Immediate sales alert + CRM update', color: '#FF007F' },
                   { sentiment: 'Neutral', action: 'Routed to strategist for manual follow-up', color: '#FFBD2E' },
                   { sentiment: 'Negative', action: 'Auto-removed + domain protected', color: '#FF5F57' },
                 ].map((item) => (
@@ -278,15 +283,15 @@ export default function IntelousOSPage() {
                   alignItems: 'center',
                   gap: '12px',
                   padding: '16px',
-                  background: 'rgba(57, 255, 20, 0.1)',
-                  border: '1px solid #39FF14',
+                  background: 'rgba(255, 0, 127, 0.1)',
+                  border: '1px solid #FF007F',
                   borderRadius: '8px',
                 }}>
                   <div style={{
                     width: '32px',
                     height: '32px',
                     borderRadius: '50%',
-                    background: '#39FF14',
+                    background: '#FF007F',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -295,7 +300,7 @@ export default function IntelousOSPage() {
                     ✓
                   </div>
                   <div>
-                    <div style={{ fontSize: '14px', fontWeight: 700, color: '#39FF14' }}>POSITIVE INTENT</div>
+                    <div style={{ fontSize: '14px', fontWeight: 700, color: '#FF007F' }}>POSITIVE INTENT</div>
                     <div style={{ fontSize: '12px', color: '#666' }}>Sales alert triggered → CRM updated</div>
                   </div>
                 </div>
@@ -333,7 +338,7 @@ export default function IntelousOSPage() {
               margin: '0 auto',
               lineHeight: 1.7,
             }}>
-              The OS is powered by a modular "Crew" of digital workers, each performing a specialized 
+              The OS is powered by a modular "Crew" of digital workers, each performing a specialized
               function in your campaign lifecycle.
             </p>
           </motion.div>
@@ -355,7 +360,7 @@ export default function IntelousOSPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                whileHover={{ borderColor: '#39FF14' }}
+                whileHover={{ borderColor: '#FF007F' }}
                 style={{
                   padding: '24px',
                   background: '#FAFAFA',
@@ -375,9 +380,9 @@ export default function IntelousOSPage() {
                     fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: '10px',
                     fontWeight: 600,
-                    color: '#39FF14',
+                    color: '#FF007F',
                     padding: '4px 8px',
-                    background: 'rgba(57, 255, 20, 0.1)',
+                    background: 'rgba(255, 0, 127, 0.1)',
                     borderRadius: '4px',
                   }}>
                     {agent.status}
@@ -417,8 +422,8 @@ export default function IntelousOSPage() {
                 lineHeight: 1.7,
                 marginBottom: '24px',
               }}>
-                Imagine asking your GTM system a question and getting a data-backed answer in seconds. 
-                Because Intelous OS unifies all engagement data, you can ask natural questions and 
+                Imagine asking your GTM system a question and getting a data-backed answer in seconds.
+                Because Intelous OS unifies all engagement data, you can ask natural questions and
                 get instant intelligence.
               </p>
               <motion.button
@@ -431,8 +436,8 @@ export default function IntelousOSPage() {
                   borderRadius: '8px',
                   border: 'none',
                   cursor: 'pointer',
-                  backgroundColor: '#39FF14',
-                  color: '#050505',
+                  backgroundColor: '#FF007F',
+                  color: '#ffffff',
                 }}
               >
                 Request a Demo
@@ -463,13 +468,13 @@ export default function IntelousOSPage() {
                 </div>
                 <div style={{
                   padding: '16px',
-                  background: 'rgba(57, 255, 20, 0.05)',
-                  border: '1px solid rgba(57, 255, 20, 0.2)',
+                  background: 'rgba(255, 0, 127, 0.05)',
+                  border: '1px solid rgba(255, 0, 127, 0.2)',
                   borderRadius: '8px',
                 }}>
                   <div style={{
                     fontSize: '12px',
-                    color: '#39FF14',
+                    color: '#FF007F',
                     fontWeight: 600,
                     marginBottom: '8px',
                     fontFamily: "'IBM Plex Mono', monospace",
@@ -477,8 +482,8 @@ export default function IntelousOSPage() {
                     INTELOUS OS ANALYSIS:
                   </div>
                   <div style={{ fontSize: '13px', color: '#666', lineHeight: 1.7 }}>
-                    Meeting rate dropped 23% due to VP-level personas showing 40% lower engagement. 
-                    Recommended: Shift messaging to focus on cost-reduction vs. growth themes based 
+                    Meeting rate dropped 23% due to VP-level personas showing 40% lower engagement.
+                    Recommended: Shift messaging to focus on cost-reduction vs. growth themes based
                     on current market sentiment.
                   </div>
                 </div>
@@ -490,7 +495,7 @@ export default function IntelousOSPage() {
 
       <section style={{
         padding: '80px 24px',
-        background: 'linear-gradient(135deg, rgba(57, 255, 20, 0.05) 0%, rgba(255, 0, 127, 0.05) 100%)',
+        background: 'linear-gradient(135deg, rgba(255, 0, 127, 0.05) 0%, rgba(255, 0, 127, 0.05) 100%)',
       }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
           <motion.div
@@ -510,7 +515,7 @@ export default function IntelousOSPage() {
               lineHeight: 1.7,
               marginBottom: '32px',
             }}>
-              You own the system. You own the insight. You own the outcome. This is the end of 
+              You own the system. You own the insight. You own the outcome. This is the end of
               the "Black Box" era and the beginning of total GTM sovereignty.
             </p>
             <motion.button
@@ -523,8 +528,8 @@ export default function IntelousOSPage() {
                 borderRadius: '8px',
                 border: 'none',
                 cursor: 'pointer',
-                backgroundColor: '#39FF14',
-                color: '#050505',
+                backgroundColor: '#FF007F',
+                color: '#ffffff',
               }}
             >
               Deploy the Intelous OS

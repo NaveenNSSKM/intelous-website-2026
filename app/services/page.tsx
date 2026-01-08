@@ -17,7 +17,7 @@ export default function ServicesPage() {
   return (
     <main style={{ minHeight: '100vh', background: '#FAFAFA' }}>
       <Header />
-      
+
       <section style={{
         minHeight: '70vh',
         display: 'flex',
@@ -46,7 +46,7 @@ export default function ServicesPage() {
               borderRadius: '100px',
               marginBottom: '32px',
             }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#39FF14' }} />
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF007F' }} />
               THE SOVEREIGN ARCHITECTURE
             </div>
 
@@ -60,7 +60,12 @@ export default function ServicesPage() {
             }}>
               THE SCALE
               <br />
-              <span style={{ color: '#39FF14' }}>SOLUTIONS INDEX.</span>
+              <span style={{
+                color: 'transparent',
+                backgroundImage: 'linear-gradient(135deg, #3985f1, #d335c3, #ed3389, #740cc6)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text'
+              }}>SOLUTIONS INDEX.</span>
             </h1>
 
             <p style={{
@@ -70,8 +75,8 @@ export default function ServicesPage() {
               margin: '0 auto 40px',
               lineHeight: 1.7,
             }}>
-              In the 2026 market, "outreach" is a commodity, but Orchestration is a superpower. 
-              The Scale Solutions Index is our answer—a consolidated ecosystem of intelligence, 
+              In the 2026 market, "outreach" is a commodity, but Orchestration is a superpower.
+              The Scale Solutions Index is our answer—a consolidated ecosystem of intelligence,
               logic, and creative authority.
             </p>
           </motion.div>
@@ -92,7 +97,7 @@ export default function ServicesPage() {
                 description: 'Multi-source aggregator that cross-references over 200M+ professionals and 40M accounts globally.',
                 features: ['Manual Verification Gate', 'Human-in-the-Loop (98% accuracy)', 'Deep Enrichment via BuiltWith'],
                 link: '/discovery-hub',
-                color: '#39FF14',
+                color: '#FF007F',
               },
               {
                 title: 'The Intelous OS',
@@ -165,7 +170,7 @@ export default function ServicesPage() {
                           marginBottom: '8px',
                         }}>
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke={service.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke={service.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                           {feature}
                         </li>
@@ -181,7 +186,7 @@ export default function ServicesPage() {
                     }}>
                       Learn More
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
                   </motion.div>
@@ -220,8 +225,8 @@ export default function ServicesPage() {
               margin: '0 auto',
               lineHeight: 1.7,
             }}>
-              Intelous Logic meets BYX Aesthetic. Most B2B events fail because outreach feels 
-              like spam and the digital experience feels cheap. We architect a cinematic attendance 
+              Intelous Logic meets BYX Aesthetic. Most B2B events fail because outreach feels
+              like spam and the digital experience feels cheap. We architect a cinematic attendance
               engine that dominates the noise.
             </p>
           </motion.div>
@@ -236,7 +241,7 @@ export default function ServicesPage() {
                 phase: 'The Push',
                 source: 'Intelous',
                 description: 'Discovery Hub identifies VIPs based on intent, Managed Pods execute hyper-personalized multi-channel outreach.',
-                color: '#39FF14',
+                color: '#FF007F',
               },
               {
                 phase: 'The Hook',
@@ -288,7 +293,7 @@ export default function ServicesPage() {
 
       <section style={{
         padding: '80px 24px',
-        background: 'linear-gradient(135deg, rgba(57, 255, 20, 0.05) 0%, rgba(255, 0, 127, 0.05) 100%)',
+        background: 'linear-gradient(135deg, rgba(255, 0, 127, 0.05) 0%, rgba(255, 0, 127, 0.05) 100%)',
       }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
           <motion.div
@@ -308,7 +313,7 @@ export default function ServicesPage() {
               lineHeight: 1.7,
               marginBottom: '32px',
             }}>
-              We provide a unified Go-to-Market Operating System built to power the future of 
+              We provide a unified Go-to-Market Operating System built to power the future of
               outbound campaigns, sales intelligence, and predictable revenue.
             </p>
             <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -322,8 +327,8 @@ export default function ServicesPage() {
                   borderRadius: '8px',
                   border: 'none',
                   cursor: 'pointer',
-                  backgroundColor: '#39FF14',
-                  color: '#050505',
+                  backgroundColor: '#FF007F',
+                  color: '#ffffff',
                 }}
               >
                 Deploy Your GTM Pod

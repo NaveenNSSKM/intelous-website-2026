@@ -14,9 +14,19 @@ export default function SuccessStoriesPage() {
   }, [setUniverse])
 
   return (
-    <main style={{ minHeight: '100vh', background: '#FAFAFA' }}>
+    <main className="min-h-screen relative text-white selection:bg-[#FF007F] selection:text-white">
+      {/* Dark Mode Background with Gradient */}
+      <div className="fixed inset-0 -z-10 bg-[#020617]">
+        <div
+          className="absolute inset-0 opacity-20 mix-blend-screen"
+          style={{
+            background: 'linear-gradient(135deg, #3985f1, #d335c3, #ed3389, #740cc6)'
+          }}
+        />
+        <div className="absolute inset-0 bg-[#020617]/40 backdrop-blur-3xl" />
+      </div>
       <Header />
-      
+
       <section style={{
         minHeight: '70vh',
         display: 'flex',
@@ -38,12 +48,13 @@ export default function SuccessStoriesPage() {
               fontSize: '12px',
               fontWeight: 600,
               letterSpacing: '2px',
-              color: '#666',
+              color: '#94a3b8',
               padding: '10px 20px',
-              background: '#fff',
-              border: '1px solid #E0E0E0',
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
               borderRadius: '100px',
               marginBottom: '32px',
+              backdropFilter: 'blur(10px)',
             }}>
               <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF007F' }} />
               BUILD LOGS
@@ -52,32 +63,37 @@ export default function SuccessStoriesPage() {
             <h1 style={{
               fontSize: 'clamp(40px, 6vw, 72px)',
               fontWeight: 900,
-              color: '#050505',
+              color: '#ffffff',
               marginBottom: '24px',
               lineHeight: 1.1,
               letterSpacing: '-2px',
             }}>
               SUCCESS
               <br />
-              <span style={{ color: '#FF007F' }}>STORIES.</span>
+              <span style={{
+                backgroundImage: 'linear-gradient(135deg, #3985f1, #d335c3, #ed3389, #740cc6)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent'
+              }}>STORIES.</span>
             </h1>
 
             <p style={{
               fontSize: '18px',
-              color: '#666',
+              color: '#cbd5e1',
               maxWidth: '800px',
               margin: '0 auto 40px',
               lineHeight: 1.7,
             }}>
-              Real ventures. Real results. From concept to market-ready sovereignty in 70 days. 
-              See how we've helped ambitious founders close the Execution Gap and achieve total 
+              Real ventures. Real results. From concept to market-ready sovereignty in 70 days.
+              See how we've helped ambitious founders close the Execution Gap and achieve total
               technical sovereignty.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section style={{ padding: '80px 24px', background: '#fff' }}>
+      <section style={{ padding: '80px 24px', background: 'transparent' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           {[
             {
@@ -123,7 +139,7 @@ export default function SuccessStoriesPage() {
                 gap: '60px',
                 alignItems: 'start',
                 padding: '60px 0',
-                borderBottom: i < 2 ? '1px solid #E0E0E0' : 'none',
+                borderBottom: i < 2 ? '1px solid rgba(255, 255, 255, 0.1)' : 'none',
               }}
             >
               <div>
@@ -145,7 +161,7 @@ export default function SuccessStoriesPage() {
                     fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: '11px',
                     fontWeight: 600,
-                    color: '#39FF14',
+                    color: '#FF007F',
                     padding: '4px 8px',
                     background: 'rgba(57, 255, 20, 0.1)',
                     borderRadius: '4px',
@@ -153,20 +169,20 @@ export default function SuccessStoriesPage() {
                     {story.timeline}
                   </span>
                 </div>
-                <h3 style={{ fontSize: '28px', fontWeight: 700, color: '#050505', marginBottom: '24px' }}>
+                <h3 style={{ fontSize: '28px', fontWeight: 700, color: '#ffffff', marginBottom: '24px' }}>
                   {story.company}
                 </h3>
                 <div style={{ marginBottom: '24px' }}>
                   <div style={{
                     fontSize: '12px',
                     fontWeight: 600,
-                    color: '#666',
+                    color: '#94a3b8',
                     marginBottom: '8px',
                     fontFamily: "'IBM Plex Mono', monospace",
                   }}>
                     THE CHALLENGE
                   </div>
-                  <p style={{ fontSize: '14px', color: '#666', lineHeight: 1.7 }}>
+                  <p style={{ fontSize: '14px', color: '#cbd5e1', lineHeight: 1.7 }}>
                     {story.challenge}
                   </p>
                 </div>
@@ -174,13 +190,13 @@ export default function SuccessStoriesPage() {
                   <div style={{
                     fontSize: '12px',
                     fontWeight: 600,
-                    color: '#666',
+                    color: '#94a3b8',
                     marginBottom: '8px',
                     fontFamily: "'IBM Plex Mono', monospace",
                   }}>
                     THE SOLUTION
                   </div>
-                  <p style={{ fontSize: '14px', color: '#666', lineHeight: 1.7 }}>
+                  <p style={{ fontSize: '14px', color: '#cbd5e1', lineHeight: 1.7 }}>
                     {story.solution}
                   </p>
                 </div>
@@ -188,8 +204,8 @@ export default function SuccessStoriesPage() {
 
               <div>
                 <div style={{
-                  background: '#FAFAFA',
-                  border: '1px solid #E0E0E0',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '16px',
                   padding: '32px',
                   marginBottom: '24px',
@@ -197,7 +213,7 @@ export default function SuccessStoriesPage() {
                   <div style={{
                     fontSize: '12px',
                     fontWeight: 600,
-                    color: '#39FF14',
+                    color: '#FF007F',
                     marginBottom: '16px',
                     fontFamily: "'IBM Plex Mono', monospace",
                   }}>
@@ -210,12 +226,12 @@ export default function SuccessStoriesPage() {
                         alignItems: 'flex-start',
                         gap: '12px',
                         fontSize: '14px',
-                        color: '#050505',
+                        color: '#ffffff',
                         fontWeight: 600,
                         marginBottom: '12px',
                       }}>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, marginTop: '3px' }}>
-                          <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="#39FF14" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="#FF007F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         {result}
                       </li>
@@ -224,20 +240,20 @@ export default function SuccessStoriesPage() {
                 </div>
                 <div style={{
                   padding: '24px',
-                  background: 'linear-gradient(135deg, rgba(255, 0, 127, 0.05) 0%, rgba(57, 255, 20, 0.05) 100%)',
+                  background: 'rgba(255, 0, 127, 0.1)',
                   borderRadius: '12px',
                   borderLeft: '4px solid #FF007F',
                 }}>
                   <p style={{
                     fontSize: '16px',
-                    color: '#050505',
+                    color: '#ffffff',
                     fontStyle: 'italic',
                     lineHeight: 1.6,
                     marginBottom: '12px',
                   }}>
                     "{story.quote}"
                   </p>
-                  <div style={{ fontSize: '13px', color: '#666', fontWeight: 600 }}>
+                  <div style={{ fontSize: '13px', color: '#cbd5e1', fontWeight: 600 }}>
                     — {story.founder}
                   </div>
                 </div>
@@ -247,7 +263,7 @@ export default function SuccessStoriesPage() {
         </div>
       </section>
 
-      <section style={{ padding: '80px 24px', background: '#FAFAFA' }}>
+      <section style={{ padding: '80px 24px', background: 'transparent' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -258,7 +274,7 @@ export default function SuccessStoriesPage() {
             <h2 style={{
               fontSize: 'clamp(28px, 4vw, 40px)',
               fontWeight: 900,
-              color: '#050505',
+              color: '#ffffff',
               margin: '16px 0',
             }}>The Numbers That Matter</h2>
           </motion.div>
@@ -282,16 +298,17 @@ export default function SuccessStoriesPage() {
                 transition={{ delay: i * 0.1 }}
                 style={{
                   padding: '32px',
-                  background: '#fff',
-                  border: '1px solid #E0E0E0',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '16px',
                   textAlign: 'center',
+                  backdropFilter: 'blur(10px)',
                 }}
               >
                 <div style={{ fontSize: '48px', fontWeight: 900, color: '#FF007F', marginBottom: '8px' }}>
                   {stat.value}<span style={{ fontSize: '24px' }}>{stat.suffix}</span>
                 </div>
-                <div style={{ fontSize: '14px', color: '#666', fontWeight: 600 }}>
+                <div style={{ fontSize: '14px', color: '#cbd5e1', fontWeight: 600 }}>
                   {stat.label}
                 </div>
               </motion.div>
@@ -302,7 +319,8 @@ export default function SuccessStoriesPage() {
 
       <section style={{
         padding: '80px 24px',
-        background: 'linear-gradient(135deg, rgba(255, 0, 127, 0.05) 0%, rgba(57, 255, 20, 0.05) 100%)',
+        background: 'rgba(255, 255, 255, 0.02)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.05)',
       }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
           <motion.div
@@ -313,16 +331,16 @@ export default function SuccessStoriesPage() {
             <h2 style={{
               fontSize: 'clamp(28px, 4vw, 40px)',
               fontWeight: 900,
-              color: '#050505',
+              color: '#ffffff',
               margin: '16px 0',
             }}>Ready to Write Your Story?</h2>
             <p style={{
               fontSize: '18px',
-              color: '#666',
+              color: '#cbd5e1',
               lineHeight: 1.7,
               marginBottom: '32px',
             }}>
-              Join the founders who have closed the Execution Gap and achieved GTM sovereignty. 
+              Join the founders who have closed the Execution Gap and achieved GTM sovereignty.
               Only 5 spots available for Q1 2026 cohort.
             </p>
             <motion.button
@@ -346,6 +364,6 @@ export default function SuccessStoriesPage() {
       </section>
 
       <Footer />
-    </main>
+    </main >
   )
 }

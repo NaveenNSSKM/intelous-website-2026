@@ -9,8 +9,9 @@ import Footer from '@/components/Footer'
 import { useUniverse } from '@/context/UniverseContext'
 
 export default function ResourcesPage() {
-    const { setUniverse } = useUniverse()
+    const { universe, setUniverse } = useUniverse()
     const [resources, setResources] = useState<any[]>([])
+    const isDark = universe === 'build'
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
@@ -53,29 +54,52 @@ export default function ResourcesPage() {
     })
 
     return (
-        <main className="min-h-screen bg-[#020617] text-white selection:bg-[#39FF14] selection:text-black">
+        <main className={`min-h-screen relative transition-colors duration-500 ${isDark ? 'text-white' : 'bg-[#F8FAFC] text-slate-900'} selection:bg-[#FF007F] selection:text-black`}>
+            {/* Dark Mode Background with Gradient */}
+            {isDark && (
+                <div className="fixed inset-0 -z-10 bg-[#020617]">
+                    <div
+                        className="absolute inset-0 opacity-20 mix-blend-screen"
+                        style={{
+                            background: 'linear-gradient(135deg, #3985f1, #d335c3, #ed3389, #740cc6)'
+                        }}
+                    />
+                    <div className="absolute inset-0 bg-[#020617]/40 backdrop-blur-3xl" />
+                </div>
+            )}
+
             <Header />
 
             {/* Main Content Area */}
             <div className="pt-32 pb-20 px-4 md:px-6">
                 <div className="container mx-auto max-w-7xl">
 
-                    <div className="bg-[#0f172a] rounded-3xl border border-slate-800 mb-16 relative overflow-hidden group">
+                    <div className={`rounded-[2.5rem] p-1 border mb-16 relative overflow-hidden group transition-all duration-500 ${isDark ? 'bg-[#0f172a] border-slate-800' : 'bg-white border-slate-200 shadow-2xl shadow-slate-200/50'}`}>
                         <div className="grid grid-cols-1 lg:grid-cols-2">
 
                             {/* Content Side (Left) */}
                             <div className="flex flex-col justify-center order-2 lg:order-1 p-8 md:p-12">
 
 
-                                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-[1.1] mb-6 tracking-tight">
-                                    The Future of Intelligence: Why It Matters Now
+                                <h2
+                                    className={`text-3xl md:text-4xl lg:text-5xl font-black leading-[1.1] mb-6 tracking-tight transition-all duration-300 ${isDark ? 'text-white' : 'text-slate-900'}`}
+                                >
+                                    The Future of Intelligence: <br />
+                                    <span style={{
+                                        backgroundImage: 'linear-gradient(135deg, #3985f1, #d335c3, #ed3389, #740cc6)',
+                                        WebkitBackgroundClip: 'text',
+                                        backgroundClip: 'text',
+                                        color: 'transparent'
+                                    }}>
+                                        Why It Matters Now
+                                    </span>
                                 </h2>
 
-                                <p className="text-slate-400 text-lg leading-relaxed mb-8 line-clamp-3">
+                                <p className={`text-lg leading-relaxed mb-8 line-clamp-3 transition-colors duration-300 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                                     Quantum mechanics is poised to revolutionize how we process data. Explore the implications for security, AI, and beyond in this deep dive into the next generation of computing.
                                 </p>
 
-                                <button className="group/btn inline-flex items-center gap-2 bg-[#39FF14] text-black font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-[#39FF14]/20 self-start">
+                                <button className="group/btn inline-flex items-center gap-2 bg-[#FF007F] text-white font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-[#FF007F]/20 self-start">
                                     <span>Read Featured Story</span>
                                     <svg className="transition-transform duration-300 ease-in-out group-hover/btn:translate-x-1" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M5 12h14"></path>
@@ -103,9 +127,11 @@ export default function ResourcesPage() {
                             {categories.map((cat, i) => (
                                 <button
                                     key={cat}
-                                    className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all border ${i === 0
-                                        ? 'bg-[#39FF14] text-black border-[#39FF14]'
-                                        : 'bg-[#0f172a] text-slate-400 border-slate-800 hover:border-slate-600 hover:text-white'
+                                    className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all border ${i === 0
+                                        ? 'bg-[#FF007F] text-white border-[#FF007F]'
+                                        : isDark
+                                            ? 'bg-[#0f172a] text-slate-400 border-slate-800 hover:border-slate-600 hover:text-white'
+                                            : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300 hover:text-slate-900'
                                         }`}
                                 >
                                     {cat}
@@ -115,7 +141,7 @@ export default function ResourcesPage() {
 
                         <div className="relative w-full max-w-[300px] group">
                             <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none">
-                                <svg className="h-5 w-5 text-slate-500 group-hover:text-[#39FF14] group-focus-within:text-[#39FF14] transition-colors duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <svg className="h-5 w-5 text-slate-500 group-hover:text-[#FF007F] group-focus-within:text-[#FF007F] transition-colors duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                     <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
                                 </svg>
                             </div>
@@ -124,16 +150,19 @@ export default function ResourcesPage() {
                                 placeholder="Search articles..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="block w-full pl-8 pr-4 py-3 bg-transparent border-0 border-b-2 border-slate-800 text-slate-300 placeholder-slate-600 focus:outline-none focus:ring-0 rounded-none sm:text-sm peer font-sans"
+                                className={`block w-full pl-8 pr-4 py-3 bg-transparent border-0 border-b-2 focus:outline-none focus:ring-0 rounded-none sm:text-sm peer font-sans transition-colors duration-300 ${isDark
+                                    ? 'border-slate-800 text-slate-300 placeholder-slate-600'
+                                    : 'border-slate-300 text-slate-900 placeholder-slate-400'
+                                    }`}
                             />
                             {/* Animated Underline */}
-                            <div className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-[#39FF14] transition-all duration-300 ease-out -translate-x-1/2 group-hover:w-full peer-focus:w-full" />
+                            <div className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-[#FF007F] transition-all duration-300 ease-out -translate-x-1/2 group-hover:w-full peer-focus:w-full" />
                         </div>
                     </div>
 
                     {isLoading ? (
                         <div className="flex justify-center py-40">
-                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#39FF14]"></div>
+                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF007F]"></div>
                         </div>
                     ) : (
                         <>
@@ -145,10 +174,11 @@ export default function ResourcesPage() {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: i * 0.05, duration: 0.5 }}
                                     >
-                                        <Link href={`/resources/${resource.id}`} className="flex flex-col h-full bg-[#0f172a] border border-slate-800 rounded-[2rem] overflow-hidden hover:border-[#39FF14]/50 hover:shadow-2xl hover:shadow-[#39FF14]/5 transition-all duration-300 group">
+                                        <Link href={`/resources/${resource.id}`} className={`flex flex-col h-full border rounded-[2rem] overflow-hidden hover:border-[#FF007F]/50 hover:shadow-2xl hover:shadow-[#FF007F]/5 transition-all duration-300 group ${isDark ? 'bg-[#0f172a] border-slate-800' : 'bg-white border-slate-100 shadow-xl shadow-slate-200/50'
+                                            }`}>
 
                                             {/* Card Image */}
-                                            <div className="aspect-[1.2/1] relative overflow-hidden bg-slate-900 border-b border-slate-800">
+                                            <div className={`aspect-[1.2/1] relative overflow-hidden border-b ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-100 border-slate-100'}`}>
                                                 <div className="absolute inset-0 bg-[#020617]/0 group-hover:bg-[#020617]/20 transition-colors z-10" />
                                                 <img
                                                     src={resource.featured_image}
@@ -162,22 +192,22 @@ export default function ResourcesPage() {
                                             <div className="p-8 flex flex-col flex-grow">
 
 
-                                                <h3 className="text-xl font-bold text-white mb-4 leading-snug group-hover:text-[#39FF14] transition-colors line-clamp-2">
+                                                <h3 className={`text-xl font-bold mb-4 leading-snug group-hover:text-[#FF007F] transition-colors line-clamp-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
                                                     {resource.title}
                                                 </h3>
 
-                                                <p className="text-slate-400 text-sm leading-relaxed mb-8 line-clamp-3">
+                                                <p className={`text-sm leading-relaxed mb-8 line-clamp-3 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                                                     {resource.short_description}
                                                 </p>
 
                                                 <div className="mt-auto flex items-center gap-4 pt-4">
-                                                    <div className="w-10 h-10 rounded-full bg-[#39FF14] flex items-center justify-center text-black transform transition-transform duration-300 group-hover:scale-110">
+                                                    <div className="w-10 h-10 rounded-full bg-[#FF007F] flex items-center justify-center text-white transform transition-transform duration-300 group-hover:scale-110">
                                                         <svg className="transition-transform duration-300 group-hover:rotate-45" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                                             <path d="M7 17L17 7"></path>
                                                             <path d="M7 7h10v10"></path>
                                                         </svg>
                                                     </div>
-                                                    <span className="text-white font-bold text-sm tracking-wide group-hover:text-[#39FF14] transition-colors">
+                                                    <span className={`font-bold text-sm tracking-wide group-hover:text-[#FF007F] transition-colors ${isDark ? 'text-white' : 'text-slate-900'}`}>
                                                         Read full article
                                                     </span>
                                                 </div>

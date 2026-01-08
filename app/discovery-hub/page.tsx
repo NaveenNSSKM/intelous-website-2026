@@ -16,7 +16,7 @@ export default function DiscoveryHubPage() {
   return (
     <main style={{ minHeight: '100vh', background: '#FAFAFA' }}>
       <Header />
-      
+
       <section style={{
         minHeight: '70vh',
         display: 'flex',
@@ -45,7 +45,7 @@ export default function DiscoveryHubPage() {
               borderRadius: '100px',
               marginBottom: '32px',
             }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#39FF14' }} />
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF007F' }} />
               THE INTELLIGENCE ENGINE
             </div>
 
@@ -59,7 +59,12 @@ export default function DiscoveryHubPage() {
             }}>
               THE DISCOVERY HUB.
               <br />
-              <span style={{ color: '#39FF14' }}>GROUND TRUTH.</span>
+              <span style={{
+                color: 'transparent',
+                backgroundImage: 'linear-gradient(135deg, #3985f1, #d335c3, #ed3389, #740cc6)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text'
+              }}>GROUND TRUTH.</span>
             </h1>
 
             <p style={{
@@ -69,8 +74,8 @@ export default function DiscoveryHubPage() {
               margin: '0 auto 40px',
               lineHeight: 1.7,
             }}>
-              In a world drowning in outdated CSVs and "spray and pray" lists, the most valuable 
-              asset isn't just data—it's The Truth. We don't just find leads; we architect Ground 
+              In a world drowning in outdated CSVs and "spray and pray" lists, the most valuable
+              asset isn't just data—it's The Truth. We don't just find leads; we architect Ground
               Truth Intelligence.
             </p>
           </motion.div>
@@ -104,8 +109,8 @@ export default function DiscoveryHubPage() {
                 lineHeight: 1.7,
                 marginBottom: '24px',
               }}>
-                We have moved past the era of the single data broker. No single database is 100% 
-                accurate, which is why the Discovery Hub is built as a Sovereign Aggregator. We 
+                We have moved past the era of the single data broker. No single database is 100%
+                accurate, which is why the Discovery Hub is built as a Sovereign Aggregator. We
                 query the world's most authoritative databases simultaneously.
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
@@ -147,7 +152,7 @@ export default function DiscoveryHubPage() {
                   borderRadius: '12px',
                   textAlign: 'center',
                 }}>
-                  <div style={{ fontSize: '32px', fontWeight: 900, color: '#39FF14', marginBottom: '4px' }}>
+                  <div style={{ fontSize: '32px', fontWeight: 900, color: '#FF007F', marginBottom: '4px' }}>
                     {stat.value}
                   </div>
                   <div style={{ fontSize: '12px', fontWeight: 600, color: '#666', textTransform: 'uppercase' }}>
@@ -188,7 +193,7 @@ export default function DiscoveryHubPage() {
               margin: '0 auto',
               lineHeight: 1.7,
             }}>
-              Technology finds the data, but Humans verify the truth. This is our "Clean Room"—the 
+              Technology finds the data, but Humans verify the truth. This is our "Clean Room"—the
               primary differentiator of the Intelous ecosystem.
             </p>
           </motion.div>
@@ -231,7 +236,7 @@ export default function DiscoveryHubPage() {
                 <div style={{
                   fontSize: '48px',
                   fontWeight: 900,
-                  color: '#39FF14',
+                  color: '#FF007F',
                   marginBottom: '16px',
                   opacity: 0.3,
                 }}>
@@ -276,8 +281,8 @@ export default function DiscoveryHubPage() {
                 lineHeight: 1.7,
                 marginBottom: '24px',
               }}>
-                We go far beyond the name and title to give your GTM team an unfair advantage. 
-                Our Discovery Hub appends over 200M data points including company revenue, 
+                We go far beyond the name and title to give your GTM team an unfair advantage.
+                Our Discovery Hub appends over 200M data points including company revenue,
                 department growth trends, funding rounds, and existing technology stacks.
               </p>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
@@ -296,7 +301,7 @@ export default function DiscoveryHubPage() {
                     marginBottom: '12px',
                   }}>
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="#39FF14" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="#FF007F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                     {item}
                   </li>
@@ -333,12 +338,12 @@ export default function DiscoveryHubPage() {
                   lineHeight: 2,
                   display: 'block',
                 }}>
-                  <span style={{ color: '#39FF14' }}>[ENRICH]</span> Querying BuiltWith for tech stack...<br/>
-                  <span style={{ color: '#39FF14' }}>[FOUND]</span> Salesforce, HubSpot, Segment detected<br/>
-                  <span style={{ color: '#39FF14' }}>[ENRICH]</span> Checking Crunchbase funding data...<br/>
-                  <span style={{ color: '#39FF14' }}>[FOUND]</span> Series B: $15M (6 months ago)<br/>
-                  <span style={{ color: '#39FF14' }}>[SIGNAL]</span> Engineering team +40% in 90 days<br/>
-                  <span style={{ color: '#FF007F' }}>[INTENT]</span> HIGH-PRIORITY BUYING WINDOW<br/>
+                  <span style={{ color: '#FF007F' }}>[ENRICH]</span> Querying BuiltWith for tech stack...<br />
+                  <span style={{ color: '#FF007F' }}>[FOUND]</span> Salesforce, HubSpot, Segment detected<br />
+                  <span style={{ color: '#FF007F' }}>[ENRICH]</span> Checking Crunchbase funding data...<br />
+                  <span style={{ color: '#FF007F' }}>[FOUND]</span> Series B: $15M (6 months ago)<br />
+                  <span style={{ color: '#FF007F' }}>[SIGNAL]</span> Engineering team +40% in 90 days<br />
+                  <span style={{ color: '#FF007F' }}>[INTENT]</span> HIGH-PRIORITY BUYING WINDOW<br />
                   <span style={{ color: '#fff' }}>[READY]</span> Lead enriched and verified ✓
                 </code>
               </div>
@@ -374,8 +379,8 @@ export default function DiscoveryHubPage() {
                 lineHeight: 1.7,
                 marginBottom: '24px',
               }}>
-                Intelligence is only power if it is actionable. We have closed the Execution Gap. 
-                Our Discovery Hub is natively hard-wired into the Intelous OS. With one click, 
+                Intelligence is only power if it is actionable. We have closed the Execution Gap.
+                Our Discovery Hub is natively hard-wired into the Intelous OS. With one click,
                 your verified lead lists are published directly to your campaign queue.
               </p>
               <motion.button
@@ -388,8 +393,8 @@ export default function DiscoveryHubPage() {
                   borderRadius: '8px',
                   border: 'none',
                   cursor: 'pointer',
-                  backgroundColor: '#39FF14',
-                  color: '#050505',
+                  backgroundColor: '#FF007F',
+                  color: '#ffffff',
                 }}
               >
                 See the Discovery Hub in Action
@@ -403,7 +408,7 @@ export default function DiscoveryHubPage() {
               style={{
                 padding: '32px',
                 background: '#fff',
-                border: '2px solid #39FF14',
+                border: '2px solid #FF007F',
                 borderRadius: '16px',
                 textAlign: 'center',
               }}
@@ -411,7 +416,7 @@ export default function DiscoveryHubPage() {
               <div style={{ fontSize: '14px', fontWeight: 600, color: '#666', marginBottom: '16px' }}>
                 From Lead Discovery to First Touchpoint
               </div>
-              <div style={{ fontSize: '64px', fontWeight: 900, color: '#39FF14', marginBottom: '8px' }}>
+              <div style={{ fontSize: '64px', fontWeight: 900, color: '#FF007F', marginBottom: '8px' }}>
                 20 min
               </div>
               <div style={{ fontSize: '12px', color: '#666', textTransform: 'uppercase', letterSpacing: '1px' }}>
@@ -424,7 +429,7 @@ export default function DiscoveryHubPage() {
 
       <section style={{
         padding: '80px 24px',
-        background: 'linear-gradient(135deg, rgba(57, 255, 20, 0.05) 0%, rgba(255, 0, 127, 0.05) 100%)',
+        background: 'linear-gradient(135deg, rgba(255, 0, 127, 0.05) 0%, rgba(255, 0, 127, 0.05) 100%)',
       }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
           <motion.div
@@ -451,9 +456,9 @@ export default function DiscoveryHubPage() {
               lineHeight: 1.7,
               marginBottom: '32px',
             }}>
-              When you use the Discovery Hub, you aren't just buying "leads"; you are buying Domain 
-              Insurance. Because our data is manually scrubbed and multi-source verified, your bounce 
-              rates plummet and your engagement rates soar. You own the data. You own the system. 
+              When you use the Discovery Hub, you aren't just buying "leads"; you are buying Domain
+              Insurance. Because our data is manually scrubbed and multi-source verified, your bounce
+              rates plummet and your engagement rates soar. You own the data. You own the system.
               You own the outcome.
             </p>
             <motion.button
@@ -466,8 +471,8 @@ export default function DiscoveryHubPage() {
                 borderRadius: '8px',
                 border: 'none',
                 cursor: 'pointer',
-                backgroundColor: '#39FF14',
-                color: '#050505',
+                backgroundColor: '#FF007F',
+                color: '#ffffff',
               }}
             >
               Deploy the Discovery Hub
