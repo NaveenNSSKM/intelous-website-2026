@@ -1,10 +1,13 @@
 'use client'
 
 import { useEffect } from 'react'
-import { motion } from 'framer-motion'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { useUniverse } from '@/context/UniverseContext'
+import StaggeredText from '@/components/ui/StaggeredText'
+import Reveal from '@/components/ui/Reveal'
+import HighlightText from '@/components/ui/HighlightText'
+import { motion } from 'framer-motion'
 
 export default function ArticlesPage() {
   const { setUniverse } = useUniverse()
@@ -28,18 +31,14 @@ export default function ArticlesPage() {
       <Header />
 
       <section style={{
-        minHeight: '60vh',
+        minHeight: '70vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '120px 24px 80px',
+        padding: '140px 24px 80px',
       }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+        <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center', width: '100%' }}>
+          <Reveal width="100%">
             <div style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -61,93 +60,101 @@ export default function ArticlesPage() {
             </div>
 
             <h1 style={{
-              fontSize: 'clamp(40px, 6vw, 72px)',
+              fontSize: 'clamp(40px, 6vw, 86px)',
               fontWeight: 900,
               color: '#ffffff',
-              marginBottom: '24px',
+              marginBottom: '32px',
               lineHeight: 1.1,
               letterSpacing: '-2px',
             }}>
-              BUILD
+              <StaggeredText text="BUILD YOUR" />
               <br />
               <span style={{
                 backgroundImage: 'linear-gradient(135deg, #3985f1, #d335c3, #ed3389, #740cc6)',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
-                color: 'transparent'
-              }}>KNOWLEDGE BASE.</span>
+                color: 'transparent',
+                display: 'inline-block'
+              }}>
+                <StaggeredText text="KNOWLEDGE BASE." delay={0.2} />
+              </span>
             </h1>
 
-            <p style={{
-              fontSize: '18px',
-              color: '#cbd5e1',
-              maxWidth: '700px',
-              margin: '0 auto 40px',
-              lineHeight: 1.7,
-            }}>
-              Deep dives into venture building, GTM strategy, and technical architecture.
-              Frameworks and lessons learned from building ventures that achieve sovereignty.
-            </p>
-          </motion.div>
+            <Reveal delay={0.4}>
+              <p style={{
+                fontSize: '20px',
+                color: '#cbd5e1',
+                maxWidth: '700px',
+                margin: '0 auto 40px',
+                lineHeight: 1.7,
+              }}>
+                Deep dives into <HighlightText color="#3985f1">venture building</HighlightText>, GTM strategy, and technical architecture.
+                Frameworks from building ventures that achieve sovereignty.
+              </p>
+            </Reveal>
+          </Reveal>
         </div>
       </section>
 
       <section style={{ padding: '80px 24px', background: 'transparent' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            style={{
-              padding: '48px',
-              background: 'rgba(255, 0, 127, 0.1)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              borderRadius: '16px',
-              marginBottom: '40px',
-              cursor: 'pointer',
-            }}
-          >
+          <Reveal width="100%" y={50}>
             <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'flex-start',
-              marginBottom: '16px',
+              padding: '48px',
+              background: 'rgba(255, 0, 127, 0.05)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '24px',
+              marginBottom: '60px',
+              cursor: 'pointer',
+              position: 'relative',
+              overflow: 'hidden'
             }}>
-              <span style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: '12px',
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ff007f]/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-700" style={{ transform: 'skewX(-20deg)' }} />
+
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'flex-start',
+                marginBottom: '16px',
+                position: 'relative', zIndex: 10
+              }}>
+                <span style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  color: '#FF007F',
+                  padding: '4px 12px',
+                  background: 'rgba(255, 0, 127, 0.1)',
+                  borderRadius: '100px',
+                }}>
+                  FEATURED
+                </span>
+                <span style={{ fontSize: '12px', color: '#94a3b8' }}>12 min read</span>
+              </div>
+              <h2 style={{ fontSize: 'clamp(24px, 4vw, 42px)', fontWeight: 700, color: '#ffffff', marginBottom: '16px', position: 'relative', zIndex: 10 }}>
+                The Execution Gap: Why 90% of Ventures Fail Before Launch
+              </h2>
+              <p style={{ fontSize: '18px', color: '#cbd5e1', lineHeight: 1.7, marginBottom: '24px', maxWidth: '800px', position: 'relative', zIndex: 10 }}>
+                Most venture building fails because it is treated like a creative experiment rather
+                than an industrial operation. This deep dive explores the gap between vision and
+                execution.
+              </p>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontSize: '14px',
                 fontWeight: 600,
                 color: '#FF007F',
-                padding: '4px 12px',
-                background: 'rgba(255, 0, 127, 0.1)',
-                borderRadius: '100px',
+                position: 'relative', zIndex: 10
               }}>
-                FEATURED
-              </span>
-              <span style={{ fontSize: '12px', color: '#94a3b8' }}>12 min read</span>
+                Read Article
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
             </div>
-            <h2 style={{ fontSize: '32px', fontWeight: 700, color: '#ffffff', marginBottom: '16px' }}>
-              The Execution Gap: Why 90% of Ventures Fail Before Launch
-            </h2>
-            <p style={{ fontSize: '16px', color: '#cbd5e1', lineHeight: 1.7, marginBottom: '24px' }}>
-              Most venture building fails because it is treated like a creative experiment rather
-              than an industrial operation. This deep dive explores the gap between vision and
-              execution, and how the Build-Operate-Transfer model closes it.
-            </p>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              fontSize: '14px',
-              fontWeight: 600,
-              color: '#FF007F',
-            }}>
-              Read Article
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </div>
-          </motion.div>
+          </Reveal>
 
           <div style={{
             display: 'grid',
@@ -192,62 +199,60 @@ export default function ArticlesPage() {
                 desc: 'A complete walkthrough of a real 10-Week Sprint, including technical decisions and GTM deployment.',
               },
             ].map((article, i) => (
-              <motion.div
-                key={article.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                whileHover={{ y: -5, borderColor: '#FF007F' }}
-                style={{
-                  padding: '32px',
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  borderRadius: '16px',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  backdropFilter: 'blur(10px)',
-                }}
-              >
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  marginBottom: '16px',
-                }}>
-                  <span style={{
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    color: '#FF007F',
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    letterSpacing: '1px',
+              <Reveal key={article.title} delay={i * 0.1}>
+                <motion.div
+                  whileHover={{ y: -5, borderColor: '#FF007F' }}
+                  style={{
+                    padding: '32px',
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '16px',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    backdropFilter: 'blur(10px)',
+                    height: '100%'
+                  }}
+                >
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginBottom: '16px',
                   }}>
-                    {article.category}
-                  </span>
-                  <span style={{
-                    fontSize: '12px',
-                    color: '#94a3b8',
+                    <span style={{
+                      fontSize: '12px',
+                      fontWeight: 600,
+                      color: '#FF007F',
+                      fontFamily: "'IBM Plex Mono', monospace",
+                      letterSpacing: '1px',
+                    }}>
+                      {article.category}
+                    </span>
+                    <span style={{
+                      fontSize: '12px',
+                      color: '#94a3b8',
+                    }}>
+                      {article.readTime}
+                    </span>
+                  </div>
+                  <h3 style={{
+                    fontSize: '20px',
+                    fontWeight: 700,
+                    color: '#ffffff',
+                    marginBottom: '12px',
+                    lineHeight: 1.3,
                   }}>
-                    {article.readTime}
-                  </span>
-                </div>
-                <h3 style={{
-                  fontSize: '20px',
-                  fontWeight: 700,
-                  color: '#ffffff',
-                  marginBottom: '12px',
-                  lineHeight: 1.3,
-                }}>
-                  {article.title}
-                </h3>
-                <p style={{
-                  fontSize: '14px',
-                  color: '#cbd5e1',
-                  lineHeight: 1.7,
-                }}>
-                  {article.desc}
-                </p>
-              </motion.div>
+                    {article.title}
+                  </h3>
+                  <p style={{
+                    fontSize: '14px',
+                    color: '#cbd5e1',
+                    lineHeight: 1.7,
+                  }}>
+                    {article.desc}
+                  </p>
+                </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -255,11 +260,7 @@ export default function ArticlesPage() {
 
       <section style={{ padding: '80px 24px', background: 'transparent' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+          <Reveal width="100%">
             <h2 style={{
               fontSize: 'clamp(28px, 4vw, 40px)',
               fontWeight: 900,
@@ -278,6 +279,7 @@ export default function ArticlesPage() {
               display: 'flex',
               gap: '12px',
               justifyContent: 'center',
+              flexWrap: 'wrap'
             }}>
               <input
                 type="email"
@@ -310,7 +312,7 @@ export default function ArticlesPage() {
                 Subscribe
               </motion.button>
             </div>
-          </motion.div>
+          </Reveal>
         </div>
       </section>
 

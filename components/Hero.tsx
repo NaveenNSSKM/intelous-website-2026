@@ -6,7 +6,7 @@ import { useUniverse } from '@/context/UniverseContext'
 
 const scaleContent = {
   tag: 'UNIVERSE A: SCALE',
-  headline: ['SPECIALIZED DIGITAL', 'WORKERS.'],
+  headline: ['SPECIALIZED DIGITAL WORKERS.'],
   highlightLine: 'VERIFIED OUTCOMES.',
   subheadline: 'Stop hiring "heads" and hoping for a miracle. The era of the bloated SDR agency and the complex "Black Box" AI is over. We pair 200M+ data points with expert human strategists to build the GTM team you wish you could hire.',
   ctaPrimary: 'Deploy Your Sovereign GTM Pod',
@@ -22,6 +22,21 @@ const buildContent = {
   ctaSecondary: 'View the Build Logs',
 }
 
+// Icon Data
+const scaleIcons = [
+  { path: "M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09zM12 15l-3 3a2.2 2.2 0 0 0 .09 2.91c.84.79 2.13.8 2.91.09 1.5-1.26 2-5 2-5s-3.74.5-5 2zM14.8 9.7a2 2 0 0 0 2.83 0l.56-.57a2 2 0 0 0-2.83-2.83l-.57.56a2 2 0 0 0 0 2.84zM22 2l-2.73 7.25c-.23.62-.35 1.28-.35 1.95a7 7 0 0 1-7 7c-.67 0-1.33-.12-1.95-.35L2.75 14.8M10 22l7.25-2.75c.62-.23 1.28-.35 1.95-.35a7 7 0 0 0 7-7c0-.67-.12-1.33-.35-1.95L22 10", label: "Speed" }, // Rocket/Speed (custom hybrid)
+  { path: "M12 2v8M12 14v8M2 12h8M14 12h8", label: "Integrate" }, // Plus/Crosshair
+  { path: "M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z", label: "Global" }, // Moon/Global
+  { path: "M21 12a9 9 0 1 1-6.219-8.56", label: "AI Core" }, // Activity/Pulse
+]
+
+const buildIcons = [
+  { path: "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z", label: "Build" }, // Hammer/Wrench
+  { path: "M2 12h5M17 12h5M12 2v5M12 17v5M12 12m-7 0a7 7 0 1 1 14 0a7 7 0 1 1-14 0", label: "Target" },
+  { path: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z", label: "Secure" }, // Shield
+  { path: "M4 17l6-6-6-6M12 19h8", label: "Code" }, // Terminal
+]
+
 export default function Hero() {
   const { universe, setUniverse } = useUniverse()
   const [hoveredUniverse, setHoveredUniverse] = useState<string | null>(null)
@@ -30,336 +45,167 @@ export default function Hero() {
   const accentColor = universe === 'scale' ? '#FF007F' : '#FF007F'
   const isDark = universe === 'build'
 
+  const currentIcons = universe === 'scale' ? scaleIcons : buildIcons
+
   return (
-    <section style={{
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-      paddingTop: '100px',
-      overflow: 'hidden',
-    }}>
-      <div style={{
-        textAlign: 'center',
-        maxWidth: '1200px',
-        padding: '0 24px',
-        position: 'relative',
-        zIndex: 2,
-      }}>
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: '12px',
-            fontWeight: 600,
-            letterSpacing: '2px',
-            color: '#666',
-            padding: '10px 20px',
-            background: isDark ? 'rgba(255, 255, 255, 0.05)' : '#fff',
-            border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid #E0E0E0',
-            borderRadius: '100px',
-            marginBottom: '32px',
-            backdropFilter: isDark ? 'blur(10px)' : 'none',
-          }}
-        >
-          <motion.span
-            animate={{ backgroundColor: accentColor }}
-            style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              backgroundColor: accentColor,
-            }}
-          />
-          <AnimatePresence mode="wait">
-            <motion.span
-              key={content.tag}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 10 }}
-              transition={{ duration: 0.3 }}
-              style={{ color: isDark ? '#cbd5e1' : '#666' }}
-            >
-              {content.tag}
-            </motion.span>
-          </AnimatePresence>
-        </motion.div>
+    <section className="relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden pt-32 pb-20">
 
-        <AnimatePresence mode="wait">
+      {/* DYNAMIC BACKGROUND */}
+      {/* DYNAMIC BACKGROUND */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {isDark ? (
+          // Dark Mode: Deep Nebula Effect
           <motion.div
-            key={universe}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="absolute inset-0 bg-[#020617]"
           >
-            {content.headline.map((line, i) => (
-              <h1 key={i} style={{
-                fontSize: 'clamp(40px, 8vw, 80px)',
-                fontWeight: 900,
-                color: isDark ? '#FFFFFF' : '#050505',
-                marginBottom: i === content.headline.length - 1 ? '0' : '0',
-                lineHeight: 1.1,
-                letterSpacing: '-2px',
-              }}>
-                {line}
-              </h1>
-            ))}
-
-            <motion.h1
-              style={{
-                fontSize: 'clamp(40px, 8vw, 80px)',
-                fontWeight: 900,
-                color: 'transparent',
-                backgroundImage: 'linear-gradient(135deg, #3985f1, #d335c3, #ed3389, #740cc6)',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                marginBottom: '24px',
-                lineHeight: 1.1,
-                letterSpacing: '-2px',
-              }}
-            >
-              {content.highlightLine}
-            </motion.h1>
-
-            <p style={{
-              fontSize: '18px',
-              color: '#666',
-              maxWidth: '700px',
-              margin: '0 auto 40px',
-              lineHeight: 1.7,
-            }}>
-              {content.subheadline}
-            </p>
+            <div className="absolute top-[-20%] left-[20%] w-[500px] h-[500px] bg-blue-900/20 blur-[100px] rounded-full mix-blend-screen animate-pulse" />
+            <div className="absolute top-[10%] right-[20%] w-[400px] h-[400px] bg-purple-900/20 blur-[100px] rounded-full mix-blend-screen" />
           </motion.div>
-        </AnimatePresence>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: '40px',
-          }}
-        >
-          <div
-            onMouseLeave={() => setHoveredUniverse(null)}
-            style={{
-              background: isDark ? 'rgba(255, 255, 255, 0.05)' : '#fff',
-              border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid #E0E0E0',
-              borderRadius: '100px',
-              padding: '8px',
-              display: 'inline-flex',
-              position: 'relative',
-              gap: '8px',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.05)'
-            }}
+        ) : (
+          // Light Mode: "Circle Type" Centered Concentric Glows
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="absolute inset-0 bg-white"
           >
-            <button
-              onClick={() => setUniverse('scale')}
-              onMouseEnter={() => setHoveredUniverse('scale')}
-              style={{
-                width: '160px',
-                padding: '16px 0',
-                borderRadius: '100px',
-                border: 'none',
-                background: 'transparent',
-                color: activeTab === 'scale' ? '#fff' : (isDark ? '#cbd5e1' : '#666'),
-                fontWeight: 700,
-                fontSize: '15px',
-                fontFamily: "'IBM Plex Mono', monospace",
-                cursor: 'pointer',
-                position: 'relative',
-                zIndex: 2,
-                transition: 'color 0.2s ease',
-                outline: 'none',
-              }}
-            >
-              {activeTab === 'scale' && (
-                <motion.div
-                  layoutId="activePill"
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    backgroundColor: '#FF007F',
-                    borderRadius: '100px',
-                    zIndex: -1,
-                    boxShadow: '0 4px 12px rgba(255, 0, 127, 0.3)'
-                  }}
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                />
-              )}
-              intelous.ai
-            </button>
+            {/* Outer Blue Circle */}
+            <div className="absolute top-[-40%] left-1/2 -translate-x-1/2 w-[1200px] h-[1200px] bg-blue-400/10 rounded-full blur-[120px]" />
 
-            <button
-              onClick={() => setUniverse('build')}
-              onMouseEnter={() => setHoveredUniverse('build')}
-              style={{
-                width: '160px',
-                padding: '16px 0',
-                borderRadius: '100px',
-                border: 'none',
-                background: 'transparent',
-                color: activeTab === 'build' ? '#fff' : (isDark ? '#cbd5e1' : '#666'),
-                fontWeight: 700,
-                fontSize: '15px',
-                fontFamily: "'IBM Plex Mono', monospace",
-                cursor: 'pointer',
-                position: 'relative',
-                zIndex: 2,
-                transition: 'color 0.2s ease',
-                outline: 'none',
-              }}
-            >
-              {activeTab === 'build' && (
-                <motion.div
-                  layoutId="activePill"
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    backgroundColor: '#FF007F',
-                    borderRadius: '100px',
-                    zIndex: -1,
-                    boxShadow: '0 4px 12px rgba(255, 0, 127, 0.3)'
-                  }}
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                />
-              )}
-              intelouslabs
-            </button>
-          </div>
-        </motion.div>
+            {/* Mid Purple Circle */}
+            <div className="absolute top-[-30%] left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-purple-500/15 rounded-full blur-[100px]" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            style={{
-              padding: '16px 32px',
-              fontSize: '14px',
-              fontWeight: 700,
-              borderRadius: '8px',
-              border: 'none',
-              cursor: 'pointer',
-              backgroundColor: accentColor,
-              color: '#ffffff',
-              transition: 'background-color 0.3s ease',
-            }}
-          >
-            {content.ctaPrimary}
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            style={{
-              padding: '16px 32px',
-              fontSize: '14px',
-              fontWeight: 600,
-              color: '#666',
-              background: 'transparent',
-              border: '1px solid #E0E0E0',
-              borderRadius: '8px',
-              cursor: 'pointer',
-            }}
-          >
-            {content.ctaSecondary}
-          </motion.button>
-        </motion.div>
+            {/* Center Pink Circle (The "Sun") */}
+            <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-pink-500/20 rounded-full blur-[80px]" />
+          </motion.div>
+        )}
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, y: [0, 10, 0] }}
-          transition={{
-            opacity: { duration: 0.5, delay: 0.5 },
-            y: { duration: 2, repeat: Infinity, ease: 'easeInOut' }
-          }}
-          style={{ marginTop: '60px', color: '#999' }}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </motion.div>
+        {/* Grain Overlay */}
+        <div className={`absolute inset-0 opacity-[0.03] ${isDark ? 'bg-[url("https://grainy-gradients.vercel.app/noise.svg")] brightness-100' : 'bg-[url("https://grainy-gradients.vercel.app/noise.svg")] brightness-50'}`} />
       </div>
 
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        pointerEvents: 'none',
-        zIndex: 1,
-      }}>
-        <motion.div
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          style={{
-            position: 'absolute',
-            width: '1px',
-            height: '200px',
-            left: '10%',
-            top: '20%',
-            background: accentColor,
-            opacity: 0.15,
-            transformOrigin: 'top',
-          }}
-        />
-        <motion.div
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: 1 }}
-          transition={{ duration: 1, delay: 0.7 }}
-          style={{
-            position: 'absolute',
-            width: '1px',
-            height: '150px',
-            right: '15%',
-            bottom: '25%',
-            background: accentColor,
-            opacity: 0.15,
-            transformOrigin: 'bottom',
-          }}
-        />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.2 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          style={{
-            position: 'absolute',
-            width: '60px',
-            height: '60px',
-            top: '15%',
-            left: '5%',
-            borderTop: `1px solid ${accentColor}`,
-            borderLeft: `1px solid ${accentColor}`,
-          }}
-        />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.2 }}
-          transition={{ duration: 1, delay: 0.4 }}
-          style={{
-            position: 'absolute',
-            width: '60px',
-            height: '60px',
-            bottom: '20%',
-            right: '8%',
-            borderBottom: `1px solid ${accentColor}`,
-            borderRight: `1px solid ${accentColor}`,
-          }}
-        />
+      <div className="relative z-10 max-w-[1240px] px-6 text-center">
+
+        {/* HEADLINE AREA with GLASS CARD WRAPPER */}
+        <div className="relative">
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={universe}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-12"
+            >
+              {content.headline.map((line, i) => (
+                <div key={i} className="overflow-hidden">
+                  <motion.h1
+                    initial={{ filter: 'blur(10px)', opacity: 0, scale: 1.05 }}
+                    animate={{ filter: 'blur(0px)', opacity: 1, scale: 1 }}
+                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 * i }}
+                    // REDUCED TEXT SIZE
+                    className={`text-[clamp(24px,4vw,48px)] font-black leading-[1.0] tracking-[-0.03em] ${isDark ? 'text-white' : 'text-slate-900'}`}
+                  >
+                    {line}
+                  </motion.h1>
+                </div>
+              ))}
+
+              <div className="overflow-hidden mt-1">
+                <motion.h1
+                  initial={{ filter: 'blur(10px)', opacity: 0, scale: 1.05 }}
+                  animate={{ filter: 'blur(0px)', opacity: 1, scale: 1 }}
+                  transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+                  // REDUCED TEXT SIZE
+                  className="text-[clamp(24px,4vw,48px)] font-black leading-[1.0] tracking-[-0.03em] text-transparent bg-clip-text bg-gradient-to-r from-[#FF007F] via-[#7928CA] to-[#FF0080]"
+                >
+                  {content.highlightLine}
+                </motion.h1>
+              </div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+                className={`mt-8 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}
+              >
+                {content.subheadline}
+              </motion.p>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* TOGGLE PILL */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="mb-10 inline-flex"
+          >
+            <div className={`p-1.5 rounded-full border backdrop-blur-md inline-flex relative gap-2 transition-colors duration-500 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/60 border-black/5 shadow-sm'}`}>
+              <button
+                onClick={() => setUniverse('scale')}
+                onMouseEnter={() => setHoveredUniverse('scale')}
+                onMouseLeave={() => setHoveredUniverse(null)}
+                className={`relative px-8 py-3 rounded-full text-sm font-mono font-bold transition-all duration-300 z-10 ${activeTab === 'scale' ? 'text-white' : (isDark ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-black')}`}
+              >
+                {activeTab === 'scale' && (
+                  <motion.div
+                    layoutId="activePill"
+                    className="absolute inset-0 bg-[#FF007F] rounded-full -z-10 shadow-lg shadow-[#FF007F]/20"
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  />
+                )}
+                intelous.ai
+              </button>
+
+              <button
+                onClick={() => setUniverse('build')}
+                onMouseEnter={() => setHoveredUniverse('build')}
+                onMouseLeave={() => setHoveredUniverse(null)}
+                className={`relative px-8 py-3 rounded-full text-sm font-mono font-bold transition-all duration-300 z-10 ${activeTab === 'build' ? 'text-white' : (isDark ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-black')}`}
+              >
+                {activeTab === 'build' && (
+                  <motion.div
+                    layoutId="activePill"
+                    className="absolute inset-0 bg-[#FF007F] rounded-full -z-10 shadow-lg shadow-[#FF007F]/20"
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  />
+                )}
+                intelouslabs
+              </button>
+            </div>
+          </motion.div>
+
+          {/* CTA BUTTONS */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1 }}
+            className="flex flex-wrap justify-center gap-4 mb-16"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-10 py-4 rounded-xl text-sm font-bold text-white shadow-xl shadow-[#FF007F]/20 transition-all"
+              style={{ backgroundColor: accentColor }}
+            >
+              {content.ctaPrimary}
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05, backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.02)' }}
+              whileTap={{ scale: 0.95 }}
+              className={`px-10 py-4 rounded-xl text-sm font-bold border transition-all ${isDark ? 'border-white/10 text-white' : 'border-slate-200 text-slate-600'}`}
+            >
+              {content.ctaSecondary}
+            </motion.button>
+          </motion.div>
+
+        </div> {/* Close Glass Card */}
+
+
+
       </div>
     </section>
   )

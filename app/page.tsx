@@ -7,7 +7,7 @@ import DiscoveryHub from '@/components/sections/DiscoveryHub'
 import EventEngine from '@/components/sections/EventEngine'
 import GTMPods from '@/components/sections/GTMPods'
 import DiagnosticCTA from '@/components/sections/DiagnosticCTA'
-import BuildHomeSections from '@/components/sections/BuildHomeSections'
+
 import Footer from '@/components/Footer'
 import { useUniverse } from '@/context/UniverseContext'
 
@@ -33,17 +33,11 @@ export default function HomePage() {
       <Header />
       <Hero />
 
-      {universe === 'scale' ? (
-        <>
-          <TrustCrisis />
-          <DiscoveryHub />
-          <EventEngine />
-          <GTMPods />
-          <DiagnosticCTA />
-        </>
-      ) : (
-        <BuildHomeSections />
-      )}
+      <TrustCrisis />
+      <DiscoveryHub />
+      <EventEngine />
+      <GTMPods />
+      <DiagnosticCTA />
 
       <Footer />
     </main>
