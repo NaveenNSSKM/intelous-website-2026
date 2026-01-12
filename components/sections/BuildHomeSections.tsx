@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { motion, useScroll, useTransform, useInView, useSpring } from 'framer-motion'
+import { motion, useScroll, useTransform, useInView, useSpring, AnimatePresence } from 'framer-motion'
 
 // matches intelous.ai / dark futuristic vibe
 const theme = {
@@ -10,8 +10,8 @@ const theme = {
     text: '#EDEDED',
     textMuted: '#888888',
     accent: '#FF007F', // Pink
-    accentSecondary: '#39FF14', // Green
-    accentTertiary: '#4A90E2', // Blue
+    accentSecondary: '#64748b', // Green
+    accentTertiary: '#64748b', // Blue
     border: 'rgba(255, 255, 255, 0.08)',
     cardBg: 'rgba(255, 255, 255, 0.02)',
     cardHover: 'rgba(255, 255, 255, 0.05)',
@@ -49,6 +49,63 @@ const BoxIcon = ({ className }: { className?: string }) => (
         <line x1="12" y1="22.08" x2="12" y2="12" />
     </svg>
 )
+
+const SpotlightCard = ({ children, style, ...props }: any) => {
+    const divRef = useRef<HTMLDivElement>(null);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [opacity, setOpacity] = useState(0);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!divRef.current) return;
+        const rect = divRef.current.getBoundingClientRect();
+        setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    };
+
+    return (
+        <motion.div
+            ref={divRef}
+            onMouseMove={handleMouseMove}
+            onMouseEnter={() => setOpacity(1)}
+            onMouseLeave={() => setOpacity(0)}
+            style={{ ...style, position: 'relative', overflow: 'hidden' }}
+            {...props}
+        >
+            {/* Spotlight Sheen */}
+            <div
+                style={{
+                    pointerEvents: 'none',
+                    position: 'absolute',
+                    inset: 0,
+                    opacity,
+                    transition: 'opacity 0.2s',
+                    background: `radial-gradient(800px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.06), transparent 40%)`,
+                    zIndex: 10
+                }}
+            />
+            {/* Border Highlight */}
+            <div
+                style={{
+                    pointerEvents: 'none',
+                    position: 'absolute',
+                    inset: 0,
+                    borderRadius: 'inherit',
+                    padding: '1px',
+                    background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.3), transparent 40%)`,
+                    mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                    maskComposite: 'exclude',
+                    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                    WebkitMaskComposite: 'xor',
+                    opacity,
+                    transition: 'opacity 0.2s',
+                    zIndex: 20
+                }}
+            />
+            <div style={{ position: 'relative', zIndex: 30 }}>
+                {children}
+            </div>
+        </motion.div>
+    )
+}
 
 const LayersIcon = ({ className }: { className?: string }) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -130,56 +187,90 @@ function AnimatedCounter({ to }: { to: number }) {
     return <span ref={nodeRef}>{displayValue}</span>
 }
 
-function CohortSlot({ index, shouldFill, theme }: { index: number, shouldFill: boolean, theme: any }) {
+function CohortSlot({ index, shouldFill, theme, isLast }: { index: number, shouldFill: boolean, theme: any, isLast: boolean }) {
     const [isChecked, setIsChecked] = useState(false)
     const ref = useRef(null)
-    const isInView = useInView(ref, { once: true })
+    const isInView = useInView(ref, { once: true, margin: "-100px" })
 
     useEffect(() => {
         if (isInView && shouldFill) {
-            // Stagger delay: Start after initial appearance (500ms) + stagger
+            // Sequential animation: 1->2->3
             const timer = setTimeout(() => {
                 setIsChecked(true)
-            }, 600 + (index * 400))
+            }, 300 + (index * 500))
             return () => clearTimeout(timer)
         }
     }, [isInView, shouldFill, index])
 
     return (
-        <motion.div
-            ref={ref}
-            initial={{ scale: 0, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-
-            animate={{
-                backgroundColor: isChecked ? theme.accent : 'rgba(255,255,255,0.05)',
-                borderColor: isChecked ? theme.accent : theme.border,
-                boxShadow: isChecked ? `0 0 20px ${theme.accent}66` : 'none',
-                color: isChecked ? '#fff' : '#444'
-            }}
-            transition={{ duration: 0.5 }}
-            style={{
-                width: '56px',
-                height: '56px',
-                borderRadius: '50%',
-                borderWidth: '1px',
-                borderStyle: 'solid',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '18px',
-                fontWeight: 700,
-            }}
-        >
-            <motion.span
-                key={isChecked ? 'check' : 'num'}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+            {/* Circle Node */}
+            <motion.div
+                ref={ref}
+                initial={{ scale: 0.8, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                animate={{
+                    backgroundColor: isChecked ? theme.accent : 'rgba(255,255,255,0.03)',
+                    borderColor: isChecked ? theme.accent : 'rgba(255,255,255,0.1)',
+                    boxShadow: isChecked ? `0 0 30px ${theme.accent}66` : 'none',
+                    scale: isChecked ? 1.1 : 1
+                }}
+                transition={{ duration: 0.5, type: 'spring' }}
+                style={{
+                    width: '64px',
+                    height: '64px',
+                    borderRadius: '50%',
+                    borderWidth: '2px',
+                    borderStyle: 'solid',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    position: 'relative',
+                    zIndex: 10
+                }}
             >
-                {isChecked ? '✓' : index}
-            </motion.span>
-        </motion.div>
+                <AnimatePresence mode="wait">
+                    {isChecked ? (
+                        <motion.svg
+                            key="check"
+                            initial={{ opacity: 0, scale: 0.5, rotate: -45 }}
+                            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                            exit={{ opacity: 0, scale: 0.5 }}
+                            width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"
+                        >
+                            <polyline points="20 6 9 17 4 12" />
+                        </motion.svg>
+                    ) : (
+                        <motion.span
+                            key="num"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            style={{
+                                fontSize: '20px',
+                                fontWeight: 700,
+                                color: isChecked ? '#fff' : '#475569',
+                                fontFamily: "'IBM Plex Mono', monospace"
+                            }}
+                        >
+                            {index}
+                        </motion.span>
+                    )}
+                </AnimatePresence>
+            </motion.div>
+
+            {/* Connecting Line */}
+            {!isLast && (
+                <div style={{
+                    width: '60px',
+                    height: '2px',
+                    backgroundColor: 'rgba(255,255,255,0.08)',
+                    margin: '0 12px',
+                    borderRadius: '2px'
+                }} />
+            )}
+        </div>
     )
 }
 
@@ -489,49 +580,68 @@ export default function BuildHomeSections() {
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 relative min-h-[auto] md:min-h-[450px]" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '2rem', alignItems: 'center' }}>
 
                         {/* Card 1: Foundation (Moves from Right/Stack to Left) */}
-                        <motion.div
+                        <SpotlightCard
                             variants={isMobile ? mobileRightToLeft : {}}
                             initial={isMobile ? "hidden" : undefined}
                             whileInView={isMobile ? "visible" : undefined}
                             viewport={{ once: false, margin: "-10%" }}
                             className="relative p-8 rounded-3xl border z-20"
                             style={{
-                                backgroundColor: 'rgba(15, 23, 42, 0.6)',
-                                borderColor: 'rgba(255,255,255,0.08)',
-                                backdropFilter: 'blur(12px)',
+                                background: 'linear-gradient(180deg, rgba(100, 116, 139, 0.06) 0%, rgba(10, 15, 25, 0.8) 100%)', // Slate tint
+                                backdropFilter: 'blur(20px)',
+                                borderRadius: '24px',
+                                border: '1px solid rgba(100, 116, 139, 0.08)',
+                                boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5), inset 0 0 40px rgba(100, 116, 139, 0.05)',
                                 transformOrigin: 'bottom right',
                                 ...(isMobile ? { maxWidth: '450px', width: '100%', marginInline: 'auto' } : { x: xLeft, y: yLeft, rotate: rotateLeft, opacity: opacityStack })
                             }}
                         >
-                            <div style={{
-                                width: '3.5rem', height: '3.5rem', borderRadius: '1rem',
-                                background: 'rgba(30, 41, 59, 1)', // Slate-800
-                                color: '#fff',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', marginInline: 'auto'
-                            }}>
-                                <BoxIcon className="w-8 h-8" />
+                            {/* Header: Icon Left, Pill Right */}
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '32px' }}>
+                                <div style={{
+                                    width: '48px', height: '48px',
+                                    borderRadius: '14px',
+                                    background: 'rgba(100, 116, 139, 0.1)', // Slate tint
+                                    color: '#64748b', // Slate-500
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    border: '1px solid rgba(100, 116, 139, 0.2)'
+                                }}>
+                                    <BoxIcon className="w-6 h-6" />
+                                </div>
+                                <div style={{
+                                    padding: '6px 12px',
+                                    borderRadius: '100px',
+                                    background: 'rgba(255,255,255,0.03)',
+                                    border: '1px solid rgba(255,255,255,0.1)',
+                                    fontSize: '11px',
+                                    fontWeight: 600,
+                                    color: '#64748b', // Slate-500
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.05em',
+                                    fontFamily: "'IBM Plex Mono', monospace"
+                                }}>Weeks 1-2</div>
                             </div>
-                            <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem', textAlign: 'center', color: '#fff' }}>Foundation</h3>
-                            <p style={{ fontSize: '0.75rem', fontFamily: 'monospace', textTransform: 'uppercase', textAlign: 'center', opacity: 0.6, marginBottom: '1.5rem', letterSpacing: '0.1em', color: theme.textMuted }}>Weeks 1-2</p>
 
-                            <p style={{ fontSize: '0.9rem', textAlign: 'center', marginBottom: '2rem', color: theme.textMuted, lineHeight: 1.6 }}>
-                                Deep-dive into your market. Define ICP, craft positioning, and establish brand architecture via high-fidelity wireframes.
+                            <h3 style={{ fontSize: '28px', fontWeight: 700, marginBottom: '12px', color: '#fff', letterSpacing: '-0.02em' }}>Foundation</h3>
+
+                            <p style={{ fontSize: '15px', color: '#cbd5e1', lineHeight: 1.6, marginBottom: '40px' }}>
+                                Architectural deep-dive. We define your ICP, establish positioning, and map the brand ecosystem into high-fidelity modular wireframes.
                             </p>
 
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', paddingTop: '1.5rem', borderTop: `1px solid ${theme.border}` }}>
-                                <div style={{ textAlign: 'center' }}>
-                                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.25rem' }}>100%</div>
-                                    <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', opacity: 0.6, letterSpacing: '0.05em' }}>Clarity</div>
+                            <div style={{ display: 'flex', gap: '32px', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '24px' }}>
+                                <div>
+                                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '18px', fontFamily: "'IBM Plex Mono', monospace" }}>100%</div>
+                                    <div style={{ fontSize: '10px', textTransform: 'uppercase', color: '#64748B', fontWeight: 600, marginTop: '4px' }}>ALIGNMENT</div>
                                 </div>
-                                <div style={{ textAlign: 'center' }}>
-                                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.25rem' }}>MVP</div>
-                                    <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', opacity: 0.6, letterSpacing: '0.05em' }}>Ready in 14d</div>
+                                <div>
+                                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '18px', fontFamily: "'IBM Plex Mono', monospace" }}>24h</div>
+                                    <div style={{ fontSize: '10px', textTransform: 'uppercase', color: '#64748B', fontWeight: 600, marginTop: '4px' }}>SLA AUDIT</div>
                                 </div>
                             </div>
-                        </motion.div>
+                        </SpotlightCard>
 
                         {/* Card 2: The Build (Center - Scales) */}
-                        <motion.div
+                        <SpotlightCard
                             variants={isMobile ? mobileLeftToRight : {}}
                             initial={isMobile ? "hidden" : undefined}
                             whileInView={isMobile ? "visible" : undefined}
@@ -539,45 +649,88 @@ export default function BuildHomeSections() {
                             transition={isMobile ? { delay: 0.1 } : undefined}
                             className="relative p-8 rounded-3xl z-30 transform"
                             style={{
-                                backgroundColor: 'rgba(30, 41, 59, 0.8)', // Slate-800
-                                borderColor: '#be185d', // Pink-700
-                                borderWidth: '1px',
-                                borderStyle: 'solid',
-                                boxShadow: '0 20px 50px -12px rgba(190, 24, 93, 0.25)', // Pink shadow
-                                backdropFilter: 'blur(12px)',
-                                marginBottom: isMobile ? '20px' : '-3rem', // Spacing fix
+                                background: 'linear-gradient(180deg, rgba(100, 116, 139, 0.06) 0%, rgba(10, 15, 25, 0.8) 100%)', // Slate tint (Unified)
+                                backdropFilter: 'blur(20px)',
+                                borderRadius: '24px',
+                                border: '1px solid rgba(100, 116, 139, 0.08)',
+                                boxShadow: '0 30px 60px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(100, 116, 139, 0.05)',
+                                marginBottom: isMobile ? '20px' : '-3rem',
                                 marginTop: !isMobile ? '-3rem' : '0',
                                 ...(isMobile ? { maxWidth: '450px', width: '100%', marginInline: 'auto' } : { opacity: opacityStack, scale: scaleCenter })
                             }}
                         >
-                            <div style={{
-                                width: '4rem', height: '4rem', borderRadius: '1rem',
-                                background: '#ec4899', // Pink-500
-                                color: '#fff',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem', marginInline: 'auto'
-                            }}>
-                                <LayersIcon className="w-8 h-8" />
+                            {/* Header: Icon Left, Pill Right */}
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '32px' }}>
+                                <div style={{
+                                    width: '48px', height: '48px',
+                                    borderRadius: '14px',
+                                    background: 'rgba(100, 116, 139, 0.1)', // Slate tint
+                                    color: '#64748b', // Slate-500
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    border: '1px solid rgba(100, 116, 139, 0.2)'
+                                }}>
+                                    <LayersIcon className="w-6 h-6" />
+                                </div>
+                                <div style={{
+                                    padding: '6px 12px',
+                                    borderRadius: '100px',
+                                    background: 'rgba(255,255,255,0.03)',
+                                    border: '1px solid rgba(255,255,255,0.1)',
+                                    fontSize: '11px',
+                                    fontWeight: 600,
+                                    color: '#64748b', // Slate-500
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.05em',
+                                    fontFamily: "'IBM Plex Mono', monospace"
+                                }}>Weeks 3-8</div>
                             </div>
-                            <h3 style={{ fontSize: '1.75rem', fontWeight: 800, marginBottom: '0.5rem', textAlign: 'center', color: '#fff' }}>The Build</h3>
-                            <p style={{ fontSize: '0.75rem', fontFamily: 'monospace', textTransform: 'uppercase', textAlign: 'center', opacity: 0.8, marginBottom: '1.5rem', letterSpacing: '0.1em', color: theme.accentSecondary }}>Weeks 3-8</p>
 
-                            <p style={{ fontSize: '1rem', textAlign: 'center', marginBottom: '2rem', color: '#ccc', lineHeight: 1.6 }}>
-                                Our engineering lab executes core development of your modular, event-driven platform efficiently.
+                            <h3 style={{ fontSize: '28px', fontWeight: 700, marginBottom: '12px', color: '#fff', letterSpacing: '-0.02em' }}>The Build</h3>
+
+                            <p style={{ fontSize: '15px', color: '#cbd5e1', lineHeight: 1.6, marginBottom: '32px' }}>
+                                Core development sprint. Modular engineering meets event-driven architecture to build a scalable, AI-ready engine.
                             </p>
 
-                            {/* Code Block Style Feature List */}
+                            {/* Terminal Code Block */}
                             <div style={{
-                                borderRadius: '0.5rem', padding: '1rem', fontFamily: 'monospace', fontSize: '0.75rem', lineHeight: 1.8,
-                                background: 'rgba(0,0,0,0.4)', color: '#888'
+                                borderRadius: '16px',
+                                padding: '20px',
+                                fontFamily: "'IBM Plex Mono', monospace",
+                                fontSize: '12px',
+                                lineHeight: 1.8,
+                                background: '#000',
+                                border: '1px solid rgba(255,255,255,0.1)',
+                                color: '#94A3B8',
+                                boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.5)',
+                                marginBottom: '32px'
                             }}>
-                                <div><span style={{ color: theme.accentSecondary }}>[INIT]</span> AI-Native Core... <span style={{ color: '#fff' }}>OK</span></div>
-                                <div><span style={{ color: theme.accentSecondary }}>[SYNC]</span> Microservices</div>
-                                <div><span style={{ color: theme.accentSecondary }}>[DEPLOY]</span> Agentic Workflows... <span style={{ color: '#fff' }}>DONE</span></div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <span><span style={{ color: '#ec4899' }}>[SYS]</span> Initialize Core Engine...</span>
+                                    <span style={{ color: '#4ade80', fontWeight: 600 }}>READY</span>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <span><span style={{ color: '#ec4899' }}>[MKT]</span> Deploy Edge Functions</span>
+                                    <span style={{ color: '#38bdf8', fontWeight: 600 }}>SYNC</span>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <span><span style={{ color: '#ec4899' }}>[OPS]</span> Vector DB Commit...</span>
+                                    <span style={{ color: '#fff', fontWeight: 600 }}>100%</span>
+                                </div>
                             </div>
-                        </motion.div>
+
+                            <div style={{ display: 'flex', gap: '32px', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '24px' }}>
+                                <div>
+                                    <div style={{ fontSize: '10px', textTransform: 'uppercase', color: '#64748B', fontWeight: 600 }}>UNIT TESTED</div>
+                                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#4ade80', marginTop: '8px' }}></div>
+                                </div>
+                                <div>
+                                    <div style={{ fontSize: '10px', textTransform: 'uppercase', color: '#64748B', fontWeight: 600 }}>DEV-READY</div>
+                                </div>
+                            </div>
+                        </SpotlightCard>
 
                         {/* Card 3: Ignition (Moves from Left/Stack to Right) */}
-                        <motion.div
+                        <SpotlightCard
                             variants={isMobile ? mobileLeftToRight : {}}
                             initial={isMobile ? "hidden" : undefined}
                             whileInView={isMobile ? "visible" : undefined}
@@ -585,39 +738,58 @@ export default function BuildHomeSections() {
                             transition={isMobile ? { delay: 0.2 } : undefined}
                             className="relative p-8 rounded-3xl border z-20"
                             style={{
-                                backgroundColor: 'rgba(15, 23, 42, 0.6)',
-                                borderColor: 'rgba(255,255,255,0.08)',
-                                backdropFilter: 'blur(12px)',
+                                background: 'linear-gradient(180deg, rgba(100, 116, 139, 0.06) 0%, rgba(10, 15, 25, 0.8) 100%)', // Slate tint
+                                backdropFilter: 'blur(20px)',
+                                borderRadius: '24px',
+                                border: '1px solid rgba(100, 116, 139, 0.08)',
+                                boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5), inset 0 0 40px rgba(100, 116, 139, 0.05)',
                                 transformOrigin: 'bottom left',
                                 ...(isMobile ? { maxWidth: '450px', width: '100%', marginInline: 'auto' } : { x: xRight, y: yRight, rotate: rotateRight, opacity: opacityStack })
                             }}
                         >
-                            <div style={{
-                                width: '3.5rem', height: '3.5rem', borderRadius: '1rem',
-                                background: 'rgba(30, 41, 59, 1)', // Slate-800
-                                color: '#fff',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', marginInline: 'auto'
-                            }}>
-                                <TargetIcon className="w-8 h-8" />
+                            {/* Header: Icon Left, Pill Right */}
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '32px' }}>
+                                <div style={{
+                                    width: '48px', height: '48px',
+                                    borderRadius: '14px',
+                                    background: 'rgba(100, 116, 139, 0.1)', // Slate tint
+                                    color: '#64748b', // Slate-500
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    border: '1px solid rgba(100, 116, 139, 0.2)'
+                                }}>
+                                    <TargetIcon className="w-6 h-6" />
+                                </div>
+                                <div style={{
+                                    padding: '6px 12px',
+                                    borderRadius: '100px',
+                                    background: 'rgba(255,255,255,0.03)',
+                                    border: '1px solid rgba(255,255,255,0.1)',
+                                    fontSize: '11px',
+                                    fontWeight: 600,
+                                    color: '#64748b', // Slate-500
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.05em',
+                                    fontFamily: "'IBM Plex Mono', monospace"
+                                }}>Weeks 9-10</div>
                             </div>
-                            <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem', textAlign: 'center', color: '#fff' }}>Ignition</h3>
-                            <p style={{ fontSize: '0.75rem', fontFamily: 'monospace', textTransform: 'uppercase', textAlign: 'center', opacity: 0.6, marginBottom: '1.5rem', letterSpacing: '0.1em', color: theme.textMuted }}>Weeks 9-10</p>
 
-                            <p style={{ fontSize: '0.9rem', textAlign: 'center', marginBottom: '2rem', color: theme.textMuted, lineHeight: 1.6 }}>
-                                We don't just deploy; we launch your first GTM campaign and deliver 20 qualified leads.
+                            <h3 style={{ fontSize: '28px', fontWeight: 700, marginBottom: '12px', color: '#fff', letterSpacing: '-0.02em' }}>Ignition</h3>
+
+                            <p style={{ fontSize: '15px', color: '#cbd5e1', lineHeight: 1.6, marginBottom: '40px' }}>
+                                Market entry. We deploy your first GTM campaign and guarantee your first 20 qualified leads before hand-off.
                             </p>
 
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', paddingTop: '1.5rem', borderTop: `1px solid ${theme.border}` }}>
-                                <div style={{ textAlign: 'center' }}>
-                                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.25rem' }}>20</div>
-                                    <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', opacity: 0.6, letterSpacing: '0.05em' }}>Qualified Leads</div>
+                            <div style={{ display: 'flex', gap: '32px', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '24px' }}>
+                                <div>
+                                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '18px', fontFamily: "'IBM Plex Mono', monospace" }}>20+</div>
+                                    <div style={{ fontSize: '10px', textTransform: 'uppercase', color: '#64748B', fontWeight: 600, marginTop: '4px' }}>QUALIFIED LEADS</div>
                                 </div>
-                                <div style={{ textAlign: 'center' }}>
-                                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.25rem' }}>Day 70</div>
-                                    <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', opacity: 0.6, letterSpacing: '0.05em' }}>Launch</div>
+                                <div>
+                                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '18px', fontFamily: "'IBM Plex Mono', monospace" }}>Day 70</div>
+                                    <div style={{ fontSize: '10px', textTransform: 'uppercase', color: '#64748B', fontWeight: 600, marginTop: '4px' }}>HANDOFF</div>
                                 </div>
                             </div>
-                        </motion.div>
+                        </SpotlightCard>
 
                     </div>
                 </div>
@@ -711,7 +883,7 @@ export default function BuildHomeSections() {
                                     desc: 'Structuring the immutable core.',
                                     stats: ['100% Code', 'Week 2'],
                                     location: 'GCP / Kafka',
-                                    color: theme.accent, // Pink
+                                    color: theme.accentSecondary, // Pink
                                     x: -80, // Back Left
                                     z: -100,
                                     scale: 0.85,
@@ -918,12 +1090,15 @@ export default function BuildHomeSections() {
                         </p>
 
                         <div style={{
-                            display: 'inline-flex',
-                            gap: '16px',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            gap: '0', // Remove gap for continuous lines
                             marginBottom: '48px',
+                            flexWrap: 'wrap'
                         }}>
                             {[1, 2, 3, 4, 5].map((i) => (
-                                <CohortSlot key={i} index={i} shouldFill={i <= 3} theme={theme} />
+                                <CohortSlot key={i} index={i} shouldFill={i <= 3} theme={theme} isLast={i === 5} />
                             ))}
                         </div>
 
@@ -939,8 +1114,14 @@ export default function BuildHomeSections() {
                         </p>
 
                         <motion.button
-                            whileHover={{ scale: 1.05, boxShadow: `0 0 40px ${theme.accent}88` }}
-                            whileTap={{ scale: 0.95 }}
+                            whileHover={{
+                                y: -4,
+                                boxShadow: `0 10px 40px ${theme.accent}66`,
+                                backgroundColor: theme.accent,
+                                color: '#ffffff'
+                            }}
+                            whileTap={{ scale: 0.98 }}
+                            transition={{ duration: 0.3, ease: 'easeOut' }}
                             style={{
                                 padding: '24px 56px',
                                 fontSize: '18px',

@@ -54,14 +54,20 @@ export default function Hero() {
       {/* DYNAMIC BACKGROUND */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {isDark ? (
-          // Dark Mode: Deep Nebula Effect
+          // Dark Mode: Inbox App Style (Deep Dark + Vertical Lines + Right Glow)
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="absolute inset-0 bg-[#020617]"
           >
-            <div className="absolute top-[-20%] left-[20%] w-[500px] h-[500px] bg-blue-900/20 blur-[100px] rounded-full mix-blend-screen animate-pulse" />
-            <div className="absolute top-[10%] right-[20%] w-[400px] h-[400px] bg-purple-900/20 blur-[100px] rounded-full mix-blend-screen" />
+            {/* Right Side Spotlight (Custom User Request - Increased Size) */}
+            <div
+              className="absolute top-0 right-0 rotate-45 w-[400px] h-[1200px] rounded-full -translate-y-[600px] -translate-x-[200px]"
+              style={{ background: 'radial-gradient(50% 50%, rgba(30, 41, 59, 0.867) 0px, rgba(30, 41, 59, 0.067) 80%, transparent 100%)' }}
+            />
+
+            {/* Subtle Top Center Glow for Depth */}
+            <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-indigo-900/10 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
           </motion.div>
         ) : (
           // Light Mode: "Circle Type" Centered Concentric Glows
@@ -207,6 +213,6 @@ export default function Hero() {
 
 
       </div>
-    </section>
+    </section >
   )
 }
