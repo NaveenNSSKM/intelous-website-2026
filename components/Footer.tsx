@@ -24,7 +24,7 @@ export default function Footer() {
                 </span>
               </div>
             </Link>
-            <p className="text-sm leading-relaxed opacity-80 max-w-xs">
+            <p className="text-sm leading-relaxed max-w-xs">
               {universe === 'scale'
                 ? 'Specialized Digital Workers. Verified Outcomes. The sovereign GTM operating system.'
                 : 'The anti-failure venture partner. From vision to market in 10 weeks.'
@@ -34,7 +34,7 @@ export default function Footer() {
 
           {/* Links 1 */}
           <div>
-            <h4 className={`font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>Platform</h4>
+            <h3 className={`font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>Platform</h3>
             <ul className="space-y-4 text-sm">
               {universe === 'scale' ? (
                 <>
@@ -55,7 +55,7 @@ export default function Footer() {
 
           {/* Links 2 */}
           <div>
-            <h4 className={`font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>Company</h4>
+            <h3 className={`font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>Company</h3>
             <ul className="space-y-4 text-sm">
               <li><Link href="/about" className="hover:text-[#FF007F] transition-colors">About</Link></li>
               <li><Link href="/careers" className="hover:text-[#FF007F] transition-colors">Careers</Link></li>
@@ -65,7 +65,7 @@ export default function Footer() {
 
           {/* Links 3 */}
           <div>
-            <h4 className={`font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>Legal</h4>
+            <h3 className={`font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>Legal</h3>
             <ul className="space-y-4 text-sm">
               <li><Link href="/privacy" className="hover:text-[#FF007F] transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms" className="hover:text-[#FF007F] transition-colors">Terms of Service</Link></li>
@@ -73,7 +73,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-dashed border-opacity-20 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono uppercase tracking-wider opacity-60" style={{ borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}>
+        <div className="pt-8 border-t border-dashed border-opacity-20 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono uppercase tracking-wider" style={{ borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}>
           <p>&copy; {new Date().getFullYear()} Intelous</p>
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />

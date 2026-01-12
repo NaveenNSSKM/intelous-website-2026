@@ -3,19 +3,31 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useUniverse } from '@/context/UniverseContext'
 
-// Define split links EXACTLY as requested (Intelous.ai / Scale focused)
-const leftLinks = [
+// Define split links for 'scale' (Intelous.ai)
+const scaleLeftLinks = [
   { href: '/managed-lead-gen', label: 'Managed Lead Gen' },
   { href: '/intelous-os', label: 'Intelous OS' },
   { href: '/discovery-hub', label: 'IntelousABM' },
 ]
 
-const rightLinks = [
+const scaleRightLinks = [
   { href: '/byx-studio', label: 'BYX Studio' },
   { href: '/resources', label: 'Resources' },
   { href: '/services', label: 'Services' },
+]
+
+// Define split links for 'build' (IntelousLabs)
+const buildLeftLinks = [
+  { href: '/venture-services', label: 'Venture Services' },
+  { href: '/success-stories', label: 'Success Stories' },
+]
+
+const buildRightLinks = [
+  { href: '/paign-ai', label: 'Paign.ai' },
+  { href: '/articles', label: 'Articles' },
 ]
 
 export default function Header() {
@@ -26,6 +38,10 @@ export default function Header() {
   const isDark = universe === 'build'
   const brandSuffix = universe === 'scale' ? '.ai' : 'Labs'
   const accentColor = '#FF007F'
+
+  // Dynamically select links based on universe
+  const leftLinks = universe === 'scale' ? scaleLeftLinks : buildLeftLinks
+  const rightLinks = universe === 'scale' ? scaleRightLinks : buildRightLinks
 
   // Scroll effect for Phamily Pharma style floating pill
   useEffect(() => {
@@ -82,17 +98,27 @@ export default function Header() {
             {/* 2. CENTER LOGO */}
             <div className="flex-shrink-0">
               <Link href="/" className="relative z-20 group block">
-                <div className="flex items-center gap-0.5">
-                  <span className={`text-2xl font-bold tracking-tighter ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                    Intelous
-                  </span>
-                  <span
-                    className="text-2xl font-bold tracking-tighter"
-                    style={{ color: accentColor }}
-                  >
-                    {brandSuffix}
-                  </span>
-                </div>
+                {universe === 'scale' ? (
+                  <img
+                    src="/intelous-ai-logo.png"
+                    alt="Intelous.ai"
+                    width={150}
+                    height={40}
+                    className="h-17 w-auto object-contain"
+                  />
+                ) : (
+                  <div className="flex items-center gap-0.5">
+                    <span className={`text-2xl font-bold tracking-tighter ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                      Intelous
+                    </span>
+                    <span
+                      className="text-2xl font-bold tracking-tighter"
+                      style={{ color: accentColor }}
+                    >
+                      {brandSuffix}
+                    </span>
+                  </div>
+                )}
               </Link>
             </div>
 
@@ -113,7 +139,7 @@ export default function Header() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="ml-4 px-6 py-2.5 rounded-full text-sm font-sans font-medium text-white shadow-lg shadow-[#FF007F]/25 lowercase"
+                className="ml-4 px-6 py-2.5 rounded-full text-sm font-sans font-bold text-slate-900 shadow-lg shadow-[#FF007F]/25 lowercase"
                 style={{ backgroundColor: accentColor }}
               >
                 Deploy
@@ -125,12 +151,22 @@ export default function Header() {
           <div className="lg:hidden flex w-full items-center justify-between">
             {/* Logo Left */}
             <Link href="/" className="relative z-20">
-              <div className="flex items-center gap-0.5">
-                <span className={`text-xl font-bold tracking-tighter ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  Intelous
-                </span>
-                <span className="text-xl font-bold tracking-tighter" style={{ color: accentColor }}>{brandSuffix}</span>
-              </div>
+              {universe === 'scale' ? (
+                <img
+                  src="/intelous-ai-logo.png"
+                  alt="Intelous.ai"
+                  width={130}
+                  height={32}
+                  className="h-7 w-auto object-contain"
+                />
+              ) : (
+                <div className="flex items-center gap-0.5">
+                  <span className={`text-xl font-bold tracking-tighter ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                    Intelous
+                  </span>
+                  <span className="text-xl font-bold tracking-tighter" style={{ color: accentColor }}>{brandSuffix}</span>
+                </div>
+              )}
             </Link>
 
             {/* Mobile Menu Button */}
@@ -188,7 +224,7 @@ export default function Header() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="w-full max-w-xs py-4 rounded-xl bg-[#FF007F] text-white font-sans font-medium text-lg shadow-xl shadow-[#FF007F]/20 mt-8 lowercase"
+                className="w-full max-w-xs py-4 rounded-xl bg-[#FF007F] text-slate-900 font-sans font-bold text-lg shadow-xl shadow-[#FF007F]/20 mt-8 lowercase"
               >
                 Deploy
               </motion.button>

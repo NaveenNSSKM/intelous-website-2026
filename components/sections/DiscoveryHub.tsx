@@ -235,7 +235,7 @@ export default function DiscoveryHub() {
                 {/* Feature Bullet Point REMOVED per user request */}
 
                 <div>
-                  <h4 className={`text-xl font-bold mb-2 group-hover:text-pink-500 transition-colors ${isDark ? 'text-white' : 'text-slate-900'}`}>{feature.title}</h4>
+                  <h3 className={`text-xl font-bold mb-2 group-hover:text-pink-500 transition-colors ${isDark ? 'text-white' : 'text-slate-900'}`}>{feature.title}</h3>
                   <p className={`text-sm md:text-base leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                     {feature.description}
                   </p>
