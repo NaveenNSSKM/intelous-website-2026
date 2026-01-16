@@ -16,6 +16,72 @@ export default function ArticlesPage() {
     setUniverse('build')
   }, [setUniverse])
 
+  // Inline Badge Component with Transparent Background and Spinning Border
+  const InboxBadge = ({ text, color = "#ff007f" }: { text: string; color?: string }) => {
+    return (
+      <div style={{
+        position: 'relative',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: '9999px',
+        marginBottom: '24px',
+      }}>
+        {/* Border Container with Mask */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          borderRadius: '9999px',
+          padding: '1px', // Border Thickness
+          WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+          WebkitMaskComposite: 'xor',
+          maskComposite: 'exclude',
+          overflow: 'hidden',
+        }}>
+          {/* Spinning Gradient */}
+          <motion.div
+            style={{
+              position: 'absolute',
+              top: '-50%',
+              left: '-50%',
+              width: '200%',
+              height: '200%',
+              background: `conic-gradient(transparent 0deg, ${color} 60deg, transparent 120deg)`,
+            }}
+            animate={{ rotate: 360 }}
+            transition={{
+              duration: 3,
+              ease: "linear",
+              repeat: Infinity
+            }}
+          />
+        </div>
+
+        {/* Inner Content (Transparent) */}
+        <div style={{
+          position: 'relative',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '7px 19px',
+          borderRadius: '9999px',
+          backgroundColor: 'transparent', // Fully transparent
+          zIndex: 1
+        }}>
+          <span style={{
+            fontSize: '11px',
+            fontWeight: 600,
+            letterSpacing: '0.05em',
+            color: '#fff',
+            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+          }}>
+            {text}
+          </span>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <main className="min-h-screen relative text-white selection:bg-[#FF007F] selection:text-white">
       {/* Dark Mode Background with Gradient */}
@@ -31,36 +97,51 @@ export default function ArticlesPage() {
       <Header />
 
       <section style={{
-        minHeight: '70vh',
+        minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '140px 24px 80px',
+        padding: '120px 24px 80px',
+        position: 'relative',
+        overflow: 'hidden'
       }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center', width: '100%' }}>
+        {/* Background Video */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 0
+        }}>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              opacity: 0.65, // Increased visibility
+              filter: 'saturate(1.1) contrast(1.1)', // Natural HD enhancement
+            }}
+          >
+            <source src="/article.mp4" type="video/mp4" />
+          </video>
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(to bottom, rgba(2, 6, 23, 0.5) 0%, rgba(2, 6, 23, 0.6) 50%, rgba(2, 6, 23, 0.95) 100%)', // Adjusted overlay
+          }} />
+        </div>
+
+        <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center', width: '100%', position: 'relative', zIndex: 10 }}>
           <Reveal width="100%">
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: '12px',
-              fontWeight: 600,
-              letterSpacing: '2px',
-              color: '#94a3b8',
-              padding: '10px 20px',
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              borderRadius: '100px',
-              marginBottom: '32px',
-              backdropFilter: 'blur(10px)',
-            }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF007F' }} />
-              ARTICLES & INSIGHTS
-            </div>
+            <InboxBadge text="ARTICLES & INSIGHTS" />
 
             <h1 style={{
-              fontSize: 'clamp(40px, 6vw, 86px)',
+              fontSize: 'clamp(32px, 5vw, 54px)', // Reduced size per request
               fontWeight: 900,
               color: '#ffffff',
               marginBottom: '32px',
@@ -68,7 +149,7 @@ export default function ArticlesPage() {
               letterSpacing: '-2px',
             }}>
               <StaggeredText text="BUILD YOUR" />
-              <br />
+              
               <span style={{
                 backgroundImage: 'linear-gradient(135deg, #3985f1, #d335c3, #ed3389, #740cc6)',
                 WebkitBackgroundClip: 'text',
@@ -82,11 +163,11 @@ export default function ArticlesPage() {
 
             <Reveal delay={0.4}>
               <p style={{
-                fontSize: '20px',
-                color: '#cbd5e1',
+                fontSize: '16px', // Reduced size per request
+                color: '#e2e8f0',
                 maxWidth: '700px',
                 margin: '0 auto 40px',
-                lineHeight: 1.7,
+                lineHeight: 1.8,
               }}>
                 Deep dives into <HighlightText color="#3985f1">venture building</HighlightText>, GTM strategy, and technical architecture.
                 Frameworks from building ventures that achieve sovereignty.

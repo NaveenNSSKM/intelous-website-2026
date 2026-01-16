@@ -9,6 +9,72 @@ import { useUniverse } from '@/context/UniverseContext'
 export default function VentureServicesPage() {
   const { setUniverse } = useUniverse()
 
+  // Inline Badge Component with Transparent Background and Spinning Border
+  const InboxBadge = ({ text, color = "#ff007f" }: { text: string; color?: string }) => {
+    return (
+      <div style={{
+        position: 'relative',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: '9999px',
+        marginBottom: '24px',
+      }}>
+        {/* Border Container with Mask */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          borderRadius: '9999px',
+          padding: '1px', // Border Thickness
+          WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+          WebkitMaskComposite: 'xor',
+          maskComposite: 'exclude',
+          overflow: 'hidden',
+        }}>
+          {/* Spinning Gradient */}
+          <motion.div
+            style={{
+              position: 'absolute',
+              top: '-50%',
+              left: '-50%',
+              width: '200%',
+              height: '200%',
+              background: `conic-gradient(transparent 0deg, ${color} 60deg, transparent 120deg)`,
+            }}
+            animate={{ rotate: 360 }}
+            transition={{
+              duration: 3,
+              ease: "linear",
+              repeat: Infinity
+            }}
+          />
+        </div>
+
+        {/* Inner Content (Transparent) */}
+        <div style={{
+          position: 'relative',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '7px 19px',
+          borderRadius: '9999px',
+          backgroundColor: 'transparent', // Fully transparent
+          zIndex: 1
+        }}>
+          <span style={{
+            fontSize: '11px',
+            fontWeight: 600,
+            letterSpacing: '0.05em',
+            color: '#fff',
+            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+          }}>
+            {text}
+          </span>
+        </div>
+      </div>
+    )
+  }
+
   useEffect(() => {
     setUniverse('build')
   }, [setUniverse])
@@ -28,45 +94,83 @@ export default function VentureServicesPage() {
       <Header />
 
       <section style={{
-        minHeight: '80vh',
+        minHeight: '85vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         padding: '120px 24px 80px',
+        position: 'relative',
+        overflow: 'hidden'
       }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+        {/* Background Video with "Industrial" Tech Overlay */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 0
+        }}>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              opacity: 1, // Full visibility for HD look
+              filter: 'contrast(1.05)', // Subtle contrast boost only
+            }}
           >
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: '12px',
-              fontWeight: 600,
-              letterSpacing: '2px',
-              color: '#94a3b8',
-              padding: '10px 20px',
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              borderRadius: '100px',
-              marginBottom: '32px',
-              backdropFilter: 'blur(10px)',
-            }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF007F' }} />
-              THE ARCHITECT'S MANIFESTO
-            </div>
+            <source src="/venture-services.mp4" type="video/mp4" />
+          </video>
+
+          {/* Layer 1: Tech Grid Pattern */}
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px',
+            opacity: 0.3
+          }} />
+
+
+
+          {/* Layer 3: Cinematic Vignette & Color Grade */}
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'radial-gradient(circle at center, rgba(2, 6, 23, 0.4) 0%, #020617 90%)',
+            mixBlendMode: 'multiply'
+          }} />
+
+          {/* Layer 4: Deep Blue/Purple Tint */}
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(to bottom, rgba(57, 133, 241, 0.1), rgba(116, 12, 198, 0.1))',
+            mixBlendMode: 'overlay'
+          }} />
+        </div>
+
+        <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 10 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <InboxBadge text="THE ARCHITECT'S MANIFESTO" />
 
             <h1 style={{
-              fontSize: 'clamp(40px, 6vw, 72px)',
+              fontSize: 'clamp(32px, 5vw, 54px)', // Reduced for better balance
               fontWeight: 900,
               color: '#ffffff',
               marginBottom: '24px',
-              lineHeight: 1.1,
-              letterSpacing: '-2px',
+              lineHeight: 1,
+              letterSpacing: '-0.02em', // Slightly less tight
+              textShadow: '0 4px 30px rgba(0,0,0,0.5)'
             }}>
               VENTURE SOLUTIONS
               <br />
@@ -74,16 +178,20 @@ export default function VentureServicesPage() {
                 backgroundImage: 'linear-gradient(135deg, #3985f1, #d335c3, #ed3389, #740cc6)',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
-                color: 'transparent'
-              }}>INDEX.</span>
+                color: 'transparent',
+              }}>
+                INDEX
+              </span>
             </h1>
 
             <p style={{
-              fontSize: '18px',
-              color: '#cbd5e1',
-              maxWidth: '800px',
+              fontSize: '16px', // Reduced from 20px
+              color: '#e2e8f0',
+              maxWidth: '720px', // Slightly narrower for readability
               margin: '0 auto 40px',
-              lineHeight: 1.7,
+              lineHeight: 1.8, // Increased line height for elegance
+              fontWeight: 400,
+              textShadow: '0 2px 10px rgba(0,0,0,0.5)'
             }}>
               Most venture building fails because it is treated like a creative experiment rather than
               an industrial operation. Intelous Labs exists to break this cycle. We act as your

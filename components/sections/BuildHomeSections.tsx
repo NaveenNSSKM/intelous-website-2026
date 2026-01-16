@@ -129,7 +129,7 @@ const fadeInUp = {
     visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+        transition: { duration: 1.0, ease: [0.22, 1, 0.36, 1] } // Smoother, slower-start ease
     }
 }
 
@@ -144,13 +144,55 @@ const staggerContainer = {
     }
 }
 
+const PlusDottedBorder = ({ className = "" }: { className?: string }) => (
+    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', zIndex: 20 }}>
+        {/* Dotted Line */}
+        <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '1px',
+            backgroundImage: 'linear-gradient(to right, rgba(100, 116, 139, 0.3) 50%, transparent 50%)',
+            backgroundSize: '8px 1px',
+            backgroundRepeat: 'repeat-x'
+        }} />
+
+        {/* Plus Marker (Center) */}
+        <div style={{
+            position: 'absolute',
+            left: '50%',
+            top: '0',
+            transform: 'translate(-50%, -50%)', // Center it vertically on the line
+            zIndex: 30
+        }}>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                className="stroke-slate-700"
+                style={{
+                    width: '32px',
+                    height: '32px',
+                    color: 'rgba(100, 116, 139, 0.5)', // Muted Slate
+                    backgroundColor: theme.bg, // Mask line behind
+                }}
+                aria-hidden="true"
+            >
+                <path d="M5 12h14"></path>
+                <path d="M12 5v14"></path>
+            </svg>
+        </div>
+    </div>
+)
+
 const cardVariant = {
     hidden: { opacity: 0, y: 30, scale: 0.98 },
     visible: {
         opacity: 1,
         y: 0,
         scale: 1,
-        transition: { duration: 0.6, ease: "easeOut" }
+        transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
     },
     hover: {
         y: -8,
@@ -401,7 +443,7 @@ export default function BuildHomeSections() {
                     >
                         <InboxBadge text="THE EXECUTION GAP" color={theme.accent} />
                         <h2 style={{
-                            fontSize: 'clamp(32px, 4vw, 48px)',
+                            fontSize: 'clamp(40px, 5vw, 64px)', // Increased from 32-48
                             fontWeight: 900,
                             color: '#fff',
                             margin: '0 0 24px 0',
@@ -409,7 +451,7 @@ export default function BuildHomeSections() {
                             lineHeight: 1.1
                         }}>Why Ventures Fail</h2>
                         <p style={{
-                            fontSize: 'clamp(18px, 2vw, 22px)',
+                            fontSize: 'clamp(20px, 2.5vw, 24px)', // Increased from 18-22
                             color: '#94A3B8', // Muted Blue-Grey
                             maxWidth: '720px',
                             margin: '0 auto',
@@ -451,7 +493,8 @@ export default function BuildHomeSections() {
                             const isActive = activeIndex === index
 
                             return (
-                                <motion.div
+
+                                <SpotlightCard
                                     key={feature.title}
                                     onClick={() => setActiveIndex(isActive ? null : index)}
                                     initial={{
@@ -483,19 +526,21 @@ export default function BuildHomeSections() {
                                     style={{
                                         zIndex: 10 - index,
                                         width: '100%',
-                                        maxWidth: '42rem',
-                                        padding: '1.5rem',
-                                        borderRadius: '2.5rem',
+                                        maxWidth: '46rem', // Wider cards
+                                        padding: '40px', // More internal spacing
+                                        borderRadius: '24px', // Tech Box Radius
+                                        background: isMobile
+                                            ? 'rgba(10, 10, 15, 0.9)'
+                                            : 'rgba(5, 7, 12, 0.8)', // Deep Tech Dark
+                                        backdropFilter: 'blur(20px)',
                                         border: '1px solid rgba(255,255,255,0.08)',
-                                        background: 'rgba(15, 23, 42, 0.9)', // Dark background
-                                        backdropFilter: 'blur(24px)',
-                                        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+                                        boxShadow: '0 20px 50px -10px rgba(0, 0, 0, 0.6)',
                                         transformOrigin: 'center',
                                         display: 'flex',
                                         flexDirection: isMobile ? 'column' : 'row',
                                         alignItems: 'center',
                                         justifyContent: 'space-between',
-                                        gap: '1.5rem'
+                                        gap: '24px'
                                     }}
                                 >
                                     <div style={{
@@ -503,40 +548,42 @@ export default function BuildHomeSections() {
                                         order: (!isMobile && index % 2 === 1) ? 2 : 1,
                                         flex: 1
                                     }}>
-                                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem', color: '#fff' }}>
+                                        <h3 style={{ fontSize: '32px', fontWeight: 700, marginBottom: '12px', color: '#fff', letterSpacing: '-0.02em' }}>
                                             {feature.title}
                                         </h3>
-                                        <p style={{ fontSize: '1rem', lineHeight: 1.6, fontWeight: 300, color: theme.textMuted }}>
+                                        <p style={{ fontSize: '18px', lineHeight: 1.6, fontWeight: 400, color: '#94A3B8' }}>
                                             {feature.description}
                                         </p>
                                     </div>
 
                                     <div style={{
                                         flexShrink: 0,
-                                        width: isMobile ? '5rem' : '6rem',
-                                        height: isMobile ? '5rem' : '6rem',
+                                        width: isMobile ? '72px' : '96px', // Larger icon box
+                                        height: isMobile ? '72px' : '96px',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        borderRadius: '9999px',
-                                        background: 'linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(255,255,255,0.05))',
+                                        borderRadius: '16px', // Squircle Icon Box
+                                        background: 'rgba(255,255,255,0.03)',
                                         border: '1px solid rgba(255,255,255,0.1)',
-                                        boxShadow: '0 0 20px rgba(255,255,255,0.05)',
+                                        boxShadow: 'inset 0 0 20px rgba(0,0,0,0.2)',
                                         order: (!isMobile && index % 2 === 1) ? 1 : 2
                                     }}>
-                                        <span style={{ color: theme.accent, filter: 'drop-shadow(0 0 8px rgba(255,0,127,0.5))' }}>
+                                        <span style={{ color: theme.accent, filter: 'drop-shadow(0 0 10px rgba(255,0,127,0.4))' }}>
                                             {feature.icon}
                                         </span>
                                     </div>
-                                </motion.div>
+                                </SpotlightCard>
                             )
+
                         })}
                     </div>
                 </div>
             </section>
 
             {/* SECTION 2: 70 Days Sprint (EventEngine Style Animation) */}
-            <section ref={sectionTwoRef} style={{ padding: '140px 24px', background: theme.bgSecondary, position: 'relative' }}>
+            <section ref={sectionTwoRef} style={{ padding: '140px 24px', background: theme.bgSecondary, position: 'relative', borderTop: 'none' }}>
+                <PlusDottedBorder />
                 {/* Subtle scanline effect or tech lines */}
                 <div style={{
                     position: 'absolute',
@@ -557,7 +604,7 @@ export default function BuildHomeSections() {
                     >
                         <InboxBadge text="THE 10-WEEK SPRINT" color={theme.accent} />
                         <h2 style={{
-                            fontSize: 'clamp(32px, 4vw, 48px)',
+                            fontSize: 'clamp(40px, 5vw, 64px)',
                             fontWeight: 900,
                             color: '#fff',
                             margin: '0 0 24px 0',
@@ -565,7 +612,7 @@ export default function BuildHomeSections() {
                             lineHeight: 1.1
                         }}>From Vision to Market in 70 Days</h2>
                         <p style={{
-                            fontSize: '20px',
+                            fontSize: '22px',
                             color: '#94A3B8',
                             maxWidth: '700px',
                             margin: '0 auto',
@@ -585,11 +632,11 @@ export default function BuildHomeSections() {
                             initial={isMobile ? "hidden" : undefined}
                             whileInView={isMobile ? "visible" : undefined}
                             viewport={{ once: false, margin: "-10%" }}
-                            className="relative p-8 rounded-3xl border z-20"
+                            className="relative p-8 border z-20"
                             style={{
-                                background: 'linear-gradient(180deg, rgba(100, 116, 139, 0.06) 0%, rgba(10, 15, 25, 0.8) 100%)', // Slate tint
+                                background: 'linear-gradient(180deg, rgba(100, 116, 139, 0.03) 0%, rgba(10, 15, 25, 0.9) 100%)',
                                 backdropFilter: 'blur(20px)',
-                                borderRadius: '24px',
+                                borderRadius: '24px', // Consistent Tech Radius
                                 border: '1px solid rgba(100, 116, 139, 0.08)',
                                 boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5), inset 0 0 40px rgba(100, 116, 139, 0.05)',
                                 transformOrigin: 'bottom right',
@@ -647,11 +694,11 @@ export default function BuildHomeSections() {
                             whileInView={isMobile ? "visible" : undefined}
                             viewport={{ once: false, margin: "-10%" }}
                             transition={isMobile ? { delay: 0.1 } : undefined}
-                            className="relative p-8 rounded-3xl z-30 transform"
+                            className="relative p-8 z-30 transform"
                             style={{
-                                background: 'linear-gradient(180deg, rgba(100, 116, 139, 0.06) 0%, rgba(10, 15, 25, 0.8) 100%)', // Slate tint (Unified)
+                                background: 'linear-gradient(180deg, rgba(100, 116, 139, 0.03) 0%, rgba(10, 15, 25, 0.9) 100%)',
                                 backdropFilter: 'blur(20px)',
-                                borderRadius: '24px',
+                                borderRadius: '24px', // Consistent Tech Radius
                                 border: '1px solid rgba(100, 116, 139, 0.08)',
                                 boxShadow: '0 30px 60px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(100, 116, 139, 0.05)',
                                 marginBottom: isMobile ? '20px' : '-3rem',
@@ -736,11 +783,11 @@ export default function BuildHomeSections() {
                             whileInView={isMobile ? "visible" : undefined}
                             viewport={{ once: false, margin: "-10%" }}
                             transition={isMobile ? { delay: 0.2 } : undefined}
-                            className="relative p-8 rounded-3xl border z-20"
+                            className="relative p-8 border z-20"
                             style={{
-                                background: 'linear-gradient(180deg, rgba(100, 116, 139, 0.06) 0%, rgba(10, 15, 25, 0.8) 100%)', // Slate tint
+                                background: 'linear-gradient(180deg, rgba(100, 116, 139, 0.03) 0%, rgba(10, 15, 25, 0.9) 100%)',
                                 backdropFilter: 'blur(20px)',
-                                borderRadius: '24px',
+                                borderRadius: '24px', // Consistent Tech Radius
                                 border: '1px solid rgba(100, 116, 139, 0.08)',
                                 boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5), inset 0 0 40px rgba(100, 116, 139, 0.05)',
                                 transformOrigin: 'bottom left',
@@ -796,7 +843,8 @@ export default function BuildHomeSections() {
             </section>
 
             {/* SECTION 3: Build-Operate-Transfer (DiagnosticCTA Style) */}
-            <section style={{ padding: '140px 24px', background: theme.bg }}>
+            <section style={{ padding: '140px 24px', background: theme.bg, position: 'relative' }}>
+                <PlusDottedBorder />
                 <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '3rem' : '5rem', alignItems: 'center' }}>
 
