@@ -8,6 +8,7 @@ import EventEngine from '@/components/sections/EventEngine'
 import GTMPods from '@/components/sections/GTMPods'
 import DiagnosticCTA from '@/components/sections/DiagnosticCTA'
 import BuildHomeSections from '@/components/sections/BuildHomeSections'
+import ButterflyAnimation from '@/components/ButterflyAnimation'
 import Footer from '@/components/Footer'
 import { useUniverse } from '@/context/UniverseContext'
 
@@ -21,6 +22,7 @@ export default function HomePage() {
 
       {universe === 'scale' ? (
         <>
+          <ButterflyAnimation />
           <TrustCrisis />
           <DiscoveryHub />
           <EventEngine />

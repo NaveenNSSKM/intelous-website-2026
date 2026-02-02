@@ -25,6 +25,20 @@ export default function EventEngine() {
     offset: ["start 80%", "center 60%"]
   })
 
+  // Global Scroll for Butterfly Synchronization
+  const { scrollYProgress: scrollGlobal } = useScroll()
+
+  // Butterfly triggers: 
+  // Hook (Middle): ~0.5
+  // Experience (Right): ~0.65
+
+  const hookIconScale = useTransform(scrollGlobal, [0.48, 0.5, 0.52], [1, 1.25, 1])
+  const hookIconGlow = useTransform(scrollGlobal, [0.48, 0.5, 0.52], ["0px 0px 0px rgba(236, 72, 153, 0)", "0px 0px 20px rgba(236, 72, 153, 0.6)", "0px 0px 0px rgba(236, 72, 153, 0)"])
+
+  const expIconScale = useTransform(scrollGlobal, [0.63, 0.65, 0.67], [1, 1.25, 1])
+  const expIconGlow = useTransform(scrollGlobal, [0.63, 0.65, 0.67], ["0px 0px 0px rgba(236, 72, 153, 0)", "0px 0px 20px rgba(236, 72, 153, 0.6)", "0px 0px 0px rgba(236, 72, 153, 0)"])
+
+
   // Desktop Animation: "Vertical Stack" -> "Horizontal Grid"
   const scaleCenter = useTransform(scrollYProgress, [0, 1], [1.05, 1])
 
@@ -137,14 +151,16 @@ export default function EventEngine() {
               }
             `}
           >
-            <div className={`w-12 h-12 md:w-10 md:h-10 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center mb-6 md:mb-4 lg:mb-8 mx-auto
+            <motion.div
+              style={!isMobile ? { scale: hookIconScale, boxShadow: hookIconGlow } : {}}
+              className={`w-12 h-12 md:w-10 md:h-10 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center mb-6 md:mb-4 lg:mb-8 mx-auto
               ${isDark ? 'bg-pink-500 text-white' : 'bg-pink-50 text-pink-600'}
             `}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" />
                 <path d="M10 8L16 12L10 16V8Z" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            </div>
+            </motion.div>
 
             <h3 className="text-xl md:text-lg lg:text-2xl font-bold mb-2 text-center">The Hook</h3>
             <p className="text-xs font-mono uppercase text-center opacity-60 mb-6 md:mb-4 lg:mb-6 tracking-widest">BYX Aesthetic</p>
@@ -178,7 +194,9 @@ export default function EventEngine() {
               }
             `}
           >
-            <div className={`w-12 h-12 md:w-10 md:h-10 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center mb-6 md:mb-4 lg:mb-8 mx-auto
+            <motion.div
+              style={!isMobile ? { scale: expIconScale, boxShadow: expIconGlow } : {}}
+              className={`w-12 h-12 md:w-10 md:h-10 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center mb-6 md:mb-4 lg:mb-8 mx-auto
               ${isDark ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-900'}
             `}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -186,7 +204,7 @@ export default function EventEngine() {
                 <path d="M2 17L12 22L22 17" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M2 12L12 17L22 12" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            </div>
+            </motion.div>
 
             <h3 className="text-xl md:text-lg lg:text-2xl font-bold mb-2 text-center">The Experience</h3>
             <p className="text-xs font-mono uppercase text-center opacity-60 mb-6 md:mb-4 lg:mb-6 tracking-widest">On-Site Impact</p>
